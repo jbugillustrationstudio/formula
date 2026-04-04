@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/style.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.2"></script>
+
+    <style type="text/tailwindcss">
+      @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
+    <title>as_severity_project</title>
+  </head>
+  <body class="bg-pattern">
+    <nav
+      class="border-b border-gray-300 bg-white transition-all z-50 delay-100"
+    >
+      <div
+        class="relative flex items-center justify-between max-w-7xl mx-auto px-6 py-4 transition-all z-50 delay-100"
+      >
+        <a href="index.html">
+          <img
+            class="h-9"
+            src="https://cdn-icons-png.flaticon.com/512/12243/12243791.png"
+            alt="cholesterol care logo"
+          />
+        </a>
+
+        <button
+          aria-label="Menu"
+          id="menu-toggle"
+          class="md:hidden flex cursor-pointer p-3"
+        >
+          <svg
+            width="21"
+            height="15"
+            viewBox="0 0 21 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="21" height="1.5" rx=".75" fill="#426287" />
+            <rect x="8" y="6" width="13" height="1.5" rx=".75" fill="#426287" />
+            <rect
+              x="6"
+              y="13"
+              width="15"
+              height="1.5"
+              rx=".75"
+              fill="#426287"
+            />
+          </svg>
+        </button>
+
+        <div
+          id="mobile-menu"
+          class="hidden absolute top-15 left-0 w-full bg-white shadow-md py-4 flex-col items-start px-5 text-sm md:hidden text-cyan-700"
+        >
+          <a
+            href="#"
+            class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
+            >Aortic Valve2</a
+          >
+          <a
+            href="#"
+            class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
+            >Mitral regurgitation</a
+          >
+          <a
+            href="#"
+            class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
+            >Others</a
+          >
+          <a
+            href="#"
+            class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
+            >Credits</a
+          >
+        </div>
+
+        <div class="hidden md:flex items-center gap-x-3 text-cyan-700">
+          <a
+            href="#"
+            class="py-2 px-4 hover:underline hover:underline-offset-3"
+          >
+            Aortic Valve
+          </a>
+          <a href="#" class="py-2 px-4 hover:underline hover:underline-offset-3"
+            >Mitral Regurgitation</a
+          >
+          <a href="#" class="py-2 px-4 hover:underline hover:underline-offset-3"
+            >Others</a
+          >
+          <a href="#" class="py-2 px-4 hover:underline hover:underline-offset-3"
+            >Credits</a
+          >
+        </div>
+      </div>
+    </nav>
+    <script>
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          const menu = document.getElementById("mobile-menu");
+          if (menu.classList.contains("hidden")) {
+            menu.classList.remove("hidden");
+            menu.classList.add("flex");
+          } else {
+            menu.classList.add("hidden");
+          }
+        });
+    </script>
+
+    <h1 class="text-3xl font-bold underline">BMI Calculator - javascript</h1>
+    <label for="weight">Weight (kg):</label>
+    <input
+      id="weight2"
+      type="number"
+      placeholder="kg"
+      class="border border-gray-300 p-1 rounded-lg bg-white"
+    />
+
+    <br />
+    <label for="height">Height (cm):</label>
+    <input
+      id="height2"
+      type="number"
+      placeholder="cm"
+      class="border border-gray-300 p-1 rounded-lg bg-white"
+    />
+    <span id="tallness"></span>
+    <br />
+    <button
+      id="submitBtn"
+      class="bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg shadow-md hover:bg-blue-700 active:scale-95 transition cursor-pointer"
+    >
+      Submit
+    </button>
+    <button
+      id="clearBtn"
+      class="bg-gray-300 text-gray-800 font-semibold px-5 py-2 rounded-lg shadow-md hover:bg-gray-400 active:scale-95 transition cursor-pointer"
+    >
+      Clear
+    </button>
+
+    <h4 id="heading"></h4>
+    <p id="bmi-output"></p>
+    <p id="message"></p>
+
+    <div class="max-w-7xl mx-auto">
+      <h4 class="text-2xl font-bold mb-4 text-cyan-950">
+        Aortic stenosis severity:
+      </h4>
+      <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
+        <div
+          class="text-center outline-dotted outline-4 outline-cyan-700 rounded-4xl p-2"
+        >
+          "Aortic valave area"
+          <div class="grid grid-cols-2">
+            <div class="text-right pr-2">LVOT diameter (cm):</div>
+            <div class="flex flex-col items-start">
+              <input
+                id="LVOT-diameter"
+                type="number"
+                placeholder="cm"
+                class="w-1/2 border border-gray-300 px-1 rounded-lg bg-white focus:outline-amber-400 focus:ring-offset-2"
+              />
+            </div>
+            <div class="text-right pr-2">LVOT VTI (cm):</div>
+            <div class="flex flex-col items-start">
+              <input
+                id="LVOT-VTI"
+                type="number"
+                placeholder="cm"
+                class="w-1/2 border border-gray-300 px-1 rounded-lg bg-white focus:outline-amber-400 focus:ring-offset-2"
+              />
+            </div>
+            <div class="text-right pr-2">AV VTI (cm):</div>
+            <div class="flex flex-col items-start">
+              <input
+                id="AV-VTI"
+                type="number"
+                placeholder="cm"
+                class="w-1/2 border border-gray-300 px-1 rounded-lg bg-white focus:outline-amber-400 focus:ring-offset-2"
+              />
+            </div>
+            <div class="col-span-2 text-center pt-2">
+              "For Pressure Recovery"
+            </div>
+            <div class="text-right pr-2">STJ diameter(cm):</div>
+            <div class="flex flex-col items-start">
+              <input
+                id="STJ-diameter"
+                type="number"
+                placeholder="cm"
+                class="w-1/2 border border-gray-300 px-1 rounded-lg bg-white focus:outline-amber-400 focus:ring-offset-2"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="text-center outline-dotted outline-4 outline-cyan-700 rounded-4xl p-2"
+        >
+          "Aortic valve peak velocity/gradients"
+          <div class="grid grid-cols-2">
+            <div class="text-right pr-2">AV peak velocity (m/s):</div>
+            <div class="flex flex-col items-start">
+              <input
+                id="AV-peak-velocity"
+                type="number"
+                placeholder="m/s"
+                class="w-1/2 border border-gray-300 px-1 rounded-lg bg-white focus:outline-amber-400 focus:ring-offset-2"
+              />
+            </div>
+            <div class="text-right pr-2">AV peak gradients (mmHg):</div>
+            <div class="flex flex-col items-start">
+              <input
+                id="AV-peak-gradients"
+                type="number"
+                placeholder="mmHg"
+                class="w-1/2 border border-gray-300 px-1 rounded-lg bg-white focus:outline-amber-400 focus:ring-offset-2"
+              />
+            </div>
+
+            <div class="col-span-2 text-center pt-2">
+              "Aortic valve mean velocity/gradients"
+            </div>
+            <div class="text-right pr-2">AV mean velocity (m/s):</div>
+            <div class="flex flex-col items-start">
+              <input
+                id="AV-mean-velocity"
+                type="number"
+                placeholder="m/s"
+                class="w-1/2 border border-gray-300 px-1 rounded-lg bg-white focus:outline-amber-400 focus:ring-offset-2"
+              />
+            </div>
+            <div class="text-right pr-2">AV mean gradients (mmHg):</div>
+            <div class="flex flex-col items-start">
+              <input
+                id="AV-mean-gradients"
+                type="number"
+                placeholder="mmHg"
+                class="w-1/2 border border-gray-300 px-1 rounded-lg bg-white focus:outline-amber-400 focus:ring-offset-2"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="text-center outline-dotted outline-4 outline-cyan-700 rounded-4xl p-2"
+        >
+          "Acceleration time/Ejection time ratio"
+          <div class="grid grid-cols-2">
+            <div class="text-right pr-2">AT time (ms):</div>
+            <div class="flex flex-col items-start">
+              <input
+                id="AT-time"
+                type="number"
+                placeholder="ms"
+                class="w-1/2 border border-gray-300 px-1 rounded-lg bg-white focus:outline-amber-400 focus:ring-offset-2"
+              />
+            </div>
+            <div class="text-right pr-2">ET time (ms):</div>
+            <div class="flex flex-col items-start">
+              <input
+                id="ET-time"
+                type="number"
+                placeholder="ms"
+                class="w-1/2 border border-gray-300 px-1 rounded-lg bg-white focus:outline-amber-400 focus:ring-offset-2"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="text-center outline-dotted outline-4 outline-cyan-700 rounded-4xl p-2"
+        >
+          "Body surface area / body mass index"
+          <div class="grid grid-cols-2">
+            <div class="text-right pr-2">Height (cm):</div>
+            <div class="flex flex-col items-start">
+              <input
+                id="height"
+                type="number"
+                placeholder="cm"
+                class="w-1/2 border border-gray-300 px-1 rounded-lg bg-white focus:outline-amber-400 focus:ring-offset-2"
+              />
+            </div>
+            <div class="text-right pr-2">Weight (kg):</div>
+            <div class="flex flex-col items-start">
+              <input
+                id="weight"
+                type="number"
+                placeholder="kg"
+                class="w-1/2 border border-gray-300 px-1 rounded-lg bg-white focus:outline-amber-400 focus:ring-offset-2"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="text-center outline-dotted outline-4 outline-cyan-700 rounded-4xl p-2"
+        >
+          "Calculation:"
+          <div class="grid grid-cols-2">
+            <div class="text-right pr-2">DSI:</div>
+            <div class="flex flex-col items-start">
+              <p id="DSI-output" class="w-1/2 px-1 text-cyan-900 text-left">
+                test
+              </p>
+            </div>
+            <div class="text-right pr-2">AV area (cm²):</div>
+            <div class="flex flex-col items-start">
+              <p id="AV-area-output" class="w-1/2 px-1 text-cyan-900 text-left">
+                test
+              </p>
+            </div>
+            <div class="text-right pr-2">Indexed AV area (cm²/m²):</div>
+            <div class="flex flex-col items-start">
+              <p
+                id="indexed-AV-area-output"
+                class="w-1/2 px-1 text-cyan-900 text-left"
+              >
+                test
+              </p>
+            </div>
+            <div class="text-right pr-2">Pr AV area (cm²):</div>
+            <div class="flex flex-col items-start">
+              <p
+                id="pressure-recovered-AV-area-output"
+                class="w-1/2 px-1 text-cyan-900 text-left"
+              >
+                test
+              </p>
+            </div>
+            <div class="text-right pr-2">Pr indexed AV area (cm²/m²):</div>
+            <div class="flex flex-col items-start">
+              <p
+                id="pressure-recovered-indexed-AV-area-output"
+                class="w-1/2 px-1 text-cyan-900 text-left"
+              >
+                test
+              </p>
+            </div>
+            <div class="text-right pr-2">Pr peak AV gradients (mmHg):</div>
+            <div class="flex flex-col items-start">
+              <p
+                id="pressure-recovered-peak-AV-gradients-output"
+                class="w-1/2 px-1 text-cyan-900 text-left"
+              >
+                test
+              </p>
+            </div>
+            <div class="text-right pr-2">Pr mean AV gradients (mmHg):</div>
+            <div class="flex flex-col items-start">
+              <p
+                id="pressure-recovered-mean-AV-gradients-output"
+                class="w-1/2 px-1 text-cyan-900 text-left"
+              >
+                test
+              </p>
+            </div>
+            <div class="text-right pr-2">AT/ET:</div>
+            <div class="flex flex-col items-start">
+              <p id="AT-ET-output" class="w-1/2 px-1 text-cyan-900 text-left">
+                test
+              </p>
+            </div>
+            <div class="text-right pr-2">BSA (m²):</div>
+            <div class="flex flex-col items-start">
+              <p id="BSA-output" class="w-1/2 px-1 text-cyan-900 text-left">
+                test
+              </p>
+            </div>
+            <div class="text-right pr-2">BMI (kg/m²):</div>
+            <div class="flex flex-col items-start">
+              <p id="BMI-output" class="w-1/2 px-1 text-cyan-900 text-left">
+                test
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
