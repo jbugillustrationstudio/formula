@@ -277,7 +277,7 @@
             "Calculation:"
             <p id="message"></p>
             <div class="grid grid-cols-2">
-              <div class="text-right pr-2">DSI:</div>
+              <div class="text-right pr-2" id="calc_results">DSI:</div>
               <div class="grid grid-cols-2 items-start">
                 <p
                   id="dsi-output"
@@ -540,17 +540,26 @@
         window.location.reload();
       };
 
-      document
-        .getElementById("submitBtn")
-        .addEventListener("click", window.calculateAV);
+      document.getElementById("submitBtn").addEventListener("click", () => {
+        calculateAV(); // run your calculation function
+        scrollToCalculations(); // scroll down to the outputs
+      });
       document
         .getElementById("clearBtn")
         .addEventListener("click", window.reload);
+      function scrollToCalculations() {
+        calculations = document.getElementById("calc_results");
+        if (calculations) {
+          // Smooth scroll so the Calculations section is visible
+          calculations.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
       document.querySelectorAll("input").forEach((input) => {
         input.addEventListener("keydown", (e) => {
-          if (e.key === "Enter") {
+          if (e.key === "Enter" || e.key === "Return" || e.keyCode === 13) {
             e.preventDefault();
             calculateAV();
+            scrollToCalculations();
           }
         });
       });
