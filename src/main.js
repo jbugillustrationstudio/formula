@@ -78,14 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("pr-av-area-grading").innerText = "";
     }
 
-    if (attime && ettime > 0) {
+    if (attime > 0 && ettime > 0) {
       let atet = attime / ettime;
       document.getElementById("atet-output").innerText = atet.toFixed(2);
     } else {
       document.getElementById("atet-output").innerText = "";
     }
 
-    if (weight && height > 0) {
+    if (weight > 0 && height > 0) {
       bsa = Math.sqrt((height * weight) / 3600);
       let bmi = weight / (height / 100) ** 2;
 
