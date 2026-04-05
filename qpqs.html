@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="src/style.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.2"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
+    </style>
+    <style type="text/tailwindcss">
+      @theme {
+      }
+    </style>
+    <title>as_severity_project</title>
+  </head>
+  <body
+    class="bg-[linear-gradient(rgba(0,0,0,0.8),rgba(23,49,92,0.8)),url('src/background.jpg')] bg-cover bg-center bg-fixed min-h-screen"
+  >
+    <nav
+      class="border-b border-gray-300 bg-white transition-all z-50 delay-100"
+    >
+      <div
+        class="relative flex items-center justify-between max-w-7xl mx-auto px-6 py-4 transition-all z-50 delay-100"
+      >
+        <a>
+          <img class="h-9" src="src/document-add-svgrepo-com.svg" alt="logo" />
+        </a>
+
+        <button
+          aria-label="Menu"
+          id="menu-toggle"
+          class="md:hidden flex cursor-pointer p-3"
+        >
+          <svg
+            width="21"
+            height="15"
+            viewBox="0 0 21 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="21" height="1.5" rx=".75" fill="#374151" />
+            <rect x="8" y="6" width="13" height="1.5" rx=".75" fill="#374151" />
+            <rect
+              x="6"
+              y="13"
+              width="15"
+              height="1.5"
+              rx=".75"
+              fill="#374151"
+            />
+          </svg>
+        </button>
+
+        <div
+          id="mobile-menu"
+          class="hidden absolute top-15 left-0 w-full bg-white shadow-md py-4 flex-col items-start px-5 text-sm md:hidden text-cyan-700"
+        >
+          <a
+            href="index.html"
+            class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
+            >Aortic Valve</a
+          >
+          <a
+            href="#"
+            class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
+            >Mitral Regurgitation</a
+          >
+          <a
+            href="qpqs.html"
+            class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
+            >Qp/Qs</a
+          >
+          <a
+            href="#"
+            class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
+            >Credits</a
+          >
+        </div>
+
+        <div class="hidden md:flex items-center gap-x-3 text-cyan-700">
+          <a
+            href="index.html"
+            class="py-2 px-4 hover:underline hover:underline-offset-3"
+          >
+            Aortic Valve
+          </a>
+          <a href="#" class="py-2 px-4 hover:underline hover:underline-offset-3"
+            >Mitral Regurgitation</a
+          >
+          <a
+            href="qpqs.html"
+            class="py-2 px-4 hover:underline hover:underline-offset-3"
+            >Qp/Qs</a
+          >
+          <a href="#" class="py-2 px-4 hover:underline hover:underline-offset-3"
+            >Credits</a
+          >
+        </div>
+      </div>
+    </nav>
+    <script>
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          const menu = document.getElementById("mobile-menu");
+          if (menu.classList.contains("hidden")) {
+            menu.classList.remove("hidden");
+            menu.classList.add("flex");
+          } else {
+            menu.classList.add("hidden");
+          }
+        });
+    </script>
+    <section class="p-3 sm:px-8">
+      <div class="max-w-7xl mx-auto">
+        <h4 class="text-3xl font-bold ml-4 my-4 text-yellow-400">
+          <code>::Qp/Qs</code>
+        </h4>
+        <div class="grid md:grid-cols-2 grid-cols-1 gap-4 text-slate-400">
+          <div class="text-center border-y-2 border-slate-700 rounded-4xl p-2">
+            "Qp/Qs measurements"
+
+            <div class="grid grid-cols-2">
+              <div class="text-right pr-2">LVOT diameter (cm):</div>
+              <div class="flex flex-col items-start justify-end">
+                <input
+                  id="lvot-diameter"
+                  type="number"
+                  placeholder="cm"
+                  class="w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                />
+              </div>
+              <div class="text-right pr-2">LVOT VTI (cm):</div>
+              <div class="flex flex-col items-start justify-end">
+                <input
+                  id="lvot-vti"
+                  type="number"
+                  placeholder="cm"
+                  class="w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                />
+              </div>
+              <div class="text-right pr-2">RVOT diameter (cm):</div>
+              <div class="flex flex-col items-start justify-end">
+                <input
+                  id="rvot-diameter"
+                  type="number"
+                  placeholder="cm"
+                  class="w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                />
+              </div>
+              <div class="text-right pr-2">RVOT VTI (cm):</div>
+              <div class="flex flex-col items-start justify-end">
+                <input
+                  id="rvot-vti"
+                  type="number"
+                  placeholder="cm"
+                  class="w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                />
+              </div>
+            </div>
+            <div class="my-2 mt-3">
+              <button
+                id="submitBtn"
+                ontouchstart=""
+                class="bg-yellow-500 text-slate-800 font-semibold px-5 py-2 rounded-lg shadow-md hover:bg-yellow-300 active:scale-90 transition cursor-pointer"
+              >
+                Submit
+              </button>
+              <button
+                id="clearBtn"
+                ontouchstart=""
+                class="bg-gray-300 text-gray-800 font-semibold px-5 py-2 rounded-lg shadow-md hover:bg-gray-400 active:scale-90 transition cursor-pointer"
+              >
+                Clear
+              </button>
+            </div>
+            <div class="grid grid-cols-2">
+              <div class="grid col-span-2 mt-2">"Calculation:"</div>
+
+              <div class="grid text-right pr-2" id="calc_results">Qp/Qs:</div>
+              <div class="flex flex-col items-start">
+                <p id="qpqs-output" class="px-1 text-white text-left"></p>
+              </div>
+              <p
+                id="qpqs-grading"
+                class="text-white text-center align-bottom grid col-span-2"
+              ></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      window.calculateAV = function () {
+        let lvotd = Number(document.getElementById("lvot-diameter").value);
+        let lvotvti = Number(document.getElementById("lvot-vti").value);
+        let rvotd = Number(document.getElementById("rvot-diameter").value);
+        let rvotvti = Number(document.getElementById("rvot-vti").value);
+        if (lvotd > 0 && lvotvti > 0 && rvotd > 0 && rvotvti > 0) {
+          let qpqs =
+            (Math.pow(rvotd / 2, 2) * rvotvti) /
+            (Math.pow(lvotd / 2, 2) * lvotvti);
+
+          document.getElementById("qpqs-output").innerText = qpqs.toFixed(2);
+
+          if (qpqs >= 1.5) {
+            document.getElementById("qpqs-grading").innerText =
+              "Significant Left-to-Right Shunt";
+          } else document.getElementById("qpqs-grading").innerText = "";
+        } else {
+          document.getElementById("qpqs-output").innerText = "";
+          document.getElementById("qpqs-grading").innerText = "";
+        }
+      };
+
+      window.reload = function () {
+        window.location.reload();
+      };
+
+      document.getElementById("submitBtn").addEventListener("click", () => {
+        calculateAV(); // run your calculation function
+        scrollToCalculations(); // scroll down to the outputs
+      });
+      document
+        .getElementById("clearBtn")
+        .addEventListener("click", window.reload);
+      function scrollToCalculations() {
+        calculations = document.getElementById("calc_results");
+        if (calculations) {
+          // Smooth scroll so the Calculations section is visible
+          calculations.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+      document.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === "Return" || e.keyCode === 13) {
+            e.preventDefault();
+            calculateAV();
+            scrollToCalculations();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -24,7 +24,7 @@
       <div
         class="relative flex items-center justify-between max-w-7xl mx-auto px-6 py-4 transition-all z-50 delay-100"
       >
-        <a href="index.html">
+        <a>
           <img class="h-9" src="src/document-add-svgrepo-com.svg" alt="logo" />
         </a>
 
@@ -58,19 +58,19 @@
           class="hidden absolute top-15 left-0 w-full bg-white shadow-md py-4 flex-col items-start px-5 text-sm md:hidden text-cyan-700"
         >
           <a
-            href="#"
+            href="index.html"
             class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
-            >Aortic Valve2</a
+            >Aortic Valve</a
           >
           <a
             href="#"
             class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
-            >Mitral regurgitation</a
+            >Mitral Regurgitation</a
           >
           <a
-            href="#"
+            href="qpqs.html"
             class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
-            >Others</a
+            >Qp/Qs</a
           >
           <a
             href="#"
@@ -81,7 +81,7 @@
 
         <div class="hidden md:flex items-center gap-x-3 text-cyan-700">
           <a
-            href="#"
+            href="index.html"
             class="py-2 px-4 hover:underline hover:underline-offset-3"
           >
             Aortic Valve
@@ -89,8 +89,10 @@
           <a href="#" class="py-2 px-4 hover:underline hover:underline-offset-3"
             >Mitral Regurgitation</a
           >
-          <a href="#" class="py-2 px-4 hover:underline hover:underline-offset-3"
-            >Others</a
+          <a
+            href="qpqs.html"
+            class="py-2 px-4 hover:underline hover:underline-offset-3"
+            >Qp/Qs</a
           >
           <a href="#" class="py-2 px-4 hover:underline hover:underline-offset-3"
             >Credits</a
@@ -167,21 +169,24 @@
             "Aortic valve peak velocity/gradients"
             <div class="grid grid-cols-2">
               <div class="text-right pr-2">AV peak velocity (m/s):</div>
-              <div class="flex flex-col items-start justify-end">
+              <div class="grid grid-cols-3 gap-2 items-start justify-end">
                 <input
-                  id="AV-peak-velocity"
+                  id="av-peak-velocity"
                   type="number"
                   placeholder="m/s"
-                  class="w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
-                />
+                  class="border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                /><span
+                  id="av-peak-grading"
+                  class="text-white text-left align-bottom col-span-2"
+                ></span>
               </div>
               <div class="text-right pr-2">AV peak gradients (mmHg):</div>
-              <div class="flex flex-col items-start justify-end">
+              <div class="grid grid-cols-3 gap-2 items-start justify-end">
                 <input
-                  id="AV-peak-gradients"
+                  id="av-peak-gradients"
                   type="number"
                   placeholder="mmHg"
-                  class="w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                  class="border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
                 />
               </div>
 
@@ -189,22 +194,25 @@
                 "Aortic valve mean velocity/gradients"
               </div>
               <div class="text-right pr-2">AV mean velocity (m/s):</div>
-              <div class="flex flex-col items-start justify-end">
+              <div class="grid grid-cols-3 gap-2 items-start justify-end">
                 <input
-                  id="AV-mean-velocity"
+                  id="av-mean-velocity"
                   type="number"
                   placeholder="m/s"
-                  class="w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                  class="border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
                 />
               </div>
               <div class="text-right pr-2">AV mean gradients (mmHg):</div>
-              <div class="flex flex-col items-start justify-end">
+              <div class="grid grid-cols-3 gap-2 items-start justify-end">
                 <input
-                  id="AV-mean-gradients"
+                  id="av-mean-gradients"
                   type="number"
                   placeholder="mmHg"
-                  class="w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
-                />
+                  class="border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                /><span
+                  id="av-mean-grading"
+                  class="text-white text-left align-bottom col-span-2"
+                ></span>
               </div>
             </div>
           </div>
@@ -237,7 +245,7 @@
             "Body surface area / body mass index"
             <div class="grid grid-cols-2">
               <div class="text-right pr-2">Height (cm):</div>
-              <div class="grid grid-cols-2 gap-2 items-start">
+              <div class="flex flex-col items-start">
                 <input
                   id="height"
                   type="number"
@@ -246,7 +254,7 @@
                 />
               </div>
               <div class="text-right pr-2">Weight (kg):</div>
-              <div class="grid grid-cols-2 gap-2 items-start">
+              <div class="flex flex-col items-start">
                 <input
                   id="weight"
                   type="number"
@@ -355,12 +363,16 @@
                 ></span>
               </div>
               <div class="text-right pr-2">AT/ET:</div>
-              <div class="flex flex-col items-start">
-                <p id="atet-output" class="w-1/2 px-1 text-white text-left"></p>
+              <div class="grid grid-cols-2 items-start align-bottom">
+                <p id="atet-output" class="px-1 text-white text-left"></p>
+                <span
+                  id="atet-grading"
+                  class="text-white text-left align-bottom"
+                ></span>
               </div>
               <div class="text-right pr-2">BSA (m²):</div>
-              <div class="flex flex-col items-start">
-                <p id="bsa-output" class="w-1/2 px-1 text-white text-left"></p>
+              <div class="grid grid-cols-2 items-start align-bottom">
+                <p id="bsa-output" class="px-1 text-white text-left"></p>
               </div>
               <div class="text-right pr-2">BMI (kg/m²):</div>
               <div class="grid grid-cols-2 items-start">
@@ -383,32 +395,56 @@
         let avarea = 0;
         let stj = Number(document.getElementById("stj-diameter").value);
         let pr_avarea = 0;
+        let avpeakvel = Number(
+          document.getElementById("av-peak-velocity").value,
+        );
+        let avmeangradients = Number(
+          document.getElementById("av-mean-gradients").value,
+        );
         let attime = Number(document.getElementById("at-time").value);
         let ettime = Number(document.getElementById("et-time").value);
         let weight = Number(document.getElementById("weight").value);
         let height = Number(document.getElementById("height").value);
         let bsa = 0;
-        // if (!weight || !height || isNaN(weight) || isNaN(height)) {
-        //   document.getElementById("message").innerText =
-        //     "Please enter valid numbers!";
-        //   document.getElementById("message").className =
-        //     "text-red-500 font-semibold text-sm";
-        //   return;
-        // }
-        // pressure recover equation pr-avarea-output = (avarea * stjarea) / (stjarea - avarea)
 
+        if (avpeakvel > 0) {
+          if (avpeakvel >= 4.0) {
+            document.getElementById("av-peak-grading").innerText = "Severe AS";
+          } else if (avpeakvel >= 3.0) {
+            document.getElementById("av-peak-grading").innerText =
+              "Moderate AS";
+          } else if (avpeakvel >= 2.6) {
+            document.getElementById("av-peak-grading").innerText = "Mild AS";
+          } else if (avpeakvel <= 2.5 && avpeakvel > 0) {
+            document.getElementById("av-peak-grading").innerText =
+              "Sclerotic AV";
+          }
+        } else {
+          document.getElementById("av-peak-grading").innerText = "";
+        }
+        if (avmeangradients > 0) {
+          if (avmeangradients >= 40) {
+            document.getElementById("av-mean-grading").innerText = "Severe AS";
+          } else if (avmeangradients >= 20) {
+            document.getElementById("av-mean-grading").innerText =
+              "Moderate AS";
+          } else if (avmeangradients < 20 && avmeangradients > 0) {
+            document.getElementById("av-mean-grading").innerText = "Mild AS";
+          }
+        } else {
+          document.getElementById("av-mean-grading").innerText = "";
+        }
         if (lvotvti > 0 && avvti > 0) {
           let dsi = lvotvti / avvti;
           document.getElementById("dsi-output").innerText = dsi.toFixed(2);
 
           if (dsi < 0.25) {
             document.getElementById("dsi-grading").innerText = "Severe AS";
-          } else if (dsi < 0.5) {
+          } else if (dsi <= 0.5) {
             document.getElementById("dsi-grading").innerText = "Moderate AS";
-          } else if (dsi < 0.75) {
-            document.getElementById("dsi-grading").innerText = "Mild AS";
           } else {
-            document.getElementById("dsi-grading").innerText = "Normal";
+            document.getElementById("dsi-grading").innerText =
+              "Mild/sclerotic AS";
           }
         } else {
           document.getElementById("dsi-output").innerText = "";
@@ -421,13 +457,12 @@
 
           if (avarea < 1) {
             document.getElementById("av-area-grading").innerText = "Severe AS";
-          } else if (avarea < 1.5) {
+          } else if (avarea <= 1.5) {
             document.getElementById("av-area-grading").innerText =
               "Moderate AS";
-          } else if (avarea < 2) {
-            document.getElementById("av-area-grading").innerText = "Mild AS";
           } else {
-            document.getElementById("av-area-grading").innerText = "Normal";
+            document.getElementById("av-area-grading").innerText =
+              "Mild/sclerotic AS";
           }
         } else {
           document.getElementById("av-area-output").innerText = "";
@@ -444,13 +479,12 @@
           if (pr_avarea < 1) {
             document.getElementById("pr-av-area-grading").innerText =
               "Severe AS";
-          } else if (pr_avarea < 1.5) {
+          } else if (pr_avarea <= 1.5) {
             document.getElementById("pr-av-area-grading").innerText =
               "Moderate AS";
-          } else if (pr_avarea < 2) {
-            document.getElementById("pr-av-area-grading").innerText = "Mild AS";
           } else {
-            document.getElementById("pr-av-area-grading").innerText = "Normal";
+            document.getElementById("pr-av-area-grading").innerText =
+              "Mild/sclerotic AS";
           }
         } else {
           document.getElementById("pr-av-area-output").innerText = "";
@@ -460,8 +494,21 @@
         if (attime > 0 && ettime > 0) {
           let atet = attime / ettime;
           document.getElementById("atet-output").innerText = atet.toFixed(2);
+          if (atet > 1) {
+            document.getElementById("atet-grading").innerText = "Invalid ratio";
+            document.getElementById("atet-grading").className =
+              "text-red-500 text-left align-bottom";
+          } else if (atet >= 0.35) {
+            document.getElementById("atet-grading").innerText =
+              "Significant AS";
+            document.getElementById("atet-grading").className =
+              "text-white text-left align-bottom";
+          } else {
+            document.getElementById("atet-grading").innerText = "";
+          }
         } else {
           document.getElementById("atet-output").innerText = "";
+          document.getElementById("atet-grading").innerText = "";
         }
 
         if (weight > 0 && height > 0) {
@@ -496,15 +543,12 @@
           if (avarea_indexed < 0.6) {
             document.getElementById("av-area-indexed-grading").innerText =
               "Severe AS";
-          } else if (avarea_indexed < 0.85) {
+          } else if (avarea_indexed <= 0.85) {
             document.getElementById("av-area-indexed-grading").innerText =
               "Moderate AS";
-          } else if (avarea_indexed < 1.0) {
-            document.getElementById("av-area-indexed-grading").innerText =
-              "Mild AS";
           } else {
             document.getElementById("av-area-indexed-grading").innerText =
-              "Normal";
+              "Mild/sclerotic AS";
           }
         } else {
           document.getElementById("av-area-indexed-output").innerText = "";
@@ -518,22 +562,17 @@
           if (pr_avarea_indexed < 0.6) {
             document.getElementById("pr-av-area-indexed-grading").innerText =
               "Severe AS";
-          } else if (pr_avarea_indexed < 0.85) {
+          } else if (pr_avarea_indexed <= 0.85) {
             document.getElementById("pr-av-area-indexed-grading").innerText =
               "Moderate AS";
-          } else if (pr_avarea_indexed < 1.0) {
-            document.getElementById("pr-av-area-indexed-grading").innerText =
-              "Mild AS";
           } else {
             document.getElementById("pr-av-area-indexed-grading").innerText =
-              "Normal";
+              "Mild/sclerotic AS";
           }
         } else {
           document.getElementById("pr-av-area-indexed-output").innerText = "";
           document.getElementById("pr-av-area-indexed-grading").innerText = "";
         }
-
-        document.getElementById("message").innerText = "";
       };
 
       window.reload = function () {
