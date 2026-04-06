@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="src/style.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.2"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
+    </style>
+    <style type="text/tailwindcss">
+      @theme {
+      }
+    </style>
+    <title>as_severity_project</title>
+  </head>
+  <body
+    class="bg-[linear-gradient(rgba(0,0,0,0.8),rgba(23,49,92,0.8)),url('src/background.jpg')] bg-cover bg-center bg-fixed min-h-screen"
+  >
+    <nav
+      class="border-b border-gray-300 bg-white transition-all z-50 delay-100"
+    >
+      <div
+        class="relative flex items-center justify-between max-w-7xl mx-auto px-6 py-4 transition-all z-50 delay-100"
+      >
+        <a>
+          <img class="h-9" src="src/document-add-svgrepo-com.svg" alt="logo" />
+        </a>
+
+        <button
+          aria-label="Menu"
+          id="menu-toggle"
+          class="md:hidden flex cursor-pointer p-3"
+        >
+          <svg
+            width="21"
+            height="15"
+            viewBox="0 0 21 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="21" height="1.5" rx=".75" fill="#374151" />
+            <rect x="8" y="6" width="13" height="1.5" rx=".75" fill="#374151" />
+            <rect
+              x="6"
+              y="13"
+              width="15"
+              height="1.5"
+              rx=".75"
+              fill="#374151"
+            />
+          </svg>
+        </button>
+
+        <div
+          id="mobile-menu"
+          class="hidden absolute top-15 left-0 w-full bg-white shadow-md py-4 flex-col items-start px-5 text-sm md:hidden text-cyan-700"
+        >
+          <a
+            href="index.html"
+            class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
+            >Aortic Valve</a
+          >
+          <a
+            href="#"
+            class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
+            >Mitral Regurgitation</a
+          >
+          <a
+            href="qpqs.html"
+            class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
+            >Qp/Qs</a
+          >
+          <a
+            href="#"
+            class="block w-full px-4 my-1 py-1 rounded-full outline-transparent hover:outline-cyan-700 hover:outline-2 transition-all duration-300"
+            >Credits</a
+          >
+        </div>
+
+        <div class="hidden md:flex items-center gap-x-3 text-cyan-700">
+          <a
+            href="index.html"
+            class="py-2 px-4 hover:underline hover:underline-offset-3"
+          >
+            Aortic Valve
+          </a>
+          <a href="#" class="py-2 px-4 hover:underline hover:underline-offset-3"
+            >Mitral Regurgitation</a
+          >
+          <a
+            href="qpqs.html"
+            class="py-2 px-4 hover:underline hover:underline-offset-3"
+            >Qp/Qs</a
+          >
+          <a href="#" class="py-2 px-4 hover:underline hover:underline-offset-3"
+            >Credits</a
+          >
+        </div>
+      </div>
+    </nav>
+    <script>
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          const menu = document.getElementById("mobile-menu");
+          if (menu.classList.contains("hidden")) {
+            menu.classList.remove("hidden");
+            menu.classList.add("flex");
+          } else {
+            menu.classList.add("hidden");
+          }
+        });
+    </script>
+
+    <section class="p-3 sm:px-8">
+      <!-- Input fields -->
+      <input type="checkbox" class="syncCheck" />
+      <input
+        type="text"
+        class="sourceInput"
+        placeholder="Input 1"
+      /><br /><br />
+
+      <input type="checkbox" class="syncCheck" />
+      <input
+        type="text"
+        class="sourceInput"
+        placeholder="Input 2"
+      /><br /><br />
+
+      <input type="checkbox" class="syncCheck" />
+      <input
+        type="text"
+        class="sourceInput"
+        placeholder="Input 3"
+      /><br /><br />
+
+      <!-- Static list of <p> items with checkboxes -->
+      <div id="itemList">
+        <label>
+          <input type="checkbox" class="listCheck" />
+          <p class="listText" id="itemA">Item A</p> </label
+        ><br />
+        <label
+          ><input type="checkbox" class="listCheck" />
+          <p class="listText">Item B</p></label
+        ><br />
+        <label
+          ><input type="checkbox" class="listCheck" />
+          <p class="listText">Item C</p></label
+        ><br />
+      </div>
+
+      <p>Result: <span id="result"></span></p>
+
+      <script>
+        const checkboxes = document.querySelectorAll(".syncCheck");
+        const inputs = document.querySelectorAll(".sourceInput");
+        const listChecks = document.querySelectorAll(".listCheck");
+        const listTexts = document.querySelectorAll(".listText");
+        const result = document.getElementById("result");
+        const itemA = document.getElementById("itemA");
+
+        // Function to update Item A with current time
+        function updateTime() {
+          const now = new Date();
+          const formattedTime = now.toLocaleTimeString(); // e.g., "14:30:15"
+          itemA.textContent = formattedTime;
+          updateResult(); // Update result if Item A is checked
+        }
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+        updateTime(); // Initialize immediately
+
+        function updateResult() {
+          let values = [];
+
+          // From input fields
+          inputs.forEach((input, index) => {
+            if (checkboxes[index].checked && input.value !== "") {
+              values.push(input.value);
+            }
+          });
+
+          // From static <p> items
+          listChecks.forEach((checkbox, index) => {
+            if (checkbox.checked) {
+              values.push(listTexts[index].textContent);
+            }
+          });
+
+          result.textContent = values.join(", ");
+        }
+
+        // Event listeners
+        inputs.forEach((input) =>
+          input.addEventListener("input", updateResult),
+        );
+        checkboxes.forEach((checkbox) =>
+          checkbox.addEventListener("change", updateResult),
+        );
+        listChecks.forEach((checkbox) =>
+          checkbox.addEventListener("change", updateResult),
+        );
+      </script>
+    </section>
+  </body>
+</html>

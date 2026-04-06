@@ -124,37 +124,43 @@
 
             <div class="grid grid-cols-2">
               <div class="text-right pr-2">LVOT diameter (cm):</div>
-              <div class="flex flex-col items-start justify-end">
+              <div class="flex items-center justify-start">
                 <input
                   id="lvot-diameter"
                   type="number"
                   placeholder="cm"
-                  class="w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
-                />
+                  data-label="LVOTd"
+                  data-unit="cm"
+                  class="sourceInput w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                /><input type="checkbox" class="syncCheck ml-2" />
               </div>
               <div class="text-right pr-2">LVOT VTI (cm):</div>
-              <div class="flex flex-col items-start justify-end">
+              <div class="flex items-center justify-start">
                 <input
                   id="lvot-vti"
                   type="number"
                   placeholder="cm"
-                  class="w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
-                />
+                  data-label="LVOT (VTI)"
+                  data-unit="cm"
+                  class="sourceInput w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                /><input type="checkbox" class="syncCheck ml-2" />
               </div>
               <div class="text-right pr-2">AV VTI (cm):</div>
-              <div class="flex flex-col items-start justify-end">
+              <div class="flex items-center justify-start">
                 <input
                   id="av-vti"
                   type="number"
                   placeholder="cm"
-                  class="w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
-                />
+                  data-label="AV (VTI)"
+                  data-unit="cm"
+                  class="sourceInput w-1/2 border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                /><input type="checkbox" class="syncCheck ml-2" />
               </div>
               <div class="col-span-2 text-center pt-2">
                 "For Pressure Recovery"
               </div>
               <div class="text-right pr-2">STJ diameter(cm):</div>
-              <div class="flex flex-col items-start justify-end">
+              <div class="flex flex-col items-start justify-start">
                 <input
                   id="stj-diameter"
                   type="number"
@@ -169,50 +175,67 @@
             "Aortic valve peak velocity/gradients"
             <div class="grid grid-cols-2">
               <div class="text-right pr-2">AV peak velocity (m/s):</div>
-              <div class="grid grid-cols-3 gap-2 items-start justify-end">
+              <div class="grid grid-cols-3 items-center justify-start">
                 <input
                   id="av-peak-velocity"
                   type="number"
                   placeholder="m/s"
-                  class="border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
-                /><span
-                  id="av-peak-grading"
-                  class="text-white text-left align-bottom col-span-2"
-                ></span>
+                  data-label="AV peak Vel"
+                  data-unit="m/s"
+                  class="sourceInput border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                />
+                <div class="col-span-2 flex">
+                  <input type="checkbox" class="syncCheck mx-2" /><span
+                    id="av-peak-grading"
+                    class="text-white text-left align-bottom"
+                  ></span>
+                </div>
               </div>
               <div class="text-right pr-2">AV peak gradients (mmHg):</div>
-              <div class="grid grid-cols-3 gap-2 items-start justify-end">
+              <div class="grid grid-cols-3 items-center justify-start">
                 <input
                   id="av-peak-gradients"
                   type="number"
                   placeholder="mmHg"
-                  class="border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                  data-label="AV peakPG"
+                  data-unit="mmHg"
+                  class="sourceInput border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
                 />
+                <div class="col-span-2 flex">
+                  <input type="checkbox" class="syncCheck ml-2" />
+                </div>
               </div>
 
               <div class="col-span-2 text-center pt-2">
                 "Aortic valve mean velocity/gradients"
               </div>
               <div class="text-right pr-2">AV mean velocity (m/s):</div>
-              <div class="grid grid-cols-3 gap-2 items-start justify-end">
+              <div class="grid grid-cols-3 items-center justify-start">
                 <input
                   id="av-mean-velocity"
                   type="number"
                   placeholder="m/s"
                   class="border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
                 />
+                <div class="col-span-2 flex"></div>
               </div>
               <div class="text-right pr-2">AV mean gradients (mmHg):</div>
-              <div class="grid grid-cols-3 gap-2 items-start justify-end">
+              <div class="grid grid-cols-3 items-center justify-start">
                 <input
                   id="av-mean-gradients"
                   type="number"
                   placeholder="mmHg"
-                  class="border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
-                /><span
-                  id="av-mean-grading"
-                  class="text-white text-left align-bottom col-span-2"
-                ></span>
+                  data-label="AV meanPG"
+                  data-unit="mmHg"
+                  class="sourceInput border text-white border-slate-400 placeholder-slate-500 px-1 rounded-lg bg-opacity-50 focus:outline-amber-400 focus:ring-offset-2"
+                />
+                <div class="col-span-2 flex">
+                  <input type="checkbox" class="syncCheck mx-2" />
+                  <span
+                    id="av-mean-grading"
+                    class="text-white text-left align-bottom col-span-2"
+                  ></span>
+                </div>
               </div>
             </div>
           </div>
@@ -221,7 +244,7 @@
             "Acceleration time/Ejection time ratio"
             <div class="grid grid-cols-2">
               <div class="text-right pr-2">AT time (ms):</div>
-              <div class="flex flex-col items-start">
+              <div class="flex items-center justify-start">
                 <input
                   id="at-time"
                   type="number"
@@ -230,7 +253,7 @@
                 />
               </div>
               <div class="text-right pr-2">ET time (ms):</div>
-              <div class="flex flex-col items-start">
+              <div class="flex items-center justify-start">
                 <input
                   id="et-time"
                   type="number"
@@ -283,47 +306,71 @@
               </button>
             </div>
             "Calculation:"
-            <p id="message"></p>
+
             <div class="grid grid-cols-2">
               <div class="text-right pr-2" id="calc_results">DSI:</div>
-              <div class="grid grid-cols-2 items-start">
-                <p
-                  id="dsi-output"
-                  class="px-1 text-white text-left align-bottom"
-                ></p>
+              <div class="grid grid-cols-2 items-center">
+                <div class="flex">
+                  <input type="checkbox" class="syncCheck" />
+                  <p
+                    id="dsi-output"
+                    data-label="DSI"
+                    data-unit=""
+                    contenteditable="false"
+                    class="sourceInput px-1 text-white text-left align-bottom"
+                  ></p>
+                </div>
                 <span
                   id="dsi-grading"
                   class="text-white text-left align-bottom"
                 ></span>
               </div>
               <div class="text-right pr-2">AV area (cm²):</div>
-              <div class="grid grid-cols-2 items-start">
-                <p
-                  id="av-area-output"
-                  class="px-1 text-white text-left align-bottom"
-                ></p>
+              <div class="grid grid-cols-2 items-center">
+                <div class="flex">
+                  <input type="checkbox" class="syncCheck" />
+                  <p
+                    id="av-area-output"
+                    data-label="AVA"
+                    data-unit=""
+                    contenteditable="false"
+                    class="sourceInput px-1 text-white text-left align-bottom"
+                  ></p>
+                </div>
                 <span
                   id="av-area-grading"
                   class="text-white text-left align-bottom"
                 ></span>
               </div>
               <div class="text-right pr-2">Indexed AV area (cm²/m²):</div>
-              <div class="grid grid-cols-2 items-start">
-                <p
-                  id="av-area-indexed-output"
-                  class="px-1 text-white text-left align-bottom"
-                ></p>
+              <div class="grid grid-cols-2 items-center">
+                <div class="flex">
+                  <input type="checkbox" class="syncCheck" />
+                  <p
+                    id="av-area-indexed-output"
+                    data-label="AVAi"
+                    data-unit=""
+                    contenteditable="false"
+                    class="sourceInput px-1 text-white text-left align-bottom"
+                  ></p>
+                </div>
                 <span
                   id="av-area-indexed-grading"
                   class="text-white text-left align-bottom"
                 ></span>
               </div>
               <div class="text-right pr-2">Pr AV area (cm²):</div>
-              <div class="grid grid-cols-2 items-start">
-                <p
-                  id="pr-av-area-output"
-                  class="px-1 text-white text-left align-bottom"
-                ></p>
+              <div class="grid grid-cols-2 items-center">
+                <div class="flex">
+                  <input type="checkbox" class="syncCheck" />
+                  <p
+                    id="pr-av-area-output"
+                    data-label="Pressure recoverd AVA"
+                    data-unit=""
+                    contenteditable="false"
+                    class="sourceInput px-1 text-white text-left align-bottom"
+                  ></p>
+                </div>
                 <span
                   id="pr-av-area-grading"
                   class="text-white text-left align-bottom"
@@ -331,21 +378,32 @@
               </div>
               <div class="text-right pr-2">Pr indexed AV area (cm²/m²):</div>
               <div class="grid grid-cols-2 items-start self-end">
-                <p
-                  id="pr-av-area-indexed-output"
-                  class="px-1 text-white text-left align-bottom"
-                ></p>
+                <div class="flex">
+                  <input type="checkbox" class="syncCheck" />
+                  <p
+                    id="pr-av-area-output"
+                    data-label="Pressure recoverd AVAi"
+                    data-unit=""
+                    contenteditable="false"
+                    class="sourceInput px-1 text-white text-left align-bottom"
+                  ></p>
+                </div>
                 <span
                   id="pr-av-area-indexed-grading"
-                  class="text-white text-left align-bottom"
+                  class="sourceInputtext-white text-left align-bottom"
                 ></span>
               </div>
               <div class="text-right pr-2">Pr peak AV gradients (mmHg):</div>
               <div class="grid grid-cols-2 items-start self-end">
-                <p
-                  id="pr-avpeakpg-output"
-                  class="px-1 text-white text-left"
-                ></p>
+                <div class="flex">
+                  <input type="checkbox" class="syncCheck" />
+                  <p
+                    id="pr-avpeakpg-output"
+                    data-label="Pressure recovered AV peak gradients"
+                    contenteditable="false"
+                    class="sourceInput px-1 text-white text-left"
+                  ></p>
+                </div>
                 <span
                   id="pr-avpeakpg-grading"
                   class="text-white text-left align-bottom"
@@ -353,18 +411,31 @@
               </div>
               <div class="text-right pr-2">Pr mean AV gradients (mmHg):</div>
               <div class="grid grid-cols-2 items-start self-end">
-                <p
-                  id="pr-avmeanpg-output"
-                  class="px-1 text-white text-left align-bottom"
-                ></p>
+                <div class="flex">
+                  <input type="checkbox" class="syncCheck" />
+                  <p
+                    id="pr-avmeanpg-output"
+                    data-label="Pressure recovered AV mean gradients"
+                    contenteditable="false"
+                    class="sourceInput px-1 text-white text-left align-bottom"
+                  ></p>
+                </div>
                 <span
                   id="pr-avmeanpg-grading"
                   class="text-white text-left align-bottom"
                 ></span>
               </div>
               <div class="text-right pr-2">AT/ET:</div>
-              <div class="grid grid-cols-2 items-start align-bottom">
-                <p id="atet-output" class="px-1 text-white text-left"></p>
+              <div class="grid grid-cols-2 items-start self-end">
+                <div class="flex">
+                  <input type="checkbox" class="syncCheck" />
+                  <p
+                    id="atet-output"
+                    data-label="AT/ET"
+                    contenteditable="false"
+                    class="sourceInput px-1 text-white text-left align-bottom"
+                  ></p>
+                </div>
                 <span
                   id="atet-grading"
                   class="text-white text-left align-bottom"
@@ -383,6 +454,10 @@
                 ></span>
               </div>
             </div>
+          </div>
+          <div class="text-center border-y-2 border-slate-700 rounded-4xl p-2">
+            <p>"Conclusion:"</p>
+            <p class="text-white"><span id="result"></span></p>
           </div>
         </div>
       </div>
@@ -419,6 +494,7 @@
             document.getElementById("av-peak-grading").innerText =
               "Sclerotic AV";
           }
+          updateResult();
         } else {
           document.getElementById("av-peak-grading").innerText = "";
         }
@@ -431,6 +507,7 @@
           } else if (avmeangradients < 20 && avmeangradients > 0) {
             document.getElementById("av-mean-grading").innerText = "Mild AS";
           }
+          updateResult();
         } else {
           document.getElementById("av-mean-grading").innerText = "";
         }
@@ -446,6 +523,7 @@
             document.getElementById("dsi-grading").innerText =
               "Mild/sclerotic AS";
           }
+          updateResult();
         } else {
           document.getElementById("dsi-output").innerText = "";
           document.getElementById("dsi-grading").innerText = "";
@@ -464,6 +542,7 @@
             document.getElementById("av-area-grading").innerText =
               "Mild/sclerotic AS";
           }
+          updateResult();
         } else {
           document.getElementById("av-area-output").innerText = "";
           document.getElementById("av-area-grading").innerText = "";
@@ -486,6 +565,7 @@
             document.getElementById("pr-av-area-grading").innerText =
               "Mild/sclerotic AS";
           }
+          updateResult();
         } else {
           document.getElementById("pr-av-area-output").innerText = "";
           document.getElementById("pr-av-area-grading").innerText = "";
@@ -506,6 +586,7 @@
           } else {
             document.getElementById("atet-grading").innerText = "";
           }
+          updateResult();
         } else {
           document.getElementById("atet-output").innerText = "";
           document.getElementById("atet-grading").innerText = "";
@@ -529,6 +610,7 @@
           } else {
             document.getElementById("bmi-grading").innerText = "Obese";
           }
+          updateResult();
         } else {
           document.getElementById("bsa-output").innerText = "";
           document.getElementById("bmi-output").innerText = "";
@@ -550,6 +632,7 @@
             document.getElementById("av-area-indexed-grading").innerText =
               "Mild/sclerotic AS";
           }
+          updateResult();
         } else {
           document.getElementById("av-area-indexed-output").innerText = "";
           document.getElementById("av-area-indexed-grading").innerText = "";
@@ -569,6 +652,7 @@
             document.getElementById("pr-av-area-indexed-grading").innerText =
               "Mild/sclerotic AS";
           }
+          updateResult();
         } else {
           document.getElementById("pr-av-area-indexed-output").innerText = "";
           document.getElementById("pr-av-area-indexed-grading").innerText = "";
@@ -601,6 +685,35 @@
             scrollToCalculations();
           }
         });
+      });
+      let checkboxes = document.querySelectorAll(".syncCheck");
+      let inputs = document.querySelectorAll(".sourceInput");
+
+      let result = document.getElementById("result");
+
+      function updateResult() {
+        let values = [];
+
+        inputs.forEach((input, index) => {
+          let inputValue =
+            input.value !== undefined ? input.value : input.textContent; // works for <input> or <p>
+          if (checkboxes[index].checked && inputValue.trim() !== "") {
+            let label = input.dataset.label || "";
+            let unit = input.dataset.unit || "";
+            values.push(label + " " + inputValue + " " + unit);
+          }
+        });
+
+        result.textContent = values.join(", ");
+      }
+
+      inputs.forEach((input) => {
+        input.addEventListener("input", updateResult);
+      });
+
+      // Run when checkbox changes
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", updateResult);
       });
     </script>
   </body>

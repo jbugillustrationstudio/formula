@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sticky Autocomplete Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 p-3 max-w-4xl mx-auto">
+    <div class="grid grid-cols-3 gap-4">
+      <!-- LEFT SIDE -->
+      <div class="col-span-2 space-y-4">
+        <h3 class="font-bold -mb-3 ml-1">Left Ventricle:</h3>
+        <textarea
+          class="textarea w-full h-32 px-2 border rounded"
+          data-group="lvventricle"
+        ></textarea>
+        <textarea
+          class="textarea w-full h-12 px-2 border rounded"
+          id="lv-measurement"
+        ></textarea>
+        <table>
+          <tr>
+            <th>Parameter</th>
+            <th>Value (cm)</th>
+          </tr>
+          <tr>
+            <td>IVS</td>
+            <td>
+              <input
+                type="text"
+                data-section="leftventricle"
+                data-label="IVS"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>LVEDd</td>
+            <td>
+              <input
+                type="text"
+                data-section="leftventricle"
+                data-label="LVEDd"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>PWd</td>
+            <td>
+              <input
+                type="text"
+                data-section="leftventricle"
+                data-label="PWd"
+              />
+            </td>
+          </tr>
+        </table>
+        <h3 class="font-bold -mb-3 ml-1">Right Ventricle:</h3>
+        <textarea
+          class="textarea w-full h-32 p-2 border rounded"
+          data-group="rvventricle"
+        ></textarea>
+        <textarea
+          class="textarea w-full h-12 px-2 border rounded"
+          id="rv-measurement"
+        ></textarea>
+
+        <h3 class="font-bold -mb-3 ml-1">Left/Right Atrium:</h3>
+        <textarea
+          class="textarea w-full h-32 p-2 border rounded"
+          data-group="atrium"
+        ></textarea>
+
+        <h3 class="font-bold -mb-3 ml-1">Aortic Valve:</h3>
+        <textarea
+          class="textarea w-full h-32 p-2 border rounded"
+          data-group="aortic"
+        ></textarea>
+        <textarea
+          class="textarea w-full h-12 px-2 border rounded"
+          id="aortic-measurement"
+        ></textarea>
+        <table>
+          <tr>
+            <th>Parameter</th>
+            <th>Value (cm)</th>
+          </tr>
+          <tr>
+            <td>AV Area</td>
+            <td>
+              <input type="text" data-section="aortic" data-label="AV Area" />
+            </td>
+          </tr>
+          <tr>
+            <td>AV Peak Velocity</td>
+            <td>
+              <input
+                type="text"
+                data-section="aortic"
+                data-label="AV Peak Velocity"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>AV Gradient</td>
+            <td>
+              <input
+                type="text"
+                data-section="aortic"
+                data-label="AV Gradient"
+              />
+            </td>
+          </tr>
+        </table>
+        <h3 class="font-bold -mb-3 ml-1">Mitral Valve:</h3>
+        <textarea
+          class="textarea w-full h-32 p-2 border rounded"
+          data-group="mitral"
+        ></textarea>
+
+        <h3 class="font-bold -mb-3 ml-1">Tricuspid + pulmonary Valve:</h3>
+        <textarea
+          class="textarea w-full h-32 p-2 border rounded"
+          data-group="tricuspid"
+        ></textarea>
+
+        <h3 class="font-bold -mb-3 ml-1">Others:</h3>
+        <textarea
+          class="textarea w-full h-32 p-2 border rounded"
+          data-group="others"
+        ></textarea>
+      </div>
+
+      <!-- RIGHT SIDE (STICKY) -->
+      <div class="col-span-1 sticky top-4 self-start">
+        <div class="max-h-[90vh] overflow-y-auto space-y-4">
+          <!-- AUTOCOMPLETE -->
+          <div class="h-80 bg-white border rounded">
+            <ul class="suggestions h-full overflow-y-auto"></ul>
+          </div>
+
+          <!-- OTHERS LIST -->
+          <div class="border rounded p-2 bg-white">
+            <p class="font-semibold mb-2">Other Options</p>
+            <input
+              id="others-search"
+              type="text"
+              class="w-full p-1 border rounded mb-2"
+              placeholder="Search others..."
+            />
+            <ul id="others-list" class="space-y-1 max-h-40 overflow-y-auto">
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                Bubble study was positive during this study
+              </li>
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                Patient tolerated procedure well
+              </li>
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                Follow-up recommended in 6 months
+              </li>
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                No complications observed
+              </li>
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                No complications observed
+              </li>
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                No complications observed
+              </li>
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                No complications observed
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Input for renaming the PDF -->
+        <label for="pdfName">Enter PDF name:</label>
+        <input type="text" id="pdfName" placeholder="Default: myfile.pdf" />
+
+        <button
+          id="download-pdf"
+          class="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+        >
+          Download PDF
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Auto-number lines in "Others" textarea while typing
+      const othersTextarea = document.querySelector(
+        'textarea[data-group="others"]',
+      );
+
+      othersTextarea.addEventListener("input", () => {
+        const lines = othersTextarea.value.split("\n").map((line) => {
+          // remove numbering only if line has content
+          return line.replace(/^\d+\.\s*/, "");
+        });
+
+        othersTextarea.value = lines
+          .map((line, idx) => `${idx + 1}. ${line}`)
+          .join("\n");
+      });
+      const inputs = document.querySelectorAll("input");
+
+      inputs.forEach((input) => {
+        input.addEventListener("input", updateTextareas);
+      });
+
+      function updateTextareas() {
+        const cardiacValues = [];
+        const aorticValues = [];
+
+        inputs.forEach((input) => {
+          const value = input.value.trim();
+          if (!value) return;
+
+          const section = input.dataset.section;
+          const label = input.dataset.label;
+
+          if (section === "leftventricle")
+            cardiacValues.push(`${label} ${value} cm`);
+          if (section === "aortic") {
+            let unit = "cm"; // default
+            if (label === "AV Peak Velocity") unit = "m/s";
+            if (label === "AV Gradient") unit = "mmHg";
+            aorticValues.push(`${label} ${value} ${unit}`);
+          }
+        });
+
+        document.getElementById("lv-measurement").value =
+          cardiacValues.join(", ");
+        document.getElementById("aortic-measurement").value =
+          aorticValues.join(", ");
+      }
+
+      const autocompleteConfig = {
+        default: {
+          abbreviations: {
+            as: [
+              "mild aortic stenosis",
+              "moderate aortic stenosis",
+              "severe aortic stenosis",
+            ],
+            ar: [
+              "mild aortic regurgitation",
+              "moderate aortic regurgitation",
+              "severe aortic regurgitation",
+            ],
+            mv: ["normal mitral valve", "thickened mitral valve"],
+          },
+          fallback: [
+            "mild aortic stenosis",
+            "moderate aortic stenosis",
+            "severe aortic stenosis",
+            "mild aortic regurgitation",
+            "moderate aortic regurgitation",
+            "severe aortic regurgitation",
+            "normal mitral valve",
+            "thickened mitral valve",
+          ],
+        },
+        lvventricle: {
+          abbreviations: {
+            rep: [
+              "Normal left ventricular size. Normal systolic function. Normal wall thickness. No obvious regional wall motion abnormalities. Normal left sided filling pressure.",
+            ],
+            size: [
+              "Normal left ventricular size.",
+              "Low normal left ventricular size.",
+              "Mildly dilated left ventricular size.",
+              "Moderately dilated left ventricular size.",
+              "Severely dilated left ventricualr size.",
+            ],
+            function: [
+              "Normal left ventricular systolic function.",
+              "Low normal left ventricular systolic function.",
+              "Mildly reduced systolic function",
+              "Mild to moderately reduced systolic function.",
+              "Moderately reduced systolic function.",
+              "Moderate to severely reduced systolic function.",
+              "Severely reduced systolic function.",
+            ],
+            wall: ["Normal wall thickness."],
+          },
+          fallback: [
+            "Normal left ventricular size.",
+            "Low normal left ventricular size.",
+            "Mildly dilated left ventricular size.",
+            "Moderately dilated left ventricular size.",
+            "Severely dilated left ventricualr size.",
+            "Normal left ventricular systolic function.",
+            "Low normal left ventricular systolic function.",
+            "Mildly reduced systolic function",
+            "Mild to moderately reduced systolic function.",
+            "Moderately reduced systolic function.",
+            "Moderate to severely reduced systolic function.",
+            "Severely reduced systolic function.",
+            "IVS cm; LVEDd cm; PWd cm;",
+            "IVS cm; LVEDd cm; PWd cm; LVEF by visual estimatoin %; Avg E/e' ; LVEDVi ml/m².",
+            "LVEF by visual estimation %;",
+            "Avg E/e' ;",
+            "LVEDVi ml/m²;",
+          ],
+        },
+        tricuspid: {
+          abbreviations: {
+            tr: ["Mild tricuspid regurgitation", "Tricuspid valve normal"],
+            ph: ["Severe pulmonary hypertension"],
+          },
+          fallback: [
+            "Mild tricuspid regurgitation",
+            "Severe pulmonary hypertension",
+            "Tricuspid valve normal",
+          ],
+        },
+        others: {
+          abbreviations: {
+            lv: ["Normal left ventricular size and systolic function."],
+            rv: ["Normal right ventricular size and systolic function."],
+          },
+          fallback: [
+            "Normal left ventricular size and systolic function.",
+            "Normal right ventricular size and systolic function.",
+            "No significant valvular",
+          ],
+        },
+        // others: { disableAutocomplete: true },
+      };
+
+      let currentTextarea = null;
+      let lastFocusedTextarea = null;
+      let matchingSuggestions = [];
+      let highlightedIndex = -1;
+
+      let othersHighlightedIndex = -1;
+      const othersSearch = document.getElementById("others-search");
+      const othersList = document.getElementById("others-list");
+      const othersListItems = Array.from(othersList.querySelectorAll("li"));
+
+      const textareas = document.querySelectorAll(".textarea");
+      const suggestionsBox = document.querySelector(".suggestions");
+      const textareasArray = Array.from(textareas);
+      let currentTextareaIndex = 0;
+
+      function insertText(text, replaceLastWord = false) {
+        if (!lastFocusedTextarea) return;
+
+        text = text.trim();
+
+        if (replaceLastWord) {
+          const lines = lastFocusedTextarea.value.split("\n");
+          const lastLine = lines[lines.length - 1];
+          const words = lastLine.split(/\s+/);
+          words[words.length - 1] = text;
+          lines[lines.length - 1] = words.join(" ");
+          lastFocusedTextarea.value = lines.join("\n") + " ";
+        } else {
+          const value = lastFocusedTextarea.value;
+          lastFocusedTextarea.value =
+            value && !value.endsWith(" ") ? value + " " + text : value + text;
+          lastFocusedTextarea.value += " ";
+        }
+
+        lastFocusedTextarea.focus();
+      }
+
+      function updateSuggestions() {
+        if (!currentTextarea) return;
+        const group = currentTextarea.dataset.group || "default";
+        const config = autocompleteConfig[group] || autocompleteConfig.default;
+        if (config.disableAutocomplete) {
+          suggestionsBox.classList.add("hidden");
+          return;
+        }
+
+        const lastWord = currentTextarea.value
+          .trim()
+          .split(/\s+/)
+          .pop()
+          .toLowerCase();
+        if (!lastWord) {
+          suggestionsBox.classList.add("hidden");
+          return;
+        }
+
+        matchingSuggestions = [];
+        if (config.abbreviations) {
+          for (const abbr in config.abbreviations) {
+            if (abbr.startsWith(lastWord) || lastWord.startsWith(abbr)) {
+              matchingSuggestions = config.abbreviations[abbr];
+              break;
+            }
+          }
+        }
+        if (matchingSuggestions.length === 0 && config.fallback) {
+          matchingSuggestions = config.fallback.filter((opt) =>
+            opt.toLowerCase().startsWith(lastWord),
+          );
+        }
+        if (matchingSuggestions.length === 0) {
+          suggestionsBox.classList.add("hidden");
+          return;
+        }
+
+        suggestionsBox.innerHTML = matchingSuggestions
+          .map(
+            (s, i) =>
+              `<li class="px-2 py-1 cursor-pointer ${i === highlightedIndex ? "bg-blue-200" : "hover:bg-blue-100"}">${s}</li>`,
+          )
+          .join("");
+        suggestionsBox.classList.remove("hidden");
+
+        const highlightedItem = suggestionsBox.querySelector(".bg-blue-200");
+        if (highlightedItem)
+          highlightedItem.scrollIntoView({ block: "nearest" });
+      }
+
+      function focusTextarea(index) {
+        currentTextareaIndex = index;
+        currentTextarea = textareasArray[currentTextareaIndex];
+        lastFocusedTextarea = currentTextarea;
+        currentTextarea.focus();
+      }
+
+      textareasArray.forEach((t, idx) => {
+        t.addEventListener("focus", () => {
+          currentTextareaIndex = idx;
+          currentTextarea = t;
+          lastFocusedTextarea = t;
+        });
+        t.addEventListener("input", () => {
+          highlightedIndex = -1;
+          updateSuggestions();
+        });
+        t.addEventListener("keydown", (e) => {
+          if (!suggestionsBox.classList.contains("hidden")) {
+            if (e.key === "ArrowDown") {
+              e.preventDefault();
+              highlightedIndex =
+                (highlightedIndex + 1) % matchingSuggestions.length;
+              updateSuggestions();
+            }
+            if (e.key === "ArrowUp") {
+              e.preventDefault();
+              highlightedIndex =
+                (highlightedIndex - 1 + matchingSuggestions.length) %
+                matchingSuggestions.length;
+              updateSuggestions();
+            }
+            if (e.key === "Enter" && highlightedIndex >= 0) {
+              e.preventDefault();
+              insertText(matchingSuggestions[highlightedIndex], true);
+              suggestionsBox.classList.add("hidden");
+            }
+          }
+
+          if (e.ctrlKey && e.key === "ArrowRight") {
+            e.preventDefault();
+            othersSearch.focus();
+            othersHighlightedIndex = -1;
+            updateOthersHighlight();
+          }
+
+          if (e.ctrlKey && e.key === "ArrowDown") {
+            e.preventDefault();
+            focusTextarea((currentTextareaIndex + 1) % textareasArray.length);
+          }
+          if (e.ctrlKey && e.key === "ArrowUp") {
+            e.preventDefault();
+            focusTextarea(
+              (currentTextareaIndex - 1 + textareasArray.length) %
+                textareasArray.length,
+            );
+          }
+        });
+      });
+
+      suggestionsBox.addEventListener("click", (e) => {
+        if (e.target.tagName === "LI") {
+          insertText(e.target.textContent, true);
+          suggestionsBox.classList.add("hidden");
+        }
+      });
+
+      function updateOthersHighlight(visibleItems = othersListItems) {
+        visibleItems.forEach((li, idx) => {
+          if (idx === othersHighlightedIndex) {
+            li.classList.add("bg-blue-200");
+            li.scrollIntoView({ block: "nearest" });
+          } else {
+            li.classList.remove("bg-blue-200");
+          }
+        });
+      }
+
+      othersSearch.addEventListener("input", () => {
+        const q = othersSearch.value.toLowerCase();
+        othersListItems.forEach(
+          (li) =>
+            (li.style.display = li.textContent.toLowerCase().includes(q)
+              ? ""
+              : "none"),
+        );
+        othersHighlightedIndex = -1;
+        updateOthersHighlight();
+      });
+
+      othersSearch.addEventListener("keydown", (e) => {
+        const visibleItems = othersListItems.filter(
+          (li) => li.style.display !== "none",
+        );
+        if (visibleItems.length === 0) return;
+
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          othersHighlightedIndex =
+            (othersHighlightedIndex + 1) % visibleItems.length;
+          updateOthersHighlight(visibleItems);
+        }
+        if (e.key === "ArrowUp") {
+          e.preventDefault();
+          othersHighlightedIndex =
+            (othersHighlightedIndex - 1 + visibleItems.length) %
+            visibleItems.length;
+          updateOthersHighlight(visibleItems);
+        }
+        if (e.key === "Enter" && othersHighlightedIndex >= 0) {
+          e.preventDefault();
+          insertText(visibleItems[othersHighlightedIndex].textContent, false);
+          othersSearch.value = "";
+          othersHighlightedIndex = -1;
+          updateOthersHighlight();
+          lastFocusedTextarea.focus();
+        }
+
+        // Ctrl + LEFT: back to textarea
+        if (e.ctrlKey && e.key === "ArrowLeft") {
+          e.preventDefault();
+          lastFocusedTextarea.focus();
+        }
+
+        // Ctrl + UP/DOWN: cycle through visible items
+        if (e.ctrlKey && e.key === "ArrowDown") {
+          e.preventDefault();
+          othersHighlightedIndex =
+            (othersHighlightedIndex + 1 + visibleItems.length) %
+            visibleItems.length;
+          updateOthersHighlight(visibleItems);
+        }
+        if (e.ctrlKey && e.key === "ArrowUp") {
+          e.preventDefault();
+          othersHighlightedIndex =
+            (othersHighlightedIndex - 1 + visibleItems.length) %
+            visibleItems.length;
+          updateOthersHighlight(visibleItems);
+        }
+      });
+
+      othersList.addEventListener("click", (e) => {
+        if (e.target.tagName === "LI") {
+          insertText(e.target.textContent, false);
+          othersSearch.value = "";
+          othersHighlightedIndex = -1;
+          updateOthersHighlight();
+          lastFocusedTextarea.focus();
+        }
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      const { jsPDF } = window.jspdf;
+
+      document.getElementById("download-pdf").addEventListener("click", () => {
+        const doc = new jsPDF();
+        let y = 10; // initial y position
+        const lineHeight = 7;
+        const pageHeight = doc.internal.pageSize.height;
+
+        const container = document.querySelector(".col-span-2"); // left side container
+        const children = Array.from(container.children);
+
+        children.forEach((el) => {
+          if (el.tagName === "H3") {
+            y += 10;
+            doc.setFontSize(14);
+            doc.setFont("helvetica", "bold");
+            if (y + lineHeight > pageHeight) {
+              doc.addPage();
+              y = 10;
+            }
+            doc.text(el.textContent, 10, y);
+            y += 10;
+          }
+
+          if (el.tagName === "TEXTAREA") {
+            const value = el.value.trim();
+            if (!value) return;
+
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+
+            const lines = doc.splitTextToSize(value, 180);
+            lines.forEach((line) => {
+              if (y + lineHeight > pageHeight) {
+                doc.addPage();
+                y = 10;
+              }
+              doc.text(line, 10, y);
+              y += lineHeight;
+            });
+          }
+        });
+
+        // Get filename from input
+        const inputName = document.getElementById("pdfName").value.trim();
+        const pdfName = inputName ? inputName + ".pdf" : "cardiac_report.pdf";
+
+        // Save PDF with the chosen name
+        doc.save(pdfName);
+      });
+    </script>
+  </body>
+</html>
