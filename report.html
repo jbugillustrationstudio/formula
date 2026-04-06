@@ -9,8 +9,56 @@
   <body class="bg-gray-100 p-3 max-w-4xl mx-auto">
     <div class="grid grid-cols-3 gap-4">
       <!-- LEFT SIDE -->
-      <div class="col-span-2 space-y-4">
-        <h3 class="font-bold -mb-3 ml-1">Left Ventricle:</h3>
+      <div class="col-span-2 space-y-1">
+        <p>
+          <code><strong>Welcome!</strong></code>
+        </p>
+        <div class="flex items-center">
+          <p class="mb-8">
+            <code>
+              Hover this icon to see the list of shortcut I have made!</code
+            >
+          </p>
+          <span class="inline-block ml-4 relative group cursor-pointer mb-8">
+            <span class="text-blue-500">ℹ️</span>
+            <div
+              class="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 hidden group-hover:block bg-gray-700 text-white text-xs rounded px-2 py-1 whitespace-nowrap z-10"
+            >
+              <ul class="list-none list-inside space-y-1">
+                <li>Body Surface Area: Ctrl+B</li>
+                <li>Left Ventricle: Ctrl+L</li>
+                <li>Right Ventricle: Ctrl+R</li>
+              </ul>
+            </div>
+          </span>
+        </div>
+        <hr class="border-t border-gray-300 my-4" />
+        <h4 class="font-bold mb-2 text-lg">Body Surface Area (BSA)</h4>
+        <div class="grid grid-cols-4 gap-4 items-center text-sm">
+          <div class="col-span-1">
+            <label for="height" class="block">Height (cm)</label>
+            <input
+              type="number"
+              id="height"
+              class="w-full border rounded p-1 text-sm"
+            />
+          </div>
+          <div class="col-span-1">
+            <label for="weight" class="block">Weight (kg)</label>
+            <input
+              type="number"
+              id="weight"
+              class="w-full border rounded p-1 text-sm"
+            />
+          </div>
+          <div class="col-span-2 flex items-center">
+            <span class="font-medium mr-2">BSA (m²):</span>
+            <span id="bsa-text" class="text-sm font-medium">—</span>
+          </div>
+        </div>
+
+        <h3 class="font-bold ml-1">Left Ventricle:</h3>
+
         <textarea
           class="textarea w-full h-32 px-2 border rounded"
           data-group="lvventricle"
@@ -19,43 +67,212 @@
           class="textarea w-full h-12 px-2 border rounded"
           id="lv-measurement"
         ></textarea>
-        <table>
+        <table class="w-full border-collapse border border-gray-300 text-sm">
           <tr>
-            <th>Parameter</th>
-            <th>Value (cm)</th>
+            <th class="border border-gray-300 p-1 text-left align-top">
+              Linear Parameters
+            </th>
+            <th class="border border-gray-300 p-1 text-left align-top">
+              LV Mass
+            </th>
           </tr>
           <tr>
-            <td>IVS</td>
-            <td>
-              <input
-                type="text"
-                data-section="leftventricle"
-                data-label="IVS"
-              />
+            <td class="border border-gray-300 p-1 align-top">
+              <table class="w-full border-collapse text-sm">
+                <tr>
+                  <td>IVS</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="leftventricle"
+                      data-label="IVS"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>LVEDd</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="leftventricle"
+                      data-label="LVEDd"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>PWd</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="leftventricle"
+                      data-label="PWd"
+                    />
+                  </td>
+                </tr>
+              </table>
             </td>
-          </tr>
-          <tr>
-            <td>LVEDd</td>
-            <td>
-              <input
-                type="text"
-                data-section="leftventricle"
-                data-label="LVEDd"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>PWd</td>
-            <td>
-              <input
-                type="text"
-                data-section="leftventricle"
-                data-label="PWd"
-              />
+            <td class="border border-gray-300 p-1 align-top">
+              <table class="w-full border-collapse text-sm">
+                <tr>
+                  <td>RWT</td>
+                  <td>
+                    <input
+                      type="number"
+                      disabled
+                      data-section="leftventricle"
+                      data-label="rwt"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>LV Mass indexed</td>
+                  <td>
+                    <input
+                      type="number"
+                      disabled
+                      data-section="leftventricle"
+                      data-label="lvmass"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
         </table>
-        <h3 class="font-bold -mb-3 ml-1">Right Ventricle:</h3>
+        <table class="w-full border-collapse border border-gray-300 text-sm">
+          <tr>
+            <th class="border border-gray-300 p-1 text-left align-top">
+              Volume Parameters
+            </th>
+            <th class="border border-gray-300 p-1 text-left align-top">
+              Filling pressure
+            </th>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 p-1 align-top">
+              <table class="w-full border-collapse text-sm">
+                <tr>
+                  <td>LVEDV indexed</td>
+                  <td>
+                    <input
+                      type="number"
+                      disabled
+                      data-section="leftventricle"
+                      data-label="LVEDVindexed"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>LVEDV (BP)</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="leftventricle"
+                      data-label="LVEDV"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>LVESV (BP)</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="leftventricle"
+                      data-label="LVESV"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>LVEF (Simpson's)</td>
+                  <td>
+                    <input
+                      type="number"
+                      disabled
+                      data-section="leftventricle"
+                      data-label="lvefsimpson"
+                      class="text-sm"
+                    />%
+                  </td>
+                </tr>
+                <tr>
+                  <td>LVEF (visual)</td>
+                  <td>
+                    <input
+                      type="text"
+                      data-section="leftventricle"
+                      data-label="lvefvisual"
+                      class="text-sm"
+                    />%
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td class="border border-gray-300 p-1 align-top">
+              <table class="w-full border-collapse text-sm">
+                <tr>
+                  <td>Sept e'</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="leftventricle"
+                      data-label="sept"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Lat e'</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="leftventricle"
+                      data-label="lat"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sept E/e'</td>
+                  <td>
+                    <input
+                      type="number"
+                      disabled
+                      data-section="leftventricle"
+                      data-label="septee"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Lat E/e'</td>
+                  <td>
+                    <input
+                      type="number"
+                      disabled
+                      data-section="leftventricle"
+                      data-label="latee"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Avg E/e'</td>
+                  <td>
+                    <input
+                      type="number"
+                      disabled
+                      data-section="leftventricle"
+                      data-label="avgee"
+                    />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <h3 class="font-bold ml-1 pt-5">Right Ventricle:</h3>
         <textarea
           class="textarea w-full h-32 p-2 border rounded"
           data-group="rvventricle"
@@ -65,13 +282,51 @@
           id="rv-measurement"
         ></textarea>
 
-        <h3 class="font-bold -mb-3 ml-1">Left/Right Atrium:</h3>
+        <h3 class="font-bold ml-1 pt-5">Left/Right Atrium:</h3>
         <textarea
           class="textarea w-full h-32 p-2 border rounded"
           data-group="atrium"
+        ></textarea
+        ><textarea
+          class="textarea w-full h-12 px-2 border rounded"
+          id="atrium-measurement"
         ></textarea>
+        <table class="border border-gray-300 text-sm">
+          <tr class="border border-gray-300 text-left">
+            <th class="p-1">Parameter</th>
+            <th class="p-1">Value (cm)</th>
+          </tr>
+          <tr>
+            <td class="p-1">RAP</td>
+            <td>
+              <input type="number" data-section="atrium" data-label="rap" />
+            </td>
+          </tr>
+          <tr>
+            <td class="p-1">RVSP</td>
+            <td>
+              <input
+                type="number"
+                disabled
+                data-section="atrium"
+                data-label="rvsp"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td class="p-1">mPAP</td>
+            <td>
+              <input
+                type="number"
+                disabled
+                data-section="atrium"
+                data-label="mpap"
+              />
+            </td>
+          </tr>
+        </table>
 
-        <h3 class="font-bold -mb-3 ml-1">Aortic Valve:</h3>
+        <h3 class="font-bold ml-1 pt-5">Aortic Valve:</h3>
         <textarea
           class="textarea w-full h-32 p-2 border rounded"
           data-group="aortic"
@@ -80,51 +335,406 @@
           class="textarea w-full h-12 px-2 border rounded"
           id="aortic-measurement"
         ></textarea>
-        <table>
+        <h3 class="font-bold ml-1 pt-5">Aorta:</h3>
+        <textarea
+          class="textarea w-full h-12 p-2 border rounded"
+          data-group="aorta"
+        ></textarea>
+        <textarea
+          class="textarea w-full h-8 px-2 border rounded"
+          id="aorta-measurement"
+        ></textarea>
+        <table class="w-full border-collapse border border-gray-300 text-sm">
           <tr>
-            <th>Parameter</th>
-            <th>Value (cm)</th>
+            <th class="border border-gray-300 p-1 text-left align-top">
+              LVOT Parameters
+            </th>
+            <th class="border border-gray-300 p-1 text-left align-top">
+              Aortic Valve Parameters
+            </th>
           </tr>
           <tr>
-            <td>AV Area</td>
-            <td>
-              <input type="text" data-section="aortic" data-label="AV Area" />
+            <td class="border border-gray-300 p-1 align-top">
+              <table class="w-full border-collapse text-sm">
+                <tr>
+                  <td>LVOTd</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="aortic"
+                      data-label="LVOTd"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>LVOT VTI</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="aortic"
+                      data-label="LVOT VTI"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>AV VTI</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="aortic"
+                      data-label="AV VTI"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>DSI</td>
+                  <td>
+                    <input
+                      type="number"
+                      disabled
+                      data-section="aortic"
+                      data-label="DSI"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>AV Area</td>
+                  <td>
+                    <input
+                      type="number"
+                      disabled
+                      data-section="aortic"
+                      data-label="AVA"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Asc Aorta</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="aorta"
+                      data-label="ascao"
+                      data-display="Asc Aorta"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr></tr>
+                <tr>
+                  <td>Indexed</td>
+                  <td>
+                    <input
+                      type="number"
+                      disabled
+                      data-section="aorta"
+                      data-label="ascaoindexed"
+                      data-display="Indexed"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Aortic root</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="aorta"
+                      data-label="aorticroot"
+                      data-display="Aortic Root"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Indexed</td>
+                  <td>
+                    <input
+                      type="number"
+                      disabled
+                      data-section="aorta"
+                      data-label="aorticrootindexed"
+                      data-display="Indexed"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>STJd</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="aorta"
+                      data-label="STJd"
+                      data-display="STJ"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+              </table>
             </td>
-          </tr>
-          <tr>
-            <td>AV Peak Velocity</td>
-            <td>
-              <input
-                type="text"
-                data-section="aortic"
-                data-label="AV Peak Velocity"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>AV Gradient</td>
-            <td>
-              <input
-                type="text"
-                data-section="aortic"
-                data-label="AV Gradient"
-              />
+            <td class="border border-gray-300 p-1 align-top">
+              <table class="w-full border-collapse text-sm">
+                <tr>
+                  <td>AV Peak Velocity</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="aortic"
+                      data-label="AV peak vel"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>AV Peak Gradient</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="aortic"
+                      data-label="AV peak PG"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>AV Mean Velocity</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="aortic"
+                      data-label="AV mean vel"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>AV Mean Gradient</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="aortic"
+                      data-label="AV mean PG"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
         </table>
-        <h3 class="font-bold -mb-3 ml-1">Mitral Valve:</h3>
+        <h3 class="font-bold ml-1 pt-5">Mitral Valve:</h3>
         <textarea
           class="textarea w-full h-32 p-2 border rounded"
           data-group="mitral"
+        ></textarea
+        ><textarea
+          class="textarea w-full h-8 px-2 border rounded"
+          id="mitral-measurement"
         ></textarea>
+        <table class="w-full border-collapse border border-gray-300 text-sm">
+          <tr>
+            <th class="border border-gray-300 p-1 text-left align-top">
+              Mitral valve inflow
+            </th>
+            <th class="border border-gray-300 p-1 text-left align-top">
+              Mitral stenosis
+            </th>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 p-1 align-top">
+              <table class="w-full border-collapse text-sm">
+                <tr>
+                  <td>E Velocity</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="mitral"
+                      data-label="evel"
+                      data-display="E vel."
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>A Velocity</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="mitral"
+                      data-label="avel"
+                      data-display="A vel."
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>E/A ratio</td>
+                  <td>
+                    <input
+                      type="number"
+                      disabled
+                      data-section="mitral"
+                      data-label="earatio"
+                      data-display="E/A"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td class="border border-gray-300 p-1 align-top">
+              <table class="w-full border-collapse text-sm">
+                <tr>
+                  <td>MV meanPG</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="mitral"
+                      data-label="MVmeanPG"
+                      data-display="MV meanPG"
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
 
-        <h3 class="font-bold -mb-3 ml-1">Tricuspid + pulmonary Valve:</h3>
+        <h3 class="font-bold ml-1 pt-5">Tricuspid + pulmonary Valve:</h3>
         <textarea
           class="textarea w-full h-32 p-2 border rounded"
           data-group="tricuspid"
+        ></textarea
+        ><textarea
+          class="textarea w-full h-12 px-2 border rounded"
+          id="tricuspid-measurement"
         ></textarea>
+        <table class="w-full border-collapse border border-gray-300 text-sm">
+          <tr>
+            <th class="border border-gray-300 p-1 text-left align-top">
+              Tricuspid valve
+            </th>
+            <th class="border border-gray-300 p-1 text-left align-top">
+              Pulmonary valve
+            </th>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 p-1 align-top">
+              <table class="w-full border-collapse text-sm">
+                <tr>
+                  <td>TR Velocity</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="tricuspid"
+                      data-label="trvel"
+                      data-display="TR vel."
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>TR Peak Gradients</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="atrium"
+                      data-label="trpeakPG"
+                      data-display=""
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td class="border border-gray-300 p-1 align-top">
+              <table class="w-full border-collapse text-sm">
+                <tr>
+                  <td>RVOTd</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="tricuspid"
+                      data-label="rvotd"
+                      data-display=""
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Qp/Qs</td>
+                  <td>
+                    <input
+                      type="number"
+                      disabled
+                      data-section="tricuspid"
+                      data-label="qpqs"
+                      data-display=""
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>RVOT VTI</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="tricuspid"
+                      data-label="rvotvti"
+                      data-display=""
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>PV velocity</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="tricuspid"
+                      data-label="PVpeakvel"
+                      data-display=""
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>PReg velocity</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="tricuspid"
+                      data-label="PRpeakvel"
+                      data-display=""
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>PReg gradients</td>
+                  <td>
+                    <input
+                      type="number"
+                      data-section="atrium"
+                      data-label="prpeakPG"
+                      data-display=""
+                      class="text-sm"
+                    />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
 
-        <h3 class="font-bold -mb-3 ml-1">Others:</h3>
+        <h3 class="font-bold ml-1 pt-5">Conclusion:</h3>
         <textarea
           class="textarea w-full h-32 p-2 border rounded"
           data-group="others"
@@ -133,7 +743,7 @@
 
       <!-- RIGHT SIDE (STICKY) -->
       <div class="col-span-1 sticky top-4 self-start">
-        <div class="max-h-[90vh] overflow-y-auto space-y-4">
+        <div class="max-h-[90vh] overflow-y-auto space-y-4 text-sm">
           <!-- AUTOCOMPLETE -->
           <div class="h-80 bg-white border rounded">
             <ul class="suggestions h-full overflow-y-auto"></ul>
@@ -173,16 +783,22 @@
             </ul>
           </div>
         </div>
-        <!-- Input for renaming the PDF -->
-        <label for="pdfName">Enter PDF name:</label>
-        <input type="text" id="pdfName" placeholder="Default: myfile.pdf" />
+        <div class="p-3">
+          <!-- Input for renaming the PDF -->
+          <label for="pdfName">Enter PDF name:</label>
+          <input
+            type="text"
+            id="pdfName"
+            placeholder="Default: echo_report.pdf"
+          />
 
-        <button
-          id="download-pdf"
-          class="bg-blue-500 text-white px-4 py-2 rounded mt-4"
-        >
-          Download PDF
-        </button>
+          <button
+            id="download-pdf"
+            class="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+          >
+            Download PDF
+          </button>
+        </div>
       </div>
     </div>
 
@@ -202,15 +818,76 @@
           .map((line, idx) => `${idx + 1}. ${line}`)
           .join("\n");
       });
+      // -------------------------
+      // INPUTS
+      // -------------------------
       const inputs = document.querySelectorAll("input");
 
-      inputs.forEach((input) => {
-        input.addEventListener("input", updateTextareas);
-      });
+      // -------------------------
+      // BSA SETUP
+      // -------------------------
+      const heightInput = document.getElementById("height");
+      const weightInput = document.getElementById("weight");
+      const bsaText = document.getElementById("bsa-text");
 
+      let bsaValue = 0;
+
+      function calculateBSA() {
+        const height = parseFloat(heightInput.value);
+        const weight = parseFloat(weightInput.value);
+
+        if (!height || !weight) {
+          bsaText.textContent = "—";
+          bsaValue = 0;
+          return;
+        }
+
+        const bsa = Math.sqrt((height * weight) / 3600);
+        bsaValue = parseFloat(bsa.toFixed(2));
+        bsaText.textContent = `${bsaValue} m²`;
+      }
+
+      // -------------------------
+      // MAIN FUNCTION
+      // -------------------------
       function updateTextareas() {
         const cardiacValues = [];
+        const rightValues = [];
+        const atriumValues = [];
         const aorticValues = [];
+        const aortaValues = [];
+        const mitralValues = [];
+        const tricuspidValues = [];
+        //create a rule for each input available
+        let IVS = 0;
+        let LVEDd = 0;
+        let PWd = 0;
+        let LVEDV = 0;
+        let LVESV = 0;
+        let lvefvisual = null;
+        let sept = 0;
+        let lat = 0;
+        let lvotVTI = 0;
+        let avVTI = 0;
+        let lvotd = 0;
+        let ascao = 0;
+        let aorticroot = 0;
+        let evel = 0;
+        let avel = 0;
+        let MVmeanPG = 0;
+        let rap = 0;
+        let trpeakPG = 0;
+        let prpeakPG = 0;
+        let trvel = 0;
+        let rvotvti = 0;
+        let prvel = 0;
+        let PRpeakvel = 0;
+        let rvotd = 0;
+        let PVpeakvel = 0;
+
+        let avPeakVel, avMeanVel, avPeakPG, avMeanPG;
+
+        const bsa = bsaValue;
 
         inputs.forEach((input) => {
           const value = input.value.trim();
@@ -218,22 +895,319 @@
 
           const section = input.dataset.section;
           const label = input.dataset.label;
+          const display = input.dataset.display || label;
 
-          if (section === "leftventricle")
-            cardiacValues.push(`${label} ${value} cm`);
+          // -------------------------
+          // LEFT VENTRICLE
+          // -------------------------
+          if (section === "leftventricle") {
+            if (label === "IVS") IVS = parseFloat(value);
+            if (label === "LVEDd") LVEDd = parseFloat(value);
+            if (label === "PWd") PWd = parseFloat(value);
+            if (label === "LVEDV") LVEDV = parseFloat(value);
+            if (label === "LVESV") LVESV = parseFloat(value);
+            if (label === "lvefvisual") lvefvisual = value;
+            if (label === "sept") sept = parseFloat(value);
+            if (label === "lat") lat = parseFloat(value);
+          }
+
+          // -------------------------
+          // Atrium
+          // -------------------------
+          if (section === "atrium") {
+            if (label === "rap") rap = parseFloat(value);
+            if (label === "trpeakPG") trpeakPG = parseFloat(value);
+            if (label === "prpeakPG") prpeakPG = parseFloat(value);
+          }
+
+          // -------------------------
+          // AORTA
+          // -------------------------
+          if (section === "aorta") {
+            if (label === "ascao") {
+              ascao = parseFloat(value);
+              aortaValues.push(`${display} ${value} cm`);
+
+              const ascIndexedInput = document.querySelector(
+                'input[data-label="ascaoindexed"]',
+              );
+
+              if (ascao && bsa) {
+                const ascIndexed = (ascao / bsa).toFixed(2);
+                if (ascIndexedInput) ascIndexedInput.value = ascIndexed;
+                aortaValues.push(`Indexed ${ascIndexed} cm/m²`);
+              } else {
+                if (ascIndexedInput) ascIndexedInput.value = "";
+              }
+            }
+
+            if (label === "aorticroot") {
+              aorticroot = parseFloat(value);
+              aortaValues.push(`${display} ${value} cm`);
+
+              const aorticrootIndexedInput = document.querySelector(
+                'input[data-label="aorticrootindexed"]',
+              );
+
+              if (aorticroot && bsa) {
+                const aorticrootIndexed = (aorticroot / bsa).toFixed(2);
+                if (aorticrootIndexedInput)
+                  aorticrootIndexedInput.value = aorticrootIndexed;
+                aortaValues.push(`Indexed ${aorticrootIndexed} cm/m²`);
+              } else {
+                if (aorticrootIndexedInput) aorticrootIndexedInput.value = "";
+              }
+            }
+          }
+
+          // -------------------------
+          // AORTIC VALVE
+          // -------------------------
           if (section === "aortic") {
-            let unit = "cm"; // default
-            if (label === "AV Peak Velocity") unit = "m/s";
-            if (label === "AV Gradient") unit = "mmHg";
-            aorticValues.push(`${label} ${value} ${unit}`);
+            if (label === "LVOT VTI") lvotVTI = parseFloat(value);
+            if (label === "AV VTI") avVTI = parseFloat(value);
+            if (label === "LVOTd") lvotd = parseFloat(value);
+
+            if (label === "AV peak vel") avPeakVel = value;
+            if (label === "AV mean vel") avMeanVel = value;
+            if (label === "AV peak PG") avPeakPG = value;
+            if (label === "AV mean PG") avMeanPG = value;
+
+            const excludedLabels = [
+              "DSI",
+              "AVA",
+              "AV peak vel",
+              "AV mean vel",
+              "AV peak PG",
+              "AV mean PG",
+            ];
+
+            if (!excludedLabels.includes(label)) {
+              aorticValues.push(`${label} ${value} cm`);
+            }
+          }
+
+          // -------------------------
+          // Mitral
+          // -------------------------
+          if (section === "mitral") {
+            if (label === "evel") evel = parseFloat(value);
+            if (label === "avel") avel = parseFloat(value);
+            if (label === "MVmeanPG") MVmeanPG = parseFloat(value);
+          }
+
+          // -------------------------
+          // Tricuspid
+          // -------------------------
+          if (section === "tricuspid") {
+            if (label === "trvel") trvel = parseFloat(value);
+            if (label === "PVpeakvel") PVpeakvel = parseFloat(value);
+            if (label === "PRpeakvel") PRpeakvel = parseFloat(value);
+            if (label === "rvotd") rvotd = parseFloat(value);
+            if (label === "rvotvti") rvotvti = parseFloat(value);
           }
         });
+        // -------------------------
+        // Left Ventricle Calculations
+        // -------------------------
+        const LVEDVindexedInput = document.querySelector(
+          'input[data-label="LVEDVindexed"]',
+        );
+        const lvefsimpsonInput = document.querySelector(
+          'input[data-label="lvefsimpson"]',
+        );
+        const septeeInput = document.querySelector(
+          'input[data-label="septee"]',
+        );
+        const lateeInput = document.querySelector('input[data-label="latee"]');
+        const avgeeInput = document.querySelector('input[data-label="avgee"]');
 
+        if (IVS) cardiacValues.push(`IVS ${IVS} cm`);
+        if (LVEDd) cardiacValues.push(`LVEDd ${LVEDd} cm`);
+        if (PWd) cardiacValues.push(`PWd ${PWd} cm`);
+        if (LVEDV) cardiacValues.push(`LVEDV ${LVEDV} ml`);
+        if (LVESV) cardiacValues.push(`LVESV ${LVESV} ml`);
+        if (LVEDV && bsa) {
+          const LVEDVindexed = (LVEDV / bsa).toFixed(0);
+          if (LVEDVindexedInput) LVEDVindexedInput.value = LVEDVindexed;
+          cardiacValues.push(`Indexed LVEDV ${LVEDVindexed} ml/m²`);
+        } else {
+          if (LVEDVindexedInput) LVEDVindexedInput.value = "";
+        }
+        if (LVEDV && LVESV) {
+          const lvefsimpsonValue = ((LVESV / LVEDV) * 100).toFixed(0);
+          if (lvefsimpsonInput) lvefsimpsonInput.value = lvefsimpsonValue;
+          cardiacValues.push(`LVEF by Simpson's biplane ${lvefsimpsonValue}`);
+        } else {
+          if (lvefsimpsonInput) lvefsimpsonInput.value = "";
+        }
+        if (lvefvisual)
+          cardiacValues.push(`LVEF by visual estimation ${lvefvisual}%`);
+        if (sept) cardiacValues.push(`Sept e' ${sept} m/s`);
+
+        // Septal E/e'
+        if (evel && sept) {
+          const septee = (evel / sept).toFixed(1);
+          if (septeeInput) septeeInput.value = septee;
+        } else {
+          if (septeeInput) septeeInput.value = "";
+        }
+
+        // Lateral E/e'
+        if (evel && lat) {
+          const latee = (evel / lat).toFixed(1);
+          if (lateeInput) lateeInput.value = latee;
+        } else {
+          if (lateeInput) lateeInput.value = "";
+        }
+
+        // Average E/e'
+        if (evel && sept && lat) {
+          const avg = evel / ((sept + lat) / 2);
+          const avgee = avg.toFixed(1);
+          if (avgeeInput) avgeeInput.value = avgee;
+          cardiacValues.push(`E/e' ${avgee}`);
+        } else {
+          if (avgeeInput) avgeeInput.value = "";
+        }
+        // -------------------------
+        // Atrium Calculations
+        // -------------------------
+        const rvspInput = document.querySelector('input[data-label="rvsp"]');
+        if (rap && trpeakPG) {
+          const rvspValue = (rap + trpeakPG).toFixed(0);
+          if (rvspInput) rvspInput.value = rvspValue;
+          atriumValues.push(`Estimated RVSP ${rvspValue} mmHg`);
+        } else {
+          if (rvspInput) rvspInput.value = "";
+        }
+        const mpapInput = document.querySelector('input[data-label="mpap"]');
+        if (rap && prpeakPG) {
+          const mpapValue = (rap + prpeakPG).toFixed(0);
+          if (mpapInput) mpapInput.value = mpapValue;
+          atriumValues.push(`Estimated mPAP ${mpapValue} mmHg`);
+        } else {
+          if (mpapInput) mpapInput.value = "";
+        }
+        if (rap) atriumValues.push(`(Assuming RAP ${rap} mmHg)`);
+
+        // -------------------------
+        // Merge AV Values
+        // -------------------------
+        if (avPeakVel && avMeanVel) {
+          aorticValues.push(`AV peak/mean Vel ${avPeakVel}/${avMeanVel} m/s`);
+        } else {
+          if (avPeakVel) aorticValues.push(`AV peak vel ${avPeakVel} m/s`);
+          if (avMeanVel) aorticValues.push(`AV mean vel ${avMeanVel} m/s`);
+        }
+
+        if (avPeakPG && avMeanPG) {
+          aorticValues.push(`AV peak/mean PG ${avPeakPG}/${avMeanPG} mmHg`);
+        } else {
+          if (avPeakPG) aorticValues.push(`AV peak PG ${avPeakPG} mmHg`);
+          if (avMeanPG) aorticValues.push(`AV mean PG ${avMeanPG} mmHg`);
+        }
+
+        // -------------------------
+        // DSI
+        // -------------------------
+        const dsiInput = document.querySelector('input[data-label="DSI"]');
+        if (lvotVTI && avVTI) {
+          const dsiValue = (lvotVTI / avVTI).toFixed(2);
+          if (dsiInput) dsiInput.value = dsiValue;
+          aorticValues.push(`DSI ${dsiValue}`);
+        } else {
+          if (dsiInput) dsiInput.value = "";
+        }
+
+        // -------------------------
+        // AVA
+        // -------------------------
+        const avaInput = document.querySelector('input[data-label="AVA"]');
+        if (lvotd && lvotVTI && avVTI) {
+          const lvotArea = Math.PI * Math.pow(lvotd / 2, 2);
+          const avaValue = ((lvotArea * lvotVTI) / avVTI).toFixed(2);
+          if (avaInput) avaInput.value = avaValue;
+          aorticValues.push(`AVA ${avaValue} cm²`);
+        } else {
+          if (avaInput) avaInput.value = "";
+        }
+
+        // -------------------------
+        // Mitral E/A
+        // -------------------------
+        const earatioInput = document.querySelector(
+          'input[data-label="earatio"]',
+        );
+        if (evel) mitralValues.push(`E vel. ${evel} m/s`);
+        if (avel) mitralValues.push(`A vel. ${avel} m/s`);
+        if (evel && avel) {
+          const earatioValue = (evel / avel).toFixed(1);
+          if (earatioInput) earatioInput.value = earatioValue;
+          mitralValues.push(`E/A ${earatioValue}`);
+        } else {
+          if (earatioInput) earatioInput.value = "";
+        }
+        if (MVmeanPG) mitralValues.push(`MV meanPG ${MVmeanPG} mmHg`);
+
+        // -------------------------
+        // Tricuspid
+        // -------------------------
+        if (rvotvti) tricuspidValues.push(`RVOT VTI ${rvotvti} cm`);
+        if (trvel) tricuspidValues.push(`TR vel. ${trvel} m/s`);
+        if (PVpeakvel) tricuspidValues.push(`PV vel. ${PVpeakvel} m/s`);
+        if (PRpeakvel) tricuspidValues.push(`PR vel. ${PRpeakvel} m/s`);
+        // -------------------------
+        // Qp/Qs Calculation
+        // -------------------------
+        const qpqInput = document.querySelector('input[data-label="qpqs"]');
+
+        if (rvotd && rvotvti && lvotd && lvotVTI) {
+          const rvotArea = Math.PI * Math.pow(rvotd / 2, 2);
+          const lvotArea = Math.PI * Math.pow(lvotd / 2, 2);
+          const qpqsValue = (
+            (rvotArea * rvotvti) /
+            (lvotArea * lvotVTI)
+          ).toFixed(2);
+
+          if (qpqInput) qpqInput.value = qpqsValue;
+          tricuspidValues.push(`Qp/Qs ${qpqsValue}`); // <-- push to Tricuspid section
+        } else {
+          if (qpqInput) qpqInput.value = "";
+        }
+        // -------------------------
+        // OUTPUT
+        // -------------------------
         document.getElementById("lv-measurement").value =
           cardiacValues.join(", ");
+        document.getElementById("rv-measurement").value =
+          rightValues.join(", ");
+        document.getElementById("atrium-measurement").value =
+          atriumValues.join(", ");
         document.getElementById("aortic-measurement").value =
           aorticValues.join(", ");
+        document.getElementById("aorta-measurement").value =
+          aortaValues.join(", ");
+        document.getElementById("mitral-measurement").value =
+          mitralValues.join(", ");
+        document.getElementById("tricuspid-measurement").value =
+          tricuspidValues.join(", ");
       }
+
+      // -------------------------
+      // EVENT LISTENERS
+      // -------------------------
+      inputs.forEach((input) =>
+        input.addEventListener("input", updateTextareas),
+      );
+      heightInput.addEventListener("input", () => {
+        calculateBSA();
+        updateTextareas();
+      });
+      weightInput.addEventListener("input", () => {
+        calculateBSA();
+        updateTextareas();
+      });
 
       const autocompleteConfig = {
         default: {
@@ -263,12 +1237,12 @@
         },
         lvventricle: {
           abbreviations: {
-            rep: [
+            report: [
               "Normal left ventricular size. Normal systolic function. Normal wall thickness. No obvious regional wall motion abnormalities. Normal left sided filling pressure.",
             ],
             size: [
               "Normal left ventricular size.",
-              "Low normal left ventricular size.",
+              "Upper limit of normal left ventricular size.",
               "Mildly dilated left ventricular size.",
               "Moderately dilated left ventricular size.",
               "Severely dilated left ventricualr size.",
@@ -282,7 +1256,20 @@
               "Moderate to severely reduced systolic function.",
               "Severely reduced systolic function.",
             ],
-            wall: ["Normal wall thickness."],
+            wall: [
+              "Normal wall thickness.",
+              "Upper limit of normal wall thickness.",
+              "Mildly increased wall thickness.",
+              "Moderately increased wall thickness.",
+              "Seveverly increased wall thickness.",
+            ],
+            filling: [
+              "Normal wall thickness.",
+              "Upper limit of normal wall thickness.",
+              "Mildly increased wall thickness.",
+              "Moderately increased wall thickness.",
+              "Seveverly increased wall thickness.",
+            ],
           },
           fallback: [
             "Normal left ventricular size.",
@@ -297,11 +1284,11 @@
             "Moderately reduced systolic function.",
             "Moderate to severely reduced systolic function.",
             "Severely reduced systolic function.",
-            "IVS cm; LVEDd cm; PWd cm;",
-            "IVS cm; LVEDd cm; PWd cm; LVEF by visual estimatoin %; Avg E/e' ; LVEDVi ml/m².",
-            "LVEF by visual estimation %;",
-            "Avg E/e' ;",
-            "LVEDVi ml/m²;",
+            "Normal wall thickness.",
+            "Upper limit of normal wall thickness.",
+            "Mildly increased wall thickness.",
+            "Moderately increased wall thickness.",
+            "Seveverly increased wall thickness.",
           ],
         },
         tricuspid: {
@@ -578,28 +1565,56 @@
         const lineHeight = 7;
         const pageHeight = doc.internal.pageSize.height;
 
+        // --- Add BSA Section ---
+        const height = document.getElementById("height").value.trim();
+        const weight = document.getElementById("weight").value.trim();
+        const bsa = document.getElementById("bsa-text").textContent;
+
+        if (height || weight || bsa) {
+          doc.setFontSize(10);
+          doc.setFont("helvetica", "bold");
+          doc.text("Body Surface Area (BSA)", 10, y);
+          y += lineHeight + 2;
+
+          doc.setFont("helvetica", "normal");
+          if (height) {
+            doc.text(`Height: ${height} cm`, 10, y);
+            y += lineHeight;
+          }
+          if (weight) {
+            doc.text(`Weight: ${weight} kg`, 10, y);
+            y += lineHeight;
+          }
+          if (bsa && bsa !== "—") {
+            doc.text(`BSA: ${bsa} m²`, 10, y);
+            y += lineHeight;
+          }
+          y -= 6;
+        }
+
+        // --- Add the rest of the report (existing content) ---
         const container = document.querySelector(".col-span-2"); // left side container
         const children = Array.from(container.children);
 
         children.forEach((el) => {
           if (el.tagName === "H3") {
-            y += 10;
-            doc.setFontSize(14);
-            doc.setFont("helvetica", "bold");
+            y += 10; //  space before heading
+            doc.setFontSize(12);
+            doc.setFont("arial", "bold");
             if (y + lineHeight > pageHeight) {
               doc.addPage();
               y = 10;
             }
             doc.text(el.textContent, 10, y);
-            y += 10;
+            y += 6; //  space after heading
           }
 
           if (el.tagName === "TEXTAREA") {
             const value = el.value.trim();
             if (!value) return;
 
-            doc.setFontSize(12);
-            doc.setFont("helvetica", "normal");
+            doc.setFontSize(10);
+            doc.setFont("arial", "normal");
 
             const lines = doc.splitTextToSize(value, 180);
             lines.forEach((line) => {
@@ -608,16 +1623,14 @@
                 y = 10;
               }
               doc.text(line, 10, y);
-              y += lineHeight;
+              y += 5;
             });
           }
         });
 
-        // Get filename from input
+        // Save PDF
         const inputName = document.getElementById("pdfName").value.trim();
-        const pdfName = inputName ? inputName + ".pdf" : "cardiac_report.pdf";
-
-        // Save PDF with the chosen name
+        const pdfName = inputName ? inputName + ".pdf" : "echo_report.pdf";
         doc.save(pdfName);
       });
     </script>
