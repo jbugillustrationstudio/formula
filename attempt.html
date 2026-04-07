@@ -20,18 +20,35 @@
         <div class="flex items-center">
           <p class="mb-8 text-sm sm:text-base">
             <code>
-              Hover this icon to see the list of shortcut I have made!</code
+              Click this icon to see the list of shortcut I have made!</code
             >
           </p>
-          <span class="inline-block ml-4 relative group cursor-pointer mb-8">
-            <span class="text-blue-500">ℹ️</span>
-            <div
-              class="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 hidden group-hover:block bg-gray-700 text-white text-xs rounded px-2 py-1 whitespace-nowrap z-10"
+          <span class="inline-block ml-4 relative mb-8">
+            <!-- Hidden checkbox to track state -->
+            <input type="checkbox" id="info-toggle" class="peer hidden" />
+
+            <!-- Label acts as the clickable icon -->
+            <label
+              for="info-toggle"
+              class="text-blue-500 cursor-pointer select-none inline-flex items-center justify-center w-5 h-5"
+              >ℹ️</label
             >
-              <ul class="list-none list-inside space-y-1">
-                <li>Body Surface Area: Ctrl+B</li>
-                <li>Left Ventricle: Ctrl+L</li>
-                <li>Right Ventricle: Ctrl+R</li>
+
+            <!-- Tooltip, visible only when checkbox is checked -->
+            <div
+              class="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 hidden peer-checked:block bg-gray-700 text-white text-xs rounded px-2 py-1 whitespace-nowrap z-10"
+            >
+              <ul class="list-none list-inside">
+                <li>
+                  <strong>Ventricle:</strong> size, function, wall, regional,
+                  filling
+                </li>
+                <li><strong>Atrium:</strong> la, ra, ias, ivc</li>
+                <li>
+                  <strong>Valve:</strong> aortic/mitral/triuspid/pulmonary,
+                </li>
+                <li>stenosis, regurgitation</li>
+                <li><strong>Aorta:</strong> asc, aortic</li>
               </ul>
             </div>
           </span>
