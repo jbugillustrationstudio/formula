@@ -538,10 +538,10 @@
         </div>
 
         <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
-          Tricuspid + pulmonary Valve:
+          Tricuspid Valve:
         </h3>
         <textarea
-          class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
+          class="textarea w-full h-12 p-2 border rounded text-xs sm:text-base"
           data-group="tricuspid"
         ></textarea
         ><textarea
@@ -549,19 +549,15 @@
           id="tricuspid-measurement"
         ></textarea>
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
+          class="grid grid-cols-1 w-full sm:w-1/2 border border-gray-300 text-xs sm:text-sm"
         >
-          <!-- Headers -->
           <div class="border border-gray-300 p-1 font-semibold">
             Tricuspid valve
-          </div>
-          <div class="border border-gray-300 p-1 font-semibold">
-            Pulmonary valve
           </div>
 
           <!-- Left column -->
           <div class="border border-gray-300 p-1">
-            <div class="grid grid-cols-[100px_1fr] items-center">
+            <div class="grid grid-cols-[120px_1fr] items-center">
               <div>TR Velocity</div>
               <input
                 class="w-full border px-1"
@@ -581,15 +577,65 @@
               />
             </div>
           </div>
+        </div>
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
+          Pulmonary Valve:
+        </h3>
+        <textarea
+          class="textarea w-full h-12 p-2 border rounded text-xs sm:text-base"
+          data-group="pulmonary"
+        ></textarea
+        ><textarea
+          class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
+          id="pulmonary-measurement"
+        ></textarea>
+        <div
+          class="grid grid-cols-1 w-full sm:w-1/2 border border-gray-300 text-xs sm:text-sm"
+        >
+          <!-- Headers -->
+
+          <div class="border border-gray-300 p-1 font-semibold">
+            Pulmonary valve
+          </div>
 
           <!-- Right column -->
           <div class="border border-gray-300 p-1">
-            <div class="grid grid-cols-[100px_1fr] items-center">
+            <div class="grid grid-cols-[120px_1fr] items-center">
+              <div>PV velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="pulmonary"
+                data-label="PVpeakvel"
+              />
+
+              <div>PR peak velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="pulmonary"
+                data-label="PRpeakvel"
+              />
+
+              <div>PR peak gradients</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="atrium"
+                data-label="prpeakPG"
+              />
+              <div>RVOT VTI</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="pulmonary"
+                data-label="rvotvti"
+              />
               <div>RVOTd</div>
               <input
                 class="w-full border px-1"
                 type="number"
-                data-section="tricuspid"
+                data-section="pulmonary"
                 data-label="rvotd"
               />
 
@@ -598,40 +644,8 @@
                 class="w-full border px-1"
                 type="number"
                 disabled
-                data-section="tricuspid"
+                data-section="pulmonary"
                 data-label="qpqs"
-              />
-
-              <div>RVOT VTI</div>
-              <input
-                class="w-full border px-1"
-                type="number"
-                data-section="tricuspid"
-                data-label="rvotvti"
-              />
-
-              <div>PV velocity</div>
-              <input
-                class="w-full border px-1"
-                type="number"
-                data-section="tricuspid"
-                data-label="PVpeakvel"
-              />
-
-              <div>PReg velocity</div>
-              <input
-                class="w-full border px-1"
-                type="number"
-                data-section="tricuspid"
-                data-label="PRpeakvel"
-              />
-
-              <div>PReg gradients</div>
-              <input
-                class="w-full border px-1"
-                type="number"
-                data-section="atrium"
-                data-label="prpeakPG"
               />
             </div>
           </div>
@@ -707,9 +721,10 @@
         </div>
       </div>
     </div>
-    <script src="autoNumberLines.js"></script>
+    <script src="inputselector.js"></script>
     <script src="bsaCalculation.js"></script>
     <script src="calculations.js"></script>
+    <script src="autoNumberLines.js"></script>
     <script src="eventListeners.js"></script>
     <script src="autocomplete.js"></script>
     <script src="suggestions.js"></script>

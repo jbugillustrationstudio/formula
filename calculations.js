@@ -11,6 +11,7 @@ function updateTextareas() {
   const aortaValues = [];
   const mitralValues = [];
   const tricuspidValues = [];
+  const pulmonaryValues = [];
   //create a rule for each input available
   let IVS = 0;
   let LVEDd = 0;
@@ -154,6 +155,11 @@ function updateTextareas() {
     // -------------------------
     if (section === "tricuspid") {
       if (label === "trvel") trvel = parseFloat(value);
+    }
+    // -------------------------
+    // Pulmonary
+    // -------------------------
+    if (section === "pulmonary") {
       if (label === "PVpeakvel") PVpeakvel = parseFloat(value);
       if (label === "PRpeakvel") PRpeakvel = parseFloat(value);
       if (label === "rvotd") rvotd = parseFloat(value);
@@ -302,10 +308,16 @@ function updateTextareas() {
   // -------------------------
   // Tricuspid
   // -------------------------
-  if (rvotvti) tricuspidValues.push(`RVOT VTI ${rvotvti} cm`);
+
   if (trvel) tricuspidValues.push(`TR vel. ${trvel} m/s`);
-  if (PVpeakvel) tricuspidValues.push(`PV vel. ${PVpeakvel} m/s`);
-  if (PRpeakvel) tricuspidValues.push(`PR vel. ${PRpeakvel} m/s`);
+  // -------------------------
+  // Pulmonary
+  // -------------------------
+  if (PVpeakvel) pulmonaryValues.push(`PV vel. ${PVpeakvel} m/s`);
+  if (PRpeakvel) pulmonaryValues.push(`PR vel. ${PRpeakvel} m/s`);
+  if (rvotvti) pulmonaryValues.push(`RVOT VTI ${rvotvti} cm`);
+  if (rvotvti) pulmonaryValues.push(`RVOTd ${rvotd} cm`);
+
   // -------------------------
   // Qp/Qs Calculation
   // -------------------------
@@ -317,7 +329,7 @@ function updateTextareas() {
     const qpqsValue = ((rvotArea * rvotvti) / (lvotArea * lvotVTI)).toFixed(2);
 
     if (qpqInput) qpqInput.value = qpqsValue;
-    tricuspidValues.push(`Qp/Qs ${qpqsValue}`); // <-- push to Tricuspid section
+    pulmonaryValues.push(`Qp/Qs ${qpqsValue}`); // <-- push to Pulmonary section
   } else {
     if (qpqInput) qpqInput.value = "";
   }
@@ -331,4 +343,6 @@ function updateTextareas() {
   document.getElementById("mitral-measurement").value = mitralValues.join(", ");
   document.getElementById("tricuspid-measurement").value =
     tricuspidValues.join(", ");
+  document.getElementById("pulmonary-measurement").value =
+    pulmonaryValues.join(", ");
 }
