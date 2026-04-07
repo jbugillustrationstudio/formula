@@ -5,16 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sticky Autocomplete Panel</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+      @theme {
+      }
+    </style>
   </head>
-  <body class="bg-gray-100 p-3 max-w-4xl mx-auto">
+  <body class="bg-gray-200 p-3 max-w-4xl mx-auto">
     <div class="grid grid-cols-3 gap-4">
       <!-- LEFT SIDE -->
       <div class="col-span-2 space-y-1">
-        <p>
+        <p class="text-sm sm:text-base">
           <code><strong>Welcome!</strong></code>
         </p>
         <div class="flex items-center">
-          <p class="mb-8">
+          <p class="mb-8 text-sm sm:text-base">
             <code>
               Hover this icon to see the list of shortcut I have made!</code
             >
@@ -33,14 +37,16 @@
           </span>
         </div>
         <hr class="border-t border-gray-300 my-4" />
-        <h4 class="font-bold mb-2 text-lg">Body Surface Area (BSA)</h4>
-        <div class="grid grid-cols-4 gap-4 items-center text-sm">
+        <h4 class="font-bold mb-2 text-sm sm:text-base">
+          Body Surface Area (BSA)
+        </h4>
+        <div class="grid grid-cols-4 gap-4 items-center sm:text-sm text-xs">
           <div class="col-span-1">
             <label for="height" class="block">Height (cm)</label>
             <input
               type="number"
               id="height"
-              class="w-full border rounded p-1 text-sm"
+              class="w-full border rounded p-1 sm:text-sm text-xs"
             />
           </div>
           <div class="col-span-1">
@@ -48,705 +54,604 @@
             <input
               type="number"
               id="weight"
-              class="w-full border rounded p-1 text-sm"
+              class="w-full border rounded p-1 sm:text-sm text-xs"
             />
           </div>
           <div class="col-span-2 flex items-center">
             <span class="font-medium mr-2">BSA (m²):</span>
-            <span id="bsa-text" class="text-sm font-medium">—</span>
+            <span id="bsa-text" class="sm:text-sm text-xs font-medium">—</span>
           </div>
         </div>
 
-        <h3 class="font-bold ml-1">Left Ventricle:</h3>
+        <h3 class="font-bold ml-1 text-sm sm:text-base">Left Ventricle:</h3>
 
         <textarea
-          class="textarea w-full h-32 px-2 border rounded"
+          class="textarea w-full h-32 px-2 border rounded text-xs sm:text-base"
           data-group="lvventricle"
         ></textarea>
         <textarea
-          class="textarea w-full h-12 px-2 border rounded"
+          class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
           id="lv-measurement"
         ></textarea>
-        <table class="w-full border-collapse border border-gray-300 text-sm">
-          <tr>
-            <th class="border border-gray-300 p-1 text-left align-top">
-              Linear Parameters
-            </th>
-            <th class="border border-gray-300 p-1 text-left align-top">
-              LV Mass
-            </th>
-          </tr>
-          <tr>
-            <td class="border border-gray-300 p-1 align-top">
-              <table class="w-full border-collapse text-sm">
-                <tr>
-                  <td>IVS</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="leftventricle"
-                      data-label="IVS"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>LVEDd</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="leftventricle"
-                      data-label="LVEDd"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>PWd</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="leftventricle"
-                      data-label="PWd"
-                    />
-                  </td>
-                </tr>
-              </table>
-            </td>
-            <td class="border border-gray-300 p-1 align-top">
-              <table class="w-full border-collapse text-sm">
-                <tr>
-                  <td>RWT</td>
-                  <td>
-                    <input
-                      type="number"
-                      disabled
-                      data-section="leftventricle"
-                      data-label="rwt"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>LV Mass indexed</td>
-                  <td>
-                    <input
-                      type="number"
-                      disabled
-                      data-section="leftventricle"
-                      data-label="lvmass"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-        <table class="w-full border-collapse border border-gray-300 text-sm">
-          <tr>
-            <th class="border border-gray-300 p-1 text-left align-top">
-              Volume Parameters
-            </th>
-            <th class="border border-gray-300 p-1 text-left align-top">
-              Filling pressure
-            </th>
-          </tr>
-          <tr>
-            <td class="border border-gray-300 p-1 align-top">
-              <table class="w-full border-collapse text-sm">
-                <tr>
-                  <td>LVEDV indexed</td>
-                  <td>
-                    <input
-                      type="number"
-                      disabled
-                      data-section="leftventricle"
-                      data-label="LVEDVindexed"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>LVEDV (BP)</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="leftventricle"
-                      data-label="LVEDV"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>LVESV (BP)</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="leftventricle"
-                      data-label="LVESV"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
+        >
+          <!-- Headers -->
+          <div class="border border-gray-300 p-1 font-semibold">
+            Linear Parameters
+          </div>
+          <div class="border border-gray-300 p-1 font-semibold">LV Mass</div>
 
-                <tr>
-                  <td>LVEF (Simpson's)</td>
-                  <td>
-                    <input
-                      type="number"
-                      disabled
-                      data-section="leftventricle"
-                      data-label="lvefsimpson"
-                      class="text-sm"
-                    />%
-                  </td>
-                </tr>
-                <tr>
-                  <td>LVEF (visual)</td>
-                  <td>
-                    <input
-                      type="text"
-                      data-section="leftventricle"
-                      data-label="lvefvisual"
-                      class="text-sm"
-                    />%
-                  </td>
-                </tr>
-              </table>
-            </td>
-            <td class="border border-gray-300 p-1 align-top">
-              <table class="w-full border-collapse text-sm">
-                <tr>
-                  <td>Sept e'</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="leftventricle"
-                      data-label="sept"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Lat e'</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="leftventricle"
-                      data-label="lat"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Sept E/e'</td>
-                  <td>
-                    <input
-                      type="number"
-                      disabled
-                      data-section="leftventricle"
-                      data-label="septee"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Lat E/e'</td>
-                  <td>
-                    <input
-                      type="number"
-                      disabled
-                      data-section="leftventricle"
-                      data-label="latee"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Avg E/e'</td>
-                  <td>
-                    <input
-                      type="number"
-                      disabled
-                      data-section="leftventricle"
-                      data-label="avgee"
-                    />
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-        <h3 class="font-bold ml-1 pt-5">Right Ventricle:</h3>
+          <!-- Left column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[80px_1fr] items-center">
+              <div>IVS</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="leftventricle"
+                data-label="IVS"
+              />
+
+              <div>LVEDd</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="leftventricle"
+                data-label="LVEDd"
+              />
+
+              <div>PWd</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="leftventricle"
+                data-label="PWd"
+              />
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[80px_1fr] items-center">
+              <div>RWT</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="leftventricle"
+                data-label="rwt"
+              />
+
+              <div>LV Mass indexed</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="leftventricle"
+                data-label="lvmass"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
+        >
+          <!-- Headers -->
+          <div class="border border-gray-300 p-1 font-semibold">
+            Volume Parameters
+          </div>
+          <div class="border border-gray-300 p-1 font-semibold">
+            Filling pressure
+          </div>
+
+          <!-- Left column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[120px_1fr] items-center gap-y-1">
+              <div>LVEDV indexed</div>
+              <input
+                type="number"
+                disabled
+                data-section="leftventricle"
+                data-label="LVEDVindexed"
+                class="w-full border px-1"
+              />
+
+              <div>LVEDV (BP)</div>
+              <input
+                type="number"
+                data-section="leftventricle"
+                data-label="LVEDV"
+                class="w-full border px-1"
+              />
+
+              <div>LVESV (BP)</div>
+              <input
+                type="number"
+                data-section="leftventricle"
+                data-label="LVESV"
+                class="w-full border px-1"
+              />
+
+              <div>LVEF (Simpson's)</div>
+              <div class="flex items-center gap-1">
+                <input
+                  type="number"
+                  disabled
+                  data-section="leftventricle"
+                  data-label="lvefsimpson"
+                  class="w-full border px-1"
+                />
+                <span>%</span>
+              </div>
+
+              <div>LVEF (visual)</div>
+              <div class="flex items-center gap-1">
+                <input
+                  type="text"
+                  data-section="leftventricle"
+                  data-label="lvefvisual"
+                  class="w-full border px-1"
+                />
+                <span>%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[120px_1fr] items-center gap-y-1">
+              <div>Sept e'</div>
+              <input
+                type="number"
+                data-section="leftventricle"
+                data-label="sept"
+                class="w-full border px-1"
+              />
+
+              <div>Lat e'</div>
+              <input
+                type="number"
+                data-section="leftventricle"
+                data-label="lat"
+                class="w-full border px-1"
+              />
+
+              <div>Sept E/e'</div>
+              <input
+                type="number"
+                disabled
+                data-section="leftventricle"
+                data-label="septee"
+                class="w-full border px-1"
+              />
+
+              <div>Lat E/e'</div>
+              <input
+                type="number"
+                disabled
+                data-section="leftventricle"
+                data-label="latee"
+                class="w-full border px-1"
+              />
+
+              <div>Avg E/e'</div>
+              <input
+                type="number"
+                disabled
+                data-section="leftventricle"
+                data-label="avgee"
+                class="w-full border px-1"
+              />
+            </div>
+          </div>
+        </div>
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
+          Right Ventricle:
+        </h3>
         <textarea
-          class="textarea w-full h-32 p-2 border rounded"
+          class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="rvventricle"
         ></textarea>
         <textarea
-          class="textarea w-full h-12 px-2 border rounded"
+          class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
           id="rv-measurement"
         ></textarea>
 
-        <h3 class="font-bold ml-1 pt-5">Left/Right Atrium:</h3>
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
+          Left/Right Atrium:
+        </h3>
         <textarea
-          class="textarea w-full h-32 p-2 border rounded"
+          class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="atrium"
         ></textarea
         ><textarea
-          class="textarea w-full h-12 px-2 border rounded"
+          class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
           id="atrium-measurement"
         ></textarea>
-        <table class="border border-gray-300 text-sm">
-          <tr class="border border-gray-300 text-left">
-            <th class="p-1">Parameter</th>
-            <th class="p-1">Value (cm)</th>
-          </tr>
-          <tr>
-            <td class="p-1">RAP</td>
-            <td>
-              <input type="number" data-section="atrium" data-label="rap" />
-            </td>
-          </tr>
-          <tr>
-            <td class="p-1">RVSP</td>
-            <td>
+        <div
+          class="grid grid-cols-1 w-full sm:w-1/2 border border-gray-300 text-xs sm:text-sm"
+        >
+          <!-- Headers -->
+          <div class="border border-gray-300 p-1 font-semibold">
+            Right sided pressure
+          </div>
+
+          <!-- Rows -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[80px_1fr] items-center">
+              <div>RAP</div>
+              <input
+                type="number"
+                data-section="atrium"
+                data-label="rap"
+                class="w-full border px-1"
+              />
+
+              <div>RVSP</div>
               <input
                 type="number"
                 disabled
                 data-section="atrium"
                 data-label="rvsp"
+                class="w-full border px-1"
               />
-            </td>
-          </tr>
-          <tr>
-            <td class="p-1">mPAP</td>
-            <td>
+
+              <div>mPAP</div>
               <input
                 type="number"
                 disabled
                 data-section="atrium"
                 data-label="mpap"
+                class="w-full border px-1"
               />
-            </td>
-          </tr>
-        </table>
+            </div>
+          </div>
+        </div>
 
-        <h3 class="font-bold ml-1 pt-5">Aortic Valve:</h3>
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">Aortic Valve:</h3>
         <textarea
-          class="textarea w-full h-32 p-2 border rounded"
+          class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="aortic"
         ></textarea>
         <textarea
-          class="textarea w-full h-12 px-2 border rounded"
+          class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
           id="aortic-measurement"
         ></textarea>
-        <h3 class="font-bold ml-1 pt-5">Aorta:</h3>
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">Aorta:</h3>
         <textarea
-          class="textarea w-full h-12 p-2 border rounded"
+          class="textarea w-full h-12 p-2 border rounded text-xs sm:text-base"
           data-group="aorta"
         ></textarea>
         <textarea
-          class="textarea w-full h-8 px-2 border rounded"
+          class="textarea w-full h-8 px-2 border rounded text-xs sm:text-base"
           id="aorta-measurement"
         ></textarea>
-        <table class="w-full border-collapse border border-gray-300 text-sm">
-          <tr>
-            <th class="border border-gray-300 p-1 text-left align-top">
-              LVOT Parameters
-            </th>
-            <th class="border border-gray-300 p-1 text-left align-top">
-              Aortic Valve Parameters
-            </th>
-          </tr>
-          <tr>
-            <td class="border border-gray-300 p-1 align-top">
-              <table class="w-full border-collapse text-sm">
-                <tr>
-                  <td>LVOTd</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="aortic"
-                      data-label="LVOTd"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>LVOT VTI</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="aortic"
-                      data-label="LVOT VTI"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>AV VTI</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="aortic"
-                      data-label="AV VTI"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>DSI</td>
-                  <td>
-                    <input
-                      type="number"
-                      disabled
-                      data-section="aortic"
-                      data-label="DSI"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>AV Area</td>
-                  <td>
-                    <input
-                      type="number"
-                      disabled
-                      data-section="aortic"
-                      data-label="AVA"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Asc Aorta</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="aorta"
-                      data-label="ascao"
-                      data-display="Asc Aorta"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr></tr>
-                <tr>
-                  <td>Indexed</td>
-                  <td>
-                    <input
-                      type="number"
-                      disabled
-                      data-section="aorta"
-                      data-label="ascaoindexed"
-                      data-display="Indexed"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Aortic root</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="aorta"
-                      data-label="aorticroot"
-                      data-display="Aortic Root"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Indexed</td>
-                  <td>
-                    <input
-                      type="number"
-                      disabled
-                      data-section="aorta"
-                      data-label="aorticrootindexed"
-                      data-display="Indexed"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>STJd</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="aorta"
-                      data-label="STJd"
-                      data-display="STJ"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-              </table>
-            </td>
-            <td class="border border-gray-300 p-1 align-top">
-              <table class="w-full border-collapse text-sm">
-                <tr>
-                  <td>AV Peak Velocity</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="aortic"
-                      data-label="AV peak vel"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>AV Peak Gradient</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="aortic"
-                      data-label="AV peak PG"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>AV Mean Velocity</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="aortic"
-                      data-label="AV mean vel"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>AV Mean Gradient</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="aortic"
-                      data-label="AV mean PG"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-        <h3 class="font-bold ml-1 pt-5">Mitral Valve:</h3>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
+        >
+          <!-- Headers -->
+          <div class="border border-gray-300 p-1 font-semibold">
+            LVOT Parameters
+          </div>
+          <div class="border border-gray-300 p-1 font-semibold">
+            Aortic Valve Parameters
+          </div>
+
+          <!-- Left column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[80px_1fr] items-center">
+              <div>LVOTd</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="LVOTd"
+              />
+
+              <div>LVOT VTI</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="LVOT VTI"
+              />
+
+              <div>AV VTI</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="AV VTI"
+              />
+
+              <div>DSI</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="aortic"
+                data-label="DSI"
+              />
+
+              <div>AV Area</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="aortic"
+                data-label="AVA"
+              />
+
+              <div>Asc Aorta</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aorta"
+                data-label="ascao"
+                data-display="Asc Aorta"
+              />
+
+              <div>Indexed</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="aorta"
+                data-label="ascaoindexed"
+                data-display="Indexed"
+              />
+
+              <div>Aortic root</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aorta"
+                data-label="aorticroot"
+                data-display="Aortic Root"
+              />
+
+              <div>Indexed</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="aorta"
+                data-label="aorticrootindexed"
+                data-display="Indexed"
+              />
+
+              <div>STJd</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aorta"
+                data-label="STJd"
+                data-display="STJ"
+              />
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[120px_1fr] items-center">
+              <div>AV Peak Velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="AV peak vel"
+              />
+
+              <div>AV Peak Gradient</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="AV peak PG"
+              />
+
+              <div>AV Mean Velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="AV mean vel"
+              />
+
+              <div>AV Mean Gradient</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="AV mean PG"
+              />
+            </div>
+          </div>
+        </div>
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">Mitral Valve:</h3>
         <textarea
-          class="textarea w-full h-32 p-2 border rounded"
+          class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="mitral"
         ></textarea
         ><textarea
-          class="textarea w-full h-8 px-2 border rounded"
+          class="textarea w-full h-8 px-2 border rounded text-xs sm:text-base"
           id="mitral-measurement"
         ></textarea>
-        <table class="w-full border-collapse border border-gray-300 text-sm">
-          <tr>
-            <th class="border border-gray-300 p-1 text-left align-top">
-              Mitral valve inflow
-            </th>
-            <th class="border border-gray-300 p-1 text-left align-top">
-              Mitral stenosis
-            </th>
-          </tr>
-          <tr>
-            <td class="border border-gray-300 p-1 align-top">
-              <table class="w-full border-collapse text-sm">
-                <tr>
-                  <td>E Velocity</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="mitral"
-                      data-label="evel"
-                      data-display="E vel."
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>A Velocity</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="mitral"
-                      data-label="avel"
-                      data-display="A vel."
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>E/A ratio</td>
-                  <td>
-                    <input
-                      type="number"
-                      disabled
-                      data-section="mitral"
-                      data-label="earatio"
-                      data-display="E/A"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-              </table>
-            </td>
-            <td class="border border-gray-300 p-1 align-top">
-              <table class="w-full border-collapse text-sm">
-                <tr>
-                  <td>MV meanPG</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="mitral"
-                      data-label="MVmeanPG"
-                      data-display="MV meanPG"
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
+        >
+          <!-- Headers -->
+          <div class="border border-gray-300 p-1 font-semibold">
+            Mitral valve inflow
+          </div>
+          <div class="border border-gray-300 p-1 font-semibold">
+            Mitral stenosis
+          </div>
 
-        <h3 class="font-bold ml-1 pt-5">Tricuspid + pulmonary Valve:</h3>
+          <!-- Left column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[80px_1fr] items-center">
+              <div>E Velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="mitral"
+                data-label="evel"
+                data-display="E vel."
+              />
+
+              <div>A Velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="mitral"
+                data-label="avel"
+                data-display="A vel."
+              />
+
+              <div>E/A ratio</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="mitral"
+                data-label="earatio"
+                data-display="E/A"
+              />
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[80px_1fr] items-center">
+              <div>MV meanPG</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="mitral"
+                data-label="MVmeanPG"
+                data-display="MV meanPG"
+              />
+            </div>
+          </div>
+        </div>
+
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
+          Tricuspid + pulmonary Valve:
+        </h3>
         <textarea
-          class="textarea w-full h-32 p-2 border rounded"
+          class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="tricuspid"
         ></textarea
         ><textarea
-          class="textarea w-full h-12 px-2 border rounded"
+          class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
           id="tricuspid-measurement"
         ></textarea>
-        <table class="w-full border-collapse border border-gray-300 text-sm">
-          <tr>
-            <th class="border border-gray-300 p-1 text-left align-top">
-              Tricuspid valve
-            </th>
-            <th class="border border-gray-300 p-1 text-left align-top">
-              Pulmonary valve
-            </th>
-          </tr>
-          <tr>
-            <td class="border border-gray-300 p-1 align-top">
-              <table class="w-full border-collapse text-sm">
-                <tr>
-                  <td>TR Velocity</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="tricuspid"
-                      data-label="trvel"
-                      data-display="TR vel."
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>TR Peak Gradients</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="atrium"
-                      data-label="trpeakPG"
-                      data-display=""
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-              </table>
-            </td>
-            <td class="border border-gray-300 p-1 align-top">
-              <table class="w-full border-collapse text-sm">
-                <tr>
-                  <td>RVOTd</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="tricuspid"
-                      data-label="rvotd"
-                      data-display=""
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Qp/Qs</td>
-                  <td>
-                    <input
-                      type="number"
-                      disabled
-                      data-section="tricuspid"
-                      data-label="qpqs"
-                      data-display=""
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>RVOT VTI</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="tricuspid"
-                      data-label="rvotvti"
-                      data-display=""
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>PV velocity</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="tricuspid"
-                      data-label="PVpeakvel"
-                      data-display=""
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>PReg velocity</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="tricuspid"
-                      data-label="PRpeakvel"
-                      data-display=""
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>PReg gradients</td>
-                  <td>
-                    <input
-                      type="number"
-                      data-section="atrium"
-                      data-label="prpeakPG"
-                      data-display=""
-                      class="text-sm"
-                    />
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
+        >
+          <!-- Headers -->
+          <div class="border border-gray-300 p-1 font-semibold">
+            Tricuspid valve
+          </div>
+          <div class="border border-gray-300 p-1 font-semibold">
+            Pulmonary valve
+          </div>
 
-        <h3 class="font-bold ml-1 pt-5">Conclusion:</h3>
+          <!-- Left column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[100px_1fr] items-center">
+              <div>TR Velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="tricuspid"
+                data-label="trvel"
+                data-display="TR vel."
+              />
+
+              <div>TR Peak Gradients</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="atrium"
+                data-label="trpeakPG"
+                data-display=""
+              />
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[100px_1fr] items-center">
+              <div>RVOTd</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="tricuspid"
+                data-label="rvotd"
+              />
+
+              <div>Qp/Qs</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="tricuspid"
+                data-label="qpqs"
+              />
+
+              <div>RVOT VTI</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="tricuspid"
+                data-label="rvotvti"
+              />
+
+              <div>PV velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="tricuspid"
+                data-label="PVpeakvel"
+              />
+
+              <div>PReg velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="tricuspid"
+                data-label="PRpeakvel"
+              />
+
+              <div>PReg gradients</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="atrium"
+                data-label="prpeakPG"
+              />
+            </div>
+          </div>
+        </div>
+
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">Conclusion:</h3>
         <textarea
-          class="textarea w-full h-32 p-2 border rounded"
+          class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="others"
         ></textarea>
       </div>
 
       <!-- RIGHT SIDE (STICKY) -->
       <div class="col-span-1 sticky top-4 self-start">
-        <div class="max-h-[90vh] overflow-y-auto space-y-4 text-sm">
+        <div class="max-h-[90vh] overflow-y-auto space-y-4 sm:text-sm text-xs">
           <!-- AUTOCOMPLETE -->
           <div class="h-80 bg-white border rounded">
-            <ul class="suggestions h-full overflow-y-auto"></ul>
+            <ul
+              class="suggestions h-full overflow-y-auto text-xs sm:text-sm"
+            ></ul>
           </div>
 
           <!-- OTHERS LIST -->
@@ -755,12 +660,12 @@
             <input
               id="others-search"
               type="text"
-              class="w-full p-1 border rounded mb-2"
+              class="w-full p-1 border rounded mb-2 text-xs sm:text-sm"
               placeholder="Search others..."
             />
             <ul id="others-list" class="space-y-1 max-h-40 overflow-y-auto">
               <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
-                Bubble study was positive during this study
+                Bubble study was positive during this study.
               </li>
               <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
                 Patient tolerated procedure well
@@ -783,13 +688,14 @@
             </ul>
           </div>
         </div>
-        <div class="p-3">
+        <div class="p-3 text-xs sm:text-sm">
           <!-- Input for renaming the PDF -->
           <label for="pdfName">Enter PDF name:</label>
           <input
+            class="w-full p-1"
             type="text"
             id="pdfName"
-            placeholder="Default: echo_report.pdf"
+            placeholder="echo_report.pdf"
           />
 
           <button
@@ -1208,7 +1114,6 @@
         calculateBSA();
         updateTextareas();
       });
-
       const autocompleteConfig = {
         default: {
           abbreviations: {
@@ -1237,19 +1142,20 @@
         },
         lvventricle: {
           abbreviations: {
-            report: [
+            0: [
               "Normal left ventricular size. Normal systolic function. Normal wall thickness. No obvious regional wall motion abnormalities. Normal left sided filling pressure.",
             ],
             size: [
               "Normal left ventricular size.",
+              "Dilated left ventricular size.",
               "Upper limit of normal left ventricular size.",
               "Mildly dilated left ventricular size.",
               "Moderately dilated left ventricular size.",
               "Severely dilated left ventricualr size.",
             ],
             function: [
-              "Normal left ventricular systolic function.",
-              "Low normal left ventricular systolic function.",
+              "Normal systolic function.",
+              "Low normal systolic function.",
               "Mildly reduced systolic function",
               "Mild to moderately reduced systolic function.",
               "Moderately reduced systolic function.",
@@ -1263,22 +1169,28 @@
               "Moderately increased wall thickness.",
               "Seveverly increased wall thickness.",
             ],
+            regional: [
+              "No regional wall motion abnormalities.",
+              "No obvious regional wall motion abnormalities on suboptimal endocardial definition.",
+              "Unable to exclude wall motion abnormalities.",
+              "*** appears ***.",
+            ],
             filling: [
-              "Normal wall thickness.",
-              "Upper limit of normal wall thickness.",
-              "Mildly increased wall thickness.",
-              "Moderately increased wall thickness.",
-              "Seveverly increased wall thickness.",
+              "Normal left sided filling pressure.",
+              "Grade I diastolic with normal left sided filling pressure.",
+              "Elevated left sided filling pressure.",
+              "Indeterminate left sided filling pressure.",
             ],
           },
           fallback: [
             "Normal left ventricular size.",
+            "Dilated left ventricular size.",
             "Low normal left ventricular size.",
             "Mildly dilated left ventricular size.",
             "Moderately dilated left ventricular size.",
             "Severely dilated left ventricualr size.",
-            "Normal left ventricular systolic function.",
-            "Low normal left ventricular systolic function.",
+            "Normal systolic function.",
+            "Low normal systolic function.",
             "Mildly reduced systolic function",
             "Mild to moderately reduced systolic function.",
             "Moderately reduced systolic function.",
@@ -1289,6 +1201,126 @@
             "Mildly increased wall thickness.",
             "Moderately increased wall thickness.",
             "Seveverly increased wall thickness.",
+            "No regional wall motion abnormalities.",
+            "No obvious regional wall motion abnormalities on suboptimal endocardial definition.",
+            "Unable to exclude wall motion abnormalities.",
+            "*** appears ***.",
+            "Normal left sided filling pressure.",
+            "Grade I diastolic with normal left sided filling pressure.",
+            "Elevated left sided filling pressure.",
+            "Indeterminate left sided filling pressure.",
+          ],
+        },
+        rvventricle: {
+          abbreviations: {
+            0: ["Normal right ventricular size. Normal systolic function."],
+            size: [
+              "Normal right ventricular size.",
+              "Dilated right ventricular size.",
+              "Upper limit of normal right ventricular size.",
+              "Mildly dilated right ventricular size.",
+              "Moderately dilated right ventricular size.",
+              "Severely dilated right ventricualr size.",
+            ],
+            function: [
+              "Normal systolic function.",
+              "Low normal systolic function.",
+              "Mildly reduced systolic function",
+              "Mild to moderately reduced systolic function.",
+              "Moderately reduced systolic function.",
+              "Moderate to severely reduced systolic function.",
+              "Severely reduced systolic function.",
+            ],
+            mcconnell: [
+              "Mid RV free wall dilatation and akinesia with hyperdynamic apex, consistent with McConnell's sign.",
+            ],
+          },
+          fallback: [
+            "Normal right ventricular size.",
+            "Dilated right ventricular size.",
+            "Upper limit of normal right ventricular size.",
+            "Mildly dilated right ventricular size.",
+            "Moderately dilated right ventricular size.",
+            "Severely dilated right ventricualr size.",
+            "Normal systolic function.",
+            "Low normal systolic function.",
+            "Mildly reduced systolic function",
+            "Mild to moderately reduced systolic function.",
+            "Moderately reduced systolic function.",
+            "Moderate to severely reduced systolic function.",
+            "Severely reduced systolic function.",
+            "Mid RV free wall dilatation and akinesia with hyperdynamic apex, consistent with McConnell's sign.",
+          ],
+        },
+        atrium: {
+          abbreviations: {
+            0: [
+              "Normal left atrium size. Normal right atrium size. Interatrial septum appears intact on both 2D and colour Doppler. Inferior vena cava appears normal in size with normal respiratory variation.",
+            ],
+            la: [
+              "Normal left atrium size.",
+              "Dilated left atrium size.",
+              "Upper limit of normal left atrium size.",
+              "Mildly dilated left atrium size.",
+              "Moderately dilated left atrium size.",
+              "Severely dilated left atrium size.",
+            ],
+            ra: [
+              "Normal right atrium size.",
+              "Dilated right atrium size.",
+              "Upper limit of normal right atrium size.",
+              "Mildly dilated right atrium size.",
+              "Moderately dilated right atrium size.",
+              "Severely dilated right atrium size.",
+            ],
+            ias: [
+              "Interatrial septum appears intact on both 2D and colour Doppler.",
+              "Interatrial septum appears mobile however intact on both 2D and colour Doppler.",
+              "PFO noted on colour Doppler.",
+              "Interatrial septum appears aneurysmal without evidence of a PFO on this TTE.",
+              "Interatrial septum appears aneurysmal with evidence of a PFO shown on colour Doppler.",
+              "Lipomatous hypertrophy of the interatrial septum however appears intact on both 2D and colour Doppler.",
+              "Mild lipomatous hypertrophy of the interatrial septum however appears intact on both 2D and colour Doppler.",
+              "Amplatzer Occluder appears situ and well seated on both 2D and colour Doppler.",
+              "Interatrial septum repair noted with no obvious shunt on both 2D and colour Doppler.",
+            ],
+            ivc: [
+              "Inferior vena cava appears normal in size with normal respiratory variation.",
+              "Inferior vena cava appears normal in size with reduced respiratory variation.",
+              "Inferior vena cava appears dilated in size with normal respiratory variation.",
+              "Inferior vena cava appears dilated in size with reduced respiratory variation.",
+              "Inferior vena cava was not well visualised.",
+              "Inferior vena cava was not visualised.",
+            ],
+          },
+          fallback: [
+            "Normal left atrium size.",
+            "Dilated left atrium size.",
+            "Upper limit of normal left atrium size.",
+            "Mildly dilated left atrium size.",
+            "Moderately dilated left atrium size.",
+            "Severely dilated left atrium size.",
+            "Normal right atrium size.",
+            "Dilated right atrium size.",
+            "Upper limit of normal right atrium size.",
+            "Mildly dilated right atrium size.",
+            "Moderately dilated right atrium size.",
+            "Severely dilated right atrium size.",
+            "Interatrial septum appears intact on both 2D and colour Doppler.",
+            "Interatrial septum appears mobile however intact on both 2D and colour Doppler.",
+            "PFO noted on colour Doppler.",
+            "Interatrial septum appears aneurysmal without evidence of a PFO on this TTE.",
+            "Interatrial septum appears aneurysmal with evidence of a PFO shown on colour Doppler.",
+            "Lipomatous hypertrophy of the interatrial septum however appears intact on both 2D and colour Doppler.",
+            "Mild lipomatous hypertrophy of the interatrial septum however appears intact on both 2D and colour Doppler.",
+            "Amplatzer Occluder appears situ and well seated on both 2D and colour Doppler.",
+            "Interatrial septum repair noted with no obvious shunt on both 2D and colour Doppler.",
+            "Inferior vena cava appears normal in size with normal respiratory variation.",
+            "Inferior vena cava appears normal in size with reduced respiratory variation.",
+            "Inferior vena cava appears dilated in size with normal respiratory variation.",
+            "Inferior vena cava appears dilated in size with reduced respiratory variation.",
+            "Inferior vena cava was not well visualised.",
+            "Inferior vena cava was not visualised.",
           ],
         },
         tricuspid: {
@@ -1403,7 +1435,6 @@
         if (highlightedItem)
           highlightedItem.scrollIntoView({ block: "nearest" });
       }
-
       function focusTextarea(index) {
         currentTextareaIndex = index;
         currentTextarea = textareasArray[currentTextareaIndex];
@@ -1572,11 +1603,11 @@
 
         if (height || weight || bsa) {
           doc.setFontSize(10);
-          doc.setFont("helvetica", "bold");
+          doc.setFont("arial", "bold");
           doc.text("Body Surface Area (BSA)", 10, y);
           y += lineHeight + 2;
 
-          doc.setFont("helvetica", "normal");
+          doc.setFont("arial", "normal");
           if (height) {
             doc.text(`Height: ${height} cm`, 10, y);
             y += lineHeight;
@@ -1634,5 +1665,6 @@
         doc.save(pdfName);
       });
     </script>
+    <script src="src/autocomplete.js" defer></script>
   </body>
 </html>

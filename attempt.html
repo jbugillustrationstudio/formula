@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sticky Autocomplete Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+      @theme {
+      }
+    </style>
+  </head>
+  <body class="bg-gray-200 p-3 max-w-4xl mx-auto">
+    <div class="grid grid-cols-3 gap-4">
+      <!-- LEFT SIDE -->
+      <div class="col-span-2 space-y-1">
+        <p class="text-sm sm:text-base">
+          <code><strong>Welcome!</strong></code>
+        </p>
+        <div class="flex items-center">
+          <p class="mb-8 text-sm sm:text-base">
+            <code>
+              Hover this icon to see the list of shortcut I have made!</code
+            >
+          </p>
+          <span class="inline-block ml-4 relative group cursor-pointer mb-8">
+            <span class="text-blue-500">ℹ️</span>
+            <div
+              class="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 hidden group-hover:block bg-gray-700 text-white text-xs rounded px-2 py-1 whitespace-nowrap z-10"
+            >
+              <ul class="list-none list-inside space-y-1">
+                <li>Body Surface Area: Ctrl+B</li>
+                <li>Left Ventricle: Ctrl+L</li>
+                <li>Right Ventricle: Ctrl+R</li>
+              </ul>
+            </div>
+          </span>
+        </div>
+        <hr class="border-t border-gray-300 my-4" />
+        <h4 class="font-bold mb-2 text-sm sm:text-base">
+          Body Surface Area (BSA)
+        </h4>
+        <div class="grid grid-cols-4 gap-4 items-center sm:text-sm text-xs">
+          <div class="col-span-1">
+            <label for="height" class="block">Height (cm)</label>
+            <input
+              type="number"
+              id="height"
+              class="w-full border rounded p-1 sm:text-sm text-xs"
+            />
+          </div>
+          <div class="col-span-1">
+            <label for="weight" class="block">Weight (kg)</label>
+            <input
+              type="number"
+              id="weight"
+              class="w-full border rounded p-1 sm:text-sm text-xs"
+            />
+          </div>
+          <div class="col-span-2 flex items-center">
+            <span class="font-medium mr-2">BSA (m²):</span>
+            <span id="bsa-text" class="sm:text-sm text-xs font-medium">—</span>
+          </div>
+        </div>
+
+        <h3 class="font-bold ml-1 text-sm sm:text-base">Left Ventricle:</h3>
+
+        <textarea
+          class="textarea w-full h-32 px-2 border rounded text-xs sm:text-base"
+          data-group="lvventricle"
+        ></textarea>
+        <textarea
+          class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
+          id="lv-measurement"
+        ></textarea>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
+        >
+          <!-- Headers -->
+          <div class="border border-gray-300 p-1 font-semibold">
+            Linear Parameters
+          </div>
+          <div class="border border-gray-300 p-1 font-semibold">LV Mass</div>
+
+          <!-- Left column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[80px_1fr] items-center">
+              <div>IVS</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="leftventricle"
+                data-label="IVS"
+              />
+
+              <div>LVEDd</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="leftventricle"
+                data-label="LVEDd"
+              />
+
+              <div>PWd</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="leftventricle"
+                data-label="PWd"
+              />
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[80px_1fr] items-center">
+              <div>RWT</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="leftventricle"
+                data-label="rwt"
+              />
+
+              <div>LV Mass indexed</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="leftventricle"
+                data-label="lvmass"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
+        >
+          <!-- Headers -->
+          <div class="border border-gray-300 p-1 font-semibold">
+            Volume Parameters
+          </div>
+          <div class="border border-gray-300 p-1 font-semibold">
+            Filling pressure
+          </div>
+
+          <!-- Left column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[120px_1fr] items-center gap-y-1">
+              <div>LVEDV indexed</div>
+              <input
+                type="number"
+                disabled
+                data-section="leftventricle"
+                data-label="LVEDVindexed"
+                class="w-full border px-1"
+              />
+
+              <div>LVEDV (BP)</div>
+              <input
+                type="number"
+                data-section="leftventricle"
+                data-label="LVEDV"
+                class="w-full border px-1"
+              />
+
+              <div>LVESV (BP)</div>
+              <input
+                type="number"
+                data-section="leftventricle"
+                data-label="LVESV"
+                class="w-full border px-1"
+              />
+
+              <div>LVEF (Simpson's)</div>
+              <div class="flex items-center gap-1">
+                <input
+                  type="number"
+                  disabled
+                  data-section="leftventricle"
+                  data-label="lvefsimpson"
+                  class="w-full border px-1"
+                />
+                <span>%</span>
+              </div>
+
+              <div>LVEF (visual)</div>
+              <div class="flex items-center gap-1">
+                <input
+                  type="text"
+                  data-section="leftventricle"
+                  data-label="lvefvisual"
+                  class="w-full border px-1"
+                />
+                <span>%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[120px_1fr] items-center gap-y-1">
+              <div>Sept e'</div>
+              <input
+                type="number"
+                data-section="leftventricle"
+                data-label="sept"
+                class="w-full border px-1"
+              />
+
+              <div>Lat e'</div>
+              <input
+                type="number"
+                data-section="leftventricle"
+                data-label="lat"
+                class="w-full border px-1"
+              />
+
+              <div>Sept E/e'</div>
+              <input
+                type="number"
+                disabled
+                data-section="leftventricle"
+                data-label="septee"
+                class="w-full border px-1"
+              />
+
+              <div>Lat E/e'</div>
+              <input
+                type="number"
+                disabled
+                data-section="leftventricle"
+                data-label="latee"
+                class="w-full border px-1"
+              />
+
+              <div>Avg E/e'</div>
+              <input
+                type="number"
+                disabled
+                data-section="leftventricle"
+                data-label="avgee"
+                class="w-full border px-1"
+              />
+            </div>
+          </div>
+        </div>
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
+          Right Ventricle:
+        </h3>
+        <textarea
+          class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
+          data-group="rvventricle"
+        ></textarea>
+        <textarea
+          class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
+          id="rv-measurement"
+        ></textarea>
+
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
+          Left/Right Atrium:
+        </h3>
+        <textarea
+          class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
+          data-group="atrium"
+        ></textarea
+        ><textarea
+          class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
+          id="atrium-measurement"
+        ></textarea>
+        <div
+          class="grid grid-cols-1 w-full sm:w-1/2 border border-gray-300 text-xs sm:text-sm"
+        >
+          <!-- Headers -->
+          <div class="border border-gray-300 p-1 font-semibold">
+            Right sided pressure
+          </div>
+
+          <!-- Rows -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[80px_1fr] items-center">
+              <div>RAP</div>
+              <input
+                type="number"
+                data-section="atrium"
+                data-label="rap"
+                class="w-full border px-1"
+              />
+
+              <div>RVSP</div>
+              <input
+                type="number"
+                disabled
+                data-section="atrium"
+                data-label="rvsp"
+                class="w-full border px-1"
+              />
+
+              <div>mPAP</div>
+              <input
+                type="number"
+                disabled
+                data-section="atrium"
+                data-label="mpap"
+                class="w-full border px-1"
+              />
+            </div>
+          </div>
+        </div>
+
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">Aortic Valve:</h3>
+        <textarea
+          class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
+          data-group="aortic"
+        ></textarea>
+        <textarea
+          class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
+          id="aortic-measurement"
+        ></textarea>
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">Aorta:</h3>
+        <textarea
+          class="textarea w-full h-12 p-2 border rounded text-xs sm:text-base"
+          data-group="aorta"
+        ></textarea>
+        <textarea
+          class="textarea w-full h-8 px-2 border rounded text-xs sm:text-base"
+          id="aorta-measurement"
+        ></textarea>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
+        >
+          <!-- Headers -->
+          <div class="border border-gray-300 p-1 font-semibold">
+            LVOT Parameters
+          </div>
+          <div class="border border-gray-300 p-1 font-semibold">
+            Aortic Valve Parameters
+          </div>
+
+          <!-- Left column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[80px_1fr] items-center">
+              <div>LVOTd</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="LVOTd"
+              />
+
+              <div>LVOT VTI</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="LVOT VTI"
+              />
+
+              <div>AV VTI</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="AV VTI"
+              />
+
+              <div>DSI</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="aortic"
+                data-label="DSI"
+              />
+
+              <div>AV Area</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="aortic"
+                data-label="AVA"
+              />
+
+              <div>Asc Aorta</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aorta"
+                data-label="ascao"
+                data-display="Asc Aorta"
+              />
+
+              <div>Indexed</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="aorta"
+                data-label="ascaoindexed"
+                data-display="Indexed"
+              />
+
+              <div>Aortic root</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aorta"
+                data-label="aorticroot"
+                data-display="Aortic Root"
+              />
+
+              <div>Indexed</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="aorta"
+                data-label="aorticrootindexed"
+                data-display="Indexed"
+              />
+
+              <div>STJd</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aorta"
+                data-label="STJd"
+                data-display="STJ"
+              />
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[120px_1fr] items-center">
+              <div>AV Peak Velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="AV peak vel"
+              />
+
+              <div>AV Peak Gradient</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="AV peak PG"
+              />
+
+              <div>AV Mean Velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="AV mean vel"
+              />
+
+              <div>AV Mean Gradient</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="aortic"
+                data-label="AV mean PG"
+              />
+            </div>
+          </div>
+        </div>
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">Mitral Valve:</h3>
+        <textarea
+          class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
+          data-group="mitral"
+        ></textarea
+        ><textarea
+          class="textarea w-full h-8 px-2 border rounded text-xs sm:text-base"
+          id="mitral-measurement"
+        ></textarea>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
+        >
+          <!-- Headers -->
+          <div class="border border-gray-300 p-1 font-semibold">
+            Mitral valve inflow
+          </div>
+          <div class="border border-gray-300 p-1 font-semibold">
+            Mitral stenosis
+          </div>
+
+          <!-- Left column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[80px_1fr] items-center">
+              <div>E Velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="mitral"
+                data-label="evel"
+                data-display="E vel."
+              />
+
+              <div>A Velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="mitral"
+                data-label="avel"
+                data-display="A vel."
+              />
+
+              <div>E/A ratio</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="mitral"
+                data-label="earatio"
+                data-display="E/A"
+              />
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[80px_1fr] items-center">
+              <div>MV meanPG</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="mitral"
+                data-label="MVmeanPG"
+                data-display="MV meanPG"
+              />
+            </div>
+          </div>
+        </div>
+
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
+          Tricuspid + pulmonary Valve:
+        </h3>
+        <textarea
+          class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
+          data-group="tricuspid"
+        ></textarea
+        ><textarea
+          class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
+          id="tricuspid-measurement"
+        ></textarea>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
+        >
+          <!-- Headers -->
+          <div class="border border-gray-300 p-1 font-semibold">
+            Tricuspid valve
+          </div>
+          <div class="border border-gray-300 p-1 font-semibold">
+            Pulmonary valve
+          </div>
+
+          <!-- Left column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[100px_1fr] items-center">
+              <div>TR Velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="tricuspid"
+                data-label="trvel"
+                data-display="TR vel."
+              />
+
+              <div>TR Peak Gradients</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="atrium"
+                data-label="trpeakPG"
+                data-display=""
+              />
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="border border-gray-300 p-1">
+            <div class="grid grid-cols-[100px_1fr] items-center">
+              <div>RVOTd</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="tricuspid"
+                data-label="rvotd"
+              />
+
+              <div>Qp/Qs</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                disabled
+                data-section="tricuspid"
+                data-label="qpqs"
+              />
+
+              <div>RVOT VTI</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="tricuspid"
+                data-label="rvotvti"
+              />
+
+              <div>PV velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="tricuspid"
+                data-label="PVpeakvel"
+              />
+
+              <div>PReg velocity</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="tricuspid"
+                data-label="PRpeakvel"
+              />
+
+              <div>PReg gradients</div>
+              <input
+                class="w-full border px-1"
+                type="number"
+                data-section="atrium"
+                data-label="prpeakPG"
+              />
+            </div>
+          </div>
+        </div>
+
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">Conclusion:</h3>
+        <textarea
+          class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
+          data-group="others"
+        ></textarea>
+      </div>
+
+      <!-- RIGHT SIDE (STICKY) -->
+      <div class="col-span-1 sticky top-4 self-start">
+        <div class="max-h-[90vh] overflow-y-auto space-y-4 sm:text-sm text-xs">
+          <!-- AUTOCOMPLETE -->
+          <div class="h-80 bg-white border rounded">
+            <ul
+              class="suggestions h-full overflow-y-auto text-xs sm:text-sm"
+            ></ul>
+          </div>
+
+          <!-- OTHERS LIST -->
+          <div class="border rounded p-2 bg-white">
+            <p class="font-semibold mb-2">Other Options</p>
+            <input
+              id="others-search"
+              type="text"
+              class="w-full p-1 border rounded mb-2 text-xs sm:text-sm"
+              placeholder="Search others..."
+            />
+            <ul id="others-list" class="space-y-1 max-h-40 overflow-y-auto">
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                Bubble study was positive during this study.
+              </li>
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                Patient tolerated procedure well
+              </li>
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                Follow-up recommended in 6 months
+              </li>
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                No complications observed
+              </li>
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                No complications observed
+              </li>
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                No complications observed
+              </li>
+              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
+                No complications observed
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="p-3 text-xs sm:text-sm">
+          <!-- Input for renaming the PDF -->
+          <label for="pdfName">Enter PDF name:</label>
+          <input
+            class="w-full p-1"
+            type="text"
+            id="pdfName"
+            placeholder="echo_report.pdf"
+          />
+
+          <button
+            id="download-pdf"
+            class="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+          >
+            Download PDF
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="autoNumberLines.js"></script>
+    <script src="bsaCalculation.js"></script>
+    <script src="calculations.js"></script>
+    <script src="eventListeners.js"></script>
+    <script src="autocomplete.js"></script>
+    <script src="suggestions.js"></script>
+    <script src="othersHighlight.js"></script>
+    <script src="pdfGeneration.js"></script>
+  </body>
+</html>
