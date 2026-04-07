@@ -199,7 +199,7 @@ const autocompleteConfig = {
       aortic: [
         "Trileaflet aortic valve.",
         "Sclerotic trileaflet aortic valve.",
-        "Grossly normal aoritc valve.",
+        "Grossly normal aortic valve.",
         "Bicuspid aortic valve. Commissures appears * o'clock and * o'clock with a raphe at * o'clock.",
         "Bioprosthetic aortic valve replacement appears well seated.",
         "Mechanical aortic valve appears well seated.",
