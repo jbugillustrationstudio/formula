@@ -1,4 +1,6 @@
 function generatePDF() {
+  const pdfFileName =
+    document.getElementById("pdfName").value || "echo_report.pdf";
   const docDefinition = {
     content: [
       { text: `Height: ${document.getElementById("height").value}` },
@@ -57,5 +59,5 @@ function generatePDF() {
     },
   };
 
-  pdfMake.createPdf(docDefinition).download("invoice.pdf");
+  pdfMake.createPdf(docDefinition).download(pdfFileName);
 }
