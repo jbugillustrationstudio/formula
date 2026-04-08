@@ -3,7 +3,7 @@
 // -------------------------
 const heightInput = document.getElementById("height");
 const weightInput = document.getElementById("weight");
-const bsaText = document.getElementById("bsa-text");
+const bsaText = document.getElementById("bsatext");
 
 let bsaValue = 0;
 
@@ -19,5 +19,5 @@ function calculateBSA() {
 
   const bsa = Math.sqrt((height * weight) / 3600);
   bsaValue = parseFloat(bsa.toFixed(2));
-  bsaText.textContent = `${bsaValue} m²`;
+  document.getElementById("bsatext").textContent = `${bsaValue} m²`;
 }

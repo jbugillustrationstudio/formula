@@ -335,14 +335,14 @@ function updateTextareas() {
   }
 
   // Update output textareas
-  document.getElementById("lv-measurement").value = cardiacValues.join(", ");
-  document.getElementById("rv-measurement").value = rightValues.join(", ");
-  document.getElementById("atrium-measurement").value = atriumValues.join(", ");
-  document.getElementById("aortic-measurement").value = aorticValues.join(", ");
-  document.getElementById("aorta-measurement").value = aortaValues.join(", ");
-  document.getElementById("mitral-measurement").value = mitralValues.join(", ");
-  document.getElementById("tricuspid-measurement").value =
+  document.getElementById("lvmeasurement").value = cardiacValues.join(", ");
+  document.getElementById("rvmeasurement").value = rightValues.join(", ");
+  document.getElementById("atriummeasurement").value = atriumValues.join(", ");
+  document.getElementById("aorticmeasurement").value = aorticValues.join(", ");
+  document.getElementById("aortameasurement").value = aortaValues.join(", ");
+  document.getElementById("mitralmeasurement").value = mitralValues.join(", ");
+  document.getElementById("tricuspidmeasurement").value =
     tricuspidValues.join(", ");
-  document.getElementById("pulmonary-measurement").value =
+  document.getElementById("pulmonarymeasurement").value =
     pulmonaryValues.join(", ");
 }

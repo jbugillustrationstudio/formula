@@ -7,6 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
       @theme {
+        --input {
+          background-color: #ffffff; /* light gray */
+        }
       }
     </style>
   </head>
@@ -54,12 +57,28 @@
           </span>
         </div>
         <hr class="border-t border-gray-300 my-4" />
+
+        <!-- Top h4 sections
+        <h4 data-group="echo">Echo report</h4>
+        <label>Details:</label>
+        <textarea data-group="echo"></textarea>
+        <label>Image quality:</label>
+        <textarea data-group="echo"></textarea>
+
+        <h4 data-group="bsa">BSA</h4>
+        <label>Height:</label>
+        <textarea data-group="bsa"></textarea>
+        <label>Weight:</label>
+        <textarea data-group="bsa"></textarea>
+        <label>BSA:</label>
+        <textarea data-group="bsa"></textarea> -->
+
         <h4 class="font-bold mb-2 text-sm sm:text-base">
           Body Surface Area (BSA)
         </h4>
         <div class="grid grid-cols-4 gap-4 items-center sm:text-sm text-xs">
           <div class="col-span-1">
-            <label for="height" class="block">Height (cm)</label>
+            <label class="block">Height (cm)</label>
             <input
               type="number"
               id="height"
@@ -67,7 +86,7 @@
             />
           </div>
           <div class="col-span-1">
-            <label for="weight" class="block">Weight (kg)</label>
+            <label class="block">Weight (kg)</label>
             <input
               type="number"
               id="weight"
@@ -76,7 +95,7 @@
           </div>
           <div class="col-span-2 flex items-center">
             <span class="font-medium mr-2">BSA (m²):</span>
-            <span id="bsa-text" class="sm:text-sm text-xs font-medium">—</span>
+            <span id="bsatext" class="sm:text-sm text-xs font-medium"></span>
           </div>
         </div>
 
@@ -85,10 +104,11 @@
         <textarea
           class="textarea w-full h-32 px-2 border rounded text-xs sm:text-base"
           data-group="lvventricle"
+          id="lvventricle"
         ></textarea>
         <textarea
           class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
-          id="lv-measurement"
+          id="lvmeasurement"
         ></textarea>
         <div
           class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
@@ -269,10 +289,11 @@
         <textarea
           class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="rvventricle"
+          id="rvventricle"
         ></textarea>
         <textarea
           class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
-          id="rv-measurement"
+          id="rvmeasurement"
         ></textarea>
 
         <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
@@ -281,10 +302,11 @@
         <textarea
           class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="atrium"
+          id="atrium"
         ></textarea
         ><textarea
           class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
-          id="atrium-measurement"
+          id="atriummeasurement"
         ></textarea>
         <div
           class="grid grid-cols-1 w-full sm:w-1/2 border border-gray-300 text-xs sm:text-sm"
@@ -330,19 +352,21 @@
         <textarea
           class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="aortic"
+          id="aortic"
         ></textarea>
         <textarea
           class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
-          id="aortic-measurement"
+          id="aorticmeasurement"
         ></textarea>
         <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">Aorta:</h3>
         <textarea
           class="textarea w-full h-12 p-2 border rounded text-xs sm:text-base"
           data-group="aorta"
+          id="aorta"
         ></textarea>
         <textarea
           class="textarea w-full h-8 px-2 border rounded text-xs sm:text-base"
-          id="aorta-measurement"
+          id="aortameasurement"
         ></textarea>
         <div
           class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
@@ -490,10 +514,11 @@
         <textarea
           class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="mitral"
+          id="mitral"
         ></textarea
         ><textarea
           class="textarea w-full h-8 px-2 border rounded text-xs sm:text-base"
-          id="mitral-measurement"
+          id="mitralmeasurement"
         ></textarea>
         <div
           class="grid grid-cols-1 sm:grid-cols-2 w-full border border-gray-300 text-xs sm:text-sm"
@@ -560,10 +585,11 @@
         <textarea
           class="textarea w-full h-12 p-2 border rounded text-xs sm:text-base"
           data-group="tricuspid"
+          id="tricuspid"
         ></textarea
         ><textarea
           class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
-          id="tricuspid-measurement"
+          id="tricuspidmeasurement"
         ></textarea>
         <div
           class="grid grid-cols-1 w-full sm:w-1/2 border border-gray-300 text-xs sm:text-sm"
@@ -601,10 +627,11 @@
         <textarea
           class="textarea w-full h-12 p-2 border rounded text-xs sm:text-base"
           data-group="pulmonary"
+          id="pulmonary"
         ></textarea
         ><textarea
           class="textarea w-full h-12 px-2 border rounded text-xs sm:text-base"
-          id="pulmonary-measurement"
+          id="pulmonarymeasurement"
         ></textarea>
         <div
           class="grid grid-cols-1 w-full sm:w-1/2 border border-gray-300 text-xs sm:text-sm"
@@ -672,6 +699,7 @@
         <textarea
           class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="others"
+          id="conclusion"
         ></textarea>
       </div>
 
@@ -728,16 +756,25 @@
             id="pdfName"
             placeholder="echo_report.pdf"
           />
-
           <button
-            id="download-pdf"
+            onclick="generatePDF()"
             class="bg-blue-500 text-white px-4 py-2 rounded mt-4"
           >
             Download PDF
           </button>
+          <!-- <button
+            id="download-pdf"
+            class="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+          >
+            Download PDF
+          </button> -->
         </div>
       </div>
     </div>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.12/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.12/vfs_fonts.min.js"></script>
+
     <script src="inputselector.js"></script>
     <script src="bsaCalculation.js"></script>
     <script src="calculations.js"></script>
