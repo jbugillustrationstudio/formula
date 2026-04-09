@@ -609,7 +609,7 @@ textareasArray.forEach((t, idx) => {
       }
     }
 
-    if (e.ctrlKey && e.key === "ArrowRight") {
+    if (e.altKey && e.key === "ArrowRight") {
       e.preventDefault();
       othersSearch.focus();
       othersHighlightedIndex = -1;
