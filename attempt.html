@@ -61,6 +61,23 @@
         <h4 class="font-bold mb-2 text-sm sm:text-base">
           Body Surface Area (BSA)
         </h4>
+
+        <label class="block">Details:</label>
+        <textarea
+          id="details"
+          class="textarea w-full border rounded p-1 sm:text-sm text-xs"
+        ></textarea>
+
+        <label class="block">Image quality:</label>
+        <textarea
+          id="imagequality"
+          data-group="imagequality"
+          class="textarea w-full border rounded p-1 sm:text-sm text-xs"
+        ></textarea>
+
+        <h4 class="font-bold mb-2 text-sm sm:text-base">
+          Body Surface Area (BSA)
+        </h4>
         <div class="grid grid-cols-4 gap-4 items-center sm:text-sm text-xs">
           <div class="col-span-1">
             <label class="block">Height (cm)</label>
@@ -178,10 +195,24 @@
                 data-label="LVEDVindexed"
                 class="w-full border px-1"
               />
-
+              <div>LVEDV (4CH)</div>
+              <input
+                type="number"
+                data-section="leftventricle"
+                data-label="LVEDV4"
+                class="w-full border px-1"
+              />
+              <div>LVEDV (2CH)</div>
+              <input
+                type="number"
+                data-section="leftventricle"
+                data-label="LVEDV2"
+                class="w-full border px-1"
+              />
               <div>LVEDV (BP)</div>
               <input
                 type="number"
+                disabled
                 data-section="leftventricle"
                 data-label="LVEDV"
                 class="w-full border px-1"

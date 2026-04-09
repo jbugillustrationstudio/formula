@@ -6,6 +6,24 @@ const autocompleteConfig = {
     },
     fallback: [],
   },
+  imagequality: {
+    abbreviations: {
+      0: [
+        "Adequate image quality",
+        "Suboptimal image quality",
+        "Suboptimal due to body habitus",
+        "Technically difficult",
+        "Technically difficult due to",
+      ],
+    },
+    fallback: [
+      "Adequate image quality",
+      "Suboptimal image quality",
+      "Suboptimal due to body habitus",
+      "Technically difficult",
+      "Technically difficult due to",
+    ],
+  },
   lvventricle: {
     abbreviations: {
       0: [
@@ -471,11 +489,66 @@ const autocompleteConfig = {
         "Moderate to severely reduced systolic function.",
         "Severely reduced systolic function.",
       ],
+      as: [
+        "Mild aortic stenosis.",
+        "Mild to moderate aortic stenosis.",
+        "Moderate aortic stenosis.",
+        "Moderate to severe aortic stenosis.",
+        "Severe aortic stenosis.",
+      ],
+      ar: [
+        "Mild aortic regurgitation.",
+        "Mild to moderate aortic regurgitation.",
+        "Moderate aortic regurgitation.",
+        "Moderate to severe aortic regurgitation.",
+        "Severe aortic regurgitation.",
+      ],
+      ms: [
+        "Mild mitral stenosis.",
+        "Mild to moderate mitral stenosis.",
+        "Moderate mitral stenosis.",
+        "Moderate to severe mitral stenosis.",
+        "Severe mitral stenosis.",
+      ],
+      mr: [
+        "Mild mitral regurgitation.",
+        "Mild to moderate mitral regurgitation.",
+        "Moderate mitral regurgitation.",
+        "Moderate to severe mitral regurgitation.",
+        "Severe mitral regurgitation.",
+      ],
+
+      tr: [
+        "Mild tricuspid regurgitation.",
+        "Mild to moderate tricuspid regurgitation.",
+        "Moderate tricuspid regurgitation.",
+        "Moderate to severe tricuspid regurgitation.",
+        "Severe tricuspid regurgitation.",
+      ],
+      ps: [
+        "Mild pulmonary stenosis.",
+        "Mild to moderate pulmonary stenosis.",
+        "Moderate pulmonary stenosis.",
+        "Moderate to severe pulmonary stenosis.",
+        "Severe pulmonary stenosis.",
+      ],
+      pr: [
+        "Mild pulmonary regurgitation.",
+        "Mild to moderate pulmonary regurgitation.",
+        "Moderate pulmonary regurgitation.",
+        "Moderate to severe pulmonary regurgitation.",
+        "Severe pulmonary regurgitation.",
+      ],
     },
     fallback: [
       "Normal left ventricular size and systolic function.",
       "Normal right ventricular size and systolic function.",
-      "No significant valvular",
+      "No significant valvular abnormalites was noted.",
+      "Mild",
+      "Mild to moderate",
+      "Moderate",
+      "Moderate to severe",
+      "Severe",
     ],
   },
   // others: { disableAutocomplete: true },
@@ -486,57 +559,61 @@ let lastFocusedTextarea = null;
 let matchingSuggestions = [];
 let highlightedIndex = -1;
 
-let othersHighlightedIndex = -1;
-const othersSearch = document.getElementById("others-search");
-const othersList = document.getElementById("others-list");
-const othersListItems = Array.from(othersList.querySelectorAll("li"));
-
 const textareas = document.querySelectorAll(".textarea");
 const suggestionsBox = document.querySelector(".suggestions");
 const textareasArray = Array.from(textareas);
 let currentTextareaIndex = 0;
 
-function insertText(text, replaceLastWord = false) {
-  if (!lastFocusedTextarea) return;
+// ----------------- Helper: Get word at cursor -----------------
+function getWordAtCursor(textarea) {
+  const cursorPos = textarea.selectionStart;
+  const text = textarea.value;
 
-  text = text.trim();
+  let start = cursorPos;
+  while (start > 0 && /\S/.test(text[start - 1])) start--;
 
-  if (replaceLastWord) {
-    const lines = lastFocusedTextarea.value.split("\n");
-    const lastLine = lines[lines.length - 1];
-    const words = lastLine.split(/\s+/);
-    words[words.length - 1] = text;
-    lines[lines.length - 1] = words.join(" ");
-    lastFocusedTextarea.value = lines.join("\n") + " ";
-  } else {
-    const value = lastFocusedTextarea.value;
-    lastFocusedTextarea.value =
-      value && !value.endsWith(" ") ? value + " " + text : value + text;
-    lastFocusedTextarea.value += " ";
-  }
+  let end = cursorPos;
+  while (end < text.length && /\S/.test(text[end])) end++;
 
-  lastFocusedTextarea.focus();
+  const word = text.slice(start, end);
+  return { word, start, end };
 }
 
+// ----------------- Insert suggestion -----------------
+function insertText(text) {
+  if (!lastFocusedTextarea) return;
+  const textarea = lastFocusedTextarea;
+  const { start, end } = getWordAtCursor(textarea);
+  const value = textarea.value;
+
+  textarea.value = value.slice(0, start) + text + value.slice(end);
+
+  // Move cursor after inserted text
+  const cursorPos = start + text.length;
+  textarea.setSelectionRange(cursorPos, cursorPos);
+  textarea.focus();
+}
+
+// ----------------- Update suggestions -----------------
 function updateSuggestions() {
   if (!currentTextarea) return;
   const group = currentTextarea.dataset.group || "default";
   const config = autocompleteConfig[group] || autocompleteConfig.default;
+
   if (config.disableAutocomplete) {
     suggestionsBox.classList.add("hidden");
     return;
   }
 
-  const lastWord = currentTextarea.value
-    .trim()
-    .split(/\s+/)
-    .pop()
-    .toLowerCase();
+  const { word: currentWord } = getWordAtCursor(currentTextarea);
+  const lastWord = currentWord.toLowerCase();
+
   if (!lastWord) {
     suggestionsBox.classList.add("hidden");
     return;
   }
 
+  // Match abbreviations first
   matchingSuggestions = [];
   if (config.abbreviations) {
     for (const abbr in config.abbreviations) {
@@ -546,8 +623,9 @@ function updateSuggestions() {
       }
     }
   }
+
+  // If no abbreviation match, fallback
   if (matchingSuggestions.length === 0 && config.fallback) {
-    // Sort fallback options alphabetically before filtering
     const sortedFallback = [...config.fallback].sort((a, b) =>
       a.localeCompare(b),
     );
@@ -555,6 +633,7 @@ function updateSuggestions() {
       opt.toLowerCase().startsWith(lastWord),
     );
   }
+
   if (matchingSuggestions.length === 0) {
     suggestionsBox.classList.add("hidden");
     return;
@@ -563,7 +642,9 @@ function updateSuggestions() {
   suggestionsBox.innerHTML = matchingSuggestions
     .map(
       (s, i) =>
-        `<li class="px-2 py-1 cursor-pointer ${i === highlightedIndex ? "bg-blue-200" : "hover:bg-blue-100"}">${s}</li>`,
+        `<li class="px-2 py-1 cursor-pointer ${
+          i === highlightedIndex ? "bg-blue-200" : "hover:bg-blue-100"
+        }">${s}</li>`,
     )
     .join("");
   suggestionsBox.classList.remove("hidden");
@@ -571,6 +652,8 @@ function updateSuggestions() {
   const highlightedItem = suggestionsBox.querySelector(".bg-blue-200");
   if (highlightedItem) highlightedItem.scrollIntoView({ block: "nearest" });
 }
+
+// ----------------- Focus handling -----------------
 function focusTextarea(index) {
   currentTextareaIndex = index;
   currentTextarea = textareasArray[currentTextareaIndex];
@@ -578,16 +661,19 @@ function focusTextarea(index) {
   currentTextarea.focus();
 }
 
+// ----------------- Event listeners -----------------
 textareasArray.forEach((t, idx) => {
   t.addEventListener("focus", () => {
     currentTextareaIndex = idx;
     currentTextarea = t;
     lastFocusedTextarea = t;
   });
+
   t.addEventListener("input", () => {
     highlightedIndex = -1;
     updateSuggestions();
   });
+
   t.addEventListener("keydown", (e) => {
     if (!suggestionsBox.classList.contains("hidden")) {
       if (e.key === "ArrowDown") {
@@ -604,18 +690,12 @@ textareasArray.forEach((t, idx) => {
       }
       if (e.key === "Enter" && highlightedIndex >= 0) {
         e.preventDefault();
-        insertText(matchingSuggestions[highlightedIndex], true);
+        insertText(matchingSuggestions[highlightedIndex]);
         suggestionsBox.classList.add("hidden");
       }
     }
 
-    if (e.ctrlKey && e.key === "ArrowRight") {
-      e.preventDefault();
-      othersSearch.focus();
-      othersHighlightedIndex = -1;
-      updateOthersHighlight();
-    }
-
+    // Ctrl + Arrow to navigate textareas
     if (e.ctrlKey && e.key === "ArrowDown") {
       e.preventDefault();
       focusTextarea((currentTextareaIndex + 1) % textareasArray.length);
