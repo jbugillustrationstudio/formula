@@ -16,6 +16,8 @@ function updateTextareas() {
   let IVS = 0;
   let LVEDd = 0;
   let PWd = 0;
+  let rwt = 0;
+  let lvmass = 0;
   let LVEDV4 = 0;
   let LVEDV2 = 0;
   let LVEDV = null;
@@ -60,6 +62,8 @@ function updateTextareas() {
       if (label === "IVS") IVS = parseFloat(value);
       if (label === "LVEDd") LVEDd = parseFloat(value);
       if (label === "PWd") PWd = parseFloat(value);
+      if (label === "rwt") rwt = parseFloat(value);
+      if (label === "lvmass") lvmass = parseFloat(value);
       if (label === "LVEDV4") LVEDV4 = parseFloat(value);
       if (label === "LVEDV2") LVEDV2 = parseFloat(value);
       if (label === "LVEDV") LVEDV = parseFloat(value);
@@ -183,10 +187,29 @@ function updateTextareas() {
   const lateeInput = document.querySelector('input[data-label="latee"]');
   const avgeeInput = document.querySelector('input[data-label="avgee"]');
   const LVEDVInput = document.querySelector('input[data-label="LVEDV"]');
+  const rwtInput = document.querySelector('input[data-label="rwt"]');
+  const lvmassInput = document.querySelector('input[data-label="lvmass"]');
 
   if (IVS) cardiacValues.push(`IVS ${IVS} cm`);
   if (LVEDd) cardiacValues.push(`LVEDd ${LVEDd} cm`);
   if (PWd) cardiacValues.push(`PWd ${PWd} cm`);
+  if (PWd && LVEDd) {
+    const rwt = (2 * PWd) / LVEDd;
+    if (rwtInput) rwtInput.value = rwt;
+  } else {
+    if (rwtInput) rwtInput.value = "";
+  }
+
+  if (PWd && LVEDd && IVS && bsa) {
+    lvm =
+      0.8 * (1.04 * (Math.pow(LVEDd + IVS + PWd, 3) - Math.pow(LVEDd, 3))) +
+      0.6;
+    const lvmass = (lvm / bsa).toFixed(2);
+    if (lvmassInput) lvmassInput.value = lvmass;
+  } else {
+    if (lvmassInput) lvmassInput.value = "";
+  }
+
   if (LVESV) cardiacValues.push(`LVESV ${LVESV} ml`);
   if (LVEDV4 && LVEDV2) {
     const LVEDV = (LVEDV4 + LVEDV2) / 2;
@@ -211,7 +234,8 @@ function updateTextareas() {
   }
   if (lvefvisual)
     cardiacValues.push(`LVEF by visual estimation ${lvefvisual}%`);
-  if (sept) cardiacValues.push(`Sept e' ${sept} m/s`);
+  // if (sept) cardiacValues.push(`Sept e' ${sept} m/s`);
+  // if (lat) cardiacValues.push(`Lat e' ${lat} m/s`);
 
   // Septal E/e'
   if (evel && sept) {

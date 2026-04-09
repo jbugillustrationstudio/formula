@@ -663,6 +663,13 @@ function focusTextarea(index) {
 
 // ----------------- Event listeners -----------------
 textareasArray.forEach((t, idx) => {
+  // Example options array
+  const options = [
+    "Bubble study was positive during this study.",
+    "No obvious evidence of endocarditis on images, however, cannot exclude on the basis of this TTE.",
+    "Pacemaker/defibrillator lead was noted on the right side.",
+    "Consistent with McConnell's sign and 60/60 rule. RVOT Accl. time **ms.",
+  ];
   t.addEventListener("focus", () => {
     currentTextareaIndex = idx;
     currentTextarea = t;
@@ -710,17 +717,38 @@ textareasArray.forEach((t, idx) => {
   });
   const othersSearch = document.getElementById("others-search");
   const othersList = document.getElementById("others-list");
+  const textareasArray = document.querySelectorAll("textarea");
+
   let currentTextarea = null;
   let currentTextareaIndex = 0;
-  let isOtherFocused = false; // track toggle state
-  let highlightedIndex = -1; // for arrow navigation
-  const listItems = Array.from(othersList.querySelectorAll("li"));
+  let isOtherFocused = false;
+  let highlightedIndex = -1;
+  let listItems = [];
 
-  // Toggle focus with Ctrl+`
+  // Dynamically generate <li> elements
+  function generateList() {
+    othersList.innerHTML = "";
+    options.forEach((text) => {
+      const li = document.createElement("li");
+      li.textContent = text;
+      li.className = "px-2 py-1 hover:bg-blue-100 cursor-pointer";
+
+      // Click to insert
+      li.addEventListener("click", () => selectItem(li));
+
+      othersList.appendChild(li);
+    });
+
+    // Update listItems for navigation
+    listItems = Array.from(othersList.querySelectorAll("li"));
+  }
+
+  generateList();
+
+  // Focus toggle with Ctrl+`
   document.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.key === "`") {
       e.preventDefault();
-
       if (!currentTextarea) return;
 
       if (!isOtherFocused) {
@@ -735,7 +763,6 @@ textareasArray.forEach((t, idx) => {
   });
 
   // Track which textarea is focused
-  const textareasArray = document.querySelectorAll("textarea");
   textareasArray.forEach((t, idx) => {
     t.addEventListener("focus", () => {
       currentTextareaIndex = idx;
@@ -745,49 +772,62 @@ textareasArray.forEach((t, idx) => {
     });
   });
 
-  // Track focus on the search box
+  // Track focus on search
   othersSearch.addEventListener("focus", () => {
     isOtherFocused = true;
   });
 
-  // Handle arrow keys and Enter in search box
+  // Filter list as you type
+  othersSearch.addEventListener("input", () => {
+    const query = othersSearch.value.toLowerCase().trim();
+
+    listItems.forEach((li) => {
+      const text = li.textContent.toLowerCase();
+      li.style.display = text.includes(query) ? "" : "none";
+    });
+
+    resetHighlight();
+  });
+
+  // Arrow navigation and Enter
   othersSearch.addEventListener("keydown", (e) => {
-    if (!listItems.length) return;
+    const visibleItems = listItems.filter((li) => li.style.display !== "none");
+    if (!visibleItems.length) return;
 
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      moveHighlight(1);
+      moveHighlight(1, visibleItems);
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
-      moveHighlight(-1);
+      moveHighlight(-1, visibleItems);
     } else if (e.key === "Enter") {
       e.preventDefault();
-      if (highlightedIndex >= 0) {
-        selectItem(listItems[highlightedIndex]);
+      if (highlightedIndex >= 0 && visibleItems[highlightedIndex]) {
+        selectItem(visibleItems[highlightedIndex]);
       }
     }
   });
 
   // Highlight functions
-  function moveHighlight(direction) {
-    if (highlightedIndex >= 0) {
-      listItems[highlightedIndex].classList.remove("bg-blue-200");
+  function moveHighlight(direction, visibleItems) {
+    if (highlightedIndex >= 0 && visibleItems[highlightedIndex]) {
+      visibleItems[highlightedIndex].classList.remove("bg-blue-200");
     }
 
     highlightedIndex += direction;
-    if (highlightedIndex < 0) highlightedIndex = listItems.length - 1;
-    if (highlightedIndex >= listItems.length) highlightedIndex = 0;
+    if (highlightedIndex < 0) highlightedIndex = visibleItems.length - 1;
+    if (highlightedIndex >= visibleItems.length) highlightedIndex = 0;
 
-    listItems[highlightedIndex].classList.add("bg-blue-200");
-    listItems[highlightedIndex].scrollIntoView({ block: "nearest" });
+    visibleItems[highlightedIndex].classList.add("bg-blue-200");
+    visibleItems[highlightedIndex].scrollIntoView({ block: "nearest" });
   }
 
   function resetHighlight() {
-    if (highlightedIndex >= 0) {
-      listItems[highlightedIndex].classList.remove("bg-blue-200");
-    }
+    listItems.forEach((li) => li.classList.remove("bg-blue-200"));
     highlightedIndex = -1;
   }
+
+  // Insert text at cursor with trailing space
   function selectItem(item) {
     if (!currentTextarea) return;
 
@@ -796,12 +836,11 @@ textareasArray.forEach((t, idx) => {
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
 
-    // Insert at cursor position
-    const before = textarea.value.substring(0, start);
-    const after = textarea.value.substring(end);
-    textarea.value = before + insertText + after;
+    textarea.value =
+      textarea.value.substring(0, start) +
+      insertText +
+      textarea.value.substring(end);
 
-    // Move cursor to after the inserted text
     const newCursorPos = start + insertText.length;
     textarea.setSelectionRange(newCursorPos, newCursorPos);
 

@@ -77,3 +77,122 @@ function generatePDF() {
 
   pdfMake.createPdf(docDefinition).download(pdfFileName);
 }
+function copyText() {
+  // Collect all values
+  const details = document.getElementById("details").value;
+  const imageQuality = document.getElementById("imagequality").value;
+  const height = document.getElementById("height").value;
+  const weight = document.getElementById("weight").value;
+  const bsa = document.getElementById("bsatext").textContent;
+  const lv = `${document.getElementById("lvventricle").value} ${document.getElementById("lvmeasurement").value}`;
+  const rv = `${document.getElementById("rvventricle").value} ${document.getElementById("rvmeasurement").value}`;
+  const atrium = `${document.getElementById("atrium").value} ${document.getElementById("atriummeasurement").value}`;
+  const aortic = `${document.getElementById("aortic").value} ${document.getElementById("aorticmeasurement").value}`;
+  const aorta = `${document.getElementById("aorta").value} ${document.getElementById("aortameasurement").value}`;
+  const mitral = `${document.getElementById("mitral").value} ${document.getElementById("mitralmeasurement").value}`;
+  const tricuspid = `${document.getElementById("tricuspid").value} ${document.getElementById("tricuspidmeasurement").value}`;
+  const pulmonary = `${document.getElementById("pulmonary").value} ${document.getElementById("pulmonarymeasurement").value}`;
+  const conclusion = document.getElementById("conclusion").value;
+
+  // Build plain text
+  const textOutput = `
+Details: ${details}
+Image quality: ${imageQuality}
+Height: ${height}
+Weight: ${weight}
+BSA: ${bsa}
+
+Left ventricle:
+${lv}
+
+Right ventricle:
+${rv}
+
+Left/Right atrium:
+${atrium}
+
+Aortic:
+${aortic}
+
+Aorta:
+${aorta}
+
+Mitral valve:
+${mitral}
+
+Tricuspid valve:
+${tricuspid}
+
+Pulmonary valve:
+${pulmonary}
+
+Conclusion:
+${conclusion}
+`;
+
+  // Copy to clipboard
+  navigator.clipboard.writeText(textOutput).then(
+    () => alert("Report copied to clipboard!"),
+    () => alert("Failed to copy report."),
+  );
+}
+function lvcopyText() {
+  const textOutput = `${document.getElementById("lvventricle").value} ${document.getElementById("lvmeasurement").value}`;
+  navigator.clipboard.writeText(textOutput).then(
+    () => alert("Report copied to clipboard!"),
+    () => alert("Failed to copy report."),
+  );
+}
+function rvcopyText() {
+  const textOutput = `${document.getElementById("rvventricle").value} ${document.getElementById("rvmeasurement").value}`;
+  navigator.clipboard.writeText(textOutput).then(
+    () => alert("Report copied to clipboard!"),
+    () => alert("Failed to copy report."),
+  );
+}
+function atriumcopyText() {
+  const textOutput = `${document.getElementById("atrium").value} ${document.getElementById("atriummeasurement").value}`;
+  navigator.clipboard.writeText(textOutput).then(
+    () => alert("Report copied to clipboard!"),
+    () => alert("Failed to copy report."),
+  );
+}
+function aorticaortiacopyText() {
+  const aortic = `${document.getElementById("aortic").value} ${document.getElementById("aorticmeasurement").value}`;
+  const aorta = `${document.getElementById("aorta").value} ${document.getElementById("aortameasurement").value}`;
+  const textOutput = `${aortic}
+${aorta}
+`;
+  navigator.clipboard.writeText(textOutput).then(
+    () => alert("Report copied to clipboard!"),
+    () => alert("Failed to copy report."),
+  );
+}
+function mitralcopyText() {
+  const textOutput = `${document.getElementById("mitral").value} ${document.getElementById("mitralmeasurement").value}`;
+  navigator.clipboard.writeText(textOutput).then(
+    () => alert("Report copied to clipboard!"),
+    () => alert("Failed to copy report."),
+  );
+}
+function tricuspidcopyText() {
+  const textOutput = `${document.getElementById("tricuspid").value} ${document.getElementById("tricuspidmeasurement").value}`;
+  navigator.clipboard.writeText(textOutput).then(
+    () => alert("Report copied to clipboard!"),
+    () => alert("Failed to copy report."),
+  );
+}
+function pulmonarycopyText() {
+  const textOutput = `${document.getElementById("pulmonary").value} ${document.getElementById("pulmonarymeasurement").value}`;
+  navigator.clipboard.writeText(textOutput).then(
+    () => alert("Report copied to clipboard!"),
+    () => alert("Failed to copy report."),
+  );
+}
+function conclusioncopyText() {
+  const textOutput = document.getElementById("conclusion").value;
+  navigator.clipboard.writeText(textOutput).then(
+    () => alert("Report copied to clipboard!"),
+    () => alert("Failed to copy report."),
+  );
+}

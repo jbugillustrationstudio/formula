@@ -101,7 +101,14 @@
           </div>
         </div>
 
-        <h3 class="font-bold ml-1 text-sm sm:text-base">Left Ventricle:</h3>
+        <h3 class="font-bold ml-1 text-sm sm:text-base">
+          Left Ventricle:<button
+            onclick="lvcopyText()"
+            class="bg-yellow-500 text-white text-xs px-4 py-1 rounded ml-2"
+          >
+            Copy
+          </button>
+        </h3>
 
         <textarea
           class="textarea w-full h-32 px-2 border rounded text-xs sm:text-base"
@@ -152,7 +159,7 @@
 
           <!-- Right column -->
           <div class="border border-gray-300 p-1">
-            <div class="grid grid-cols-[80px_1fr] items-center">
+            <div class="grid grid-cols-[120px_1fr] items-center">
               <div>RWT</div>
               <input
                 class="w-full border px-1"
@@ -163,13 +170,15 @@
               />
 
               <div>LV Mass indexed</div>
-              <input
-                class="w-full border px-1"
-                type="number"
-                disabled
-                data-section="leftventricle"
-                data-label="lvmass"
-              />
+              <div class="flex items-center gap-1">
+                <input
+                  class="w-full border px-1"
+                  type="number"
+                  disabled
+                  data-section="leftventricle"
+                  data-label="lvmass"
+                /><span>g/m²</span>
+              </div>
             </div>
           </div>
         </div>
@@ -301,6 +310,12 @@
         </div>
         <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
           Right Ventricle:
+          <button
+            onclick="rvcopyText()"
+            class="bg-yellow-500 text-white text-xs px-4 py-1 rounded ml-2"
+          >
+            Copy
+          </button>
         </h3>
         <textarea
           class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
@@ -314,6 +329,12 @@
 
         <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
           Left/Right Atrium:
+          <button
+            onclick="atriumcopyText()"
+            class="bg-yellow-500 text-white text-xs px-4 py-1 rounded ml-2"
+          >
+            Copy
+          </button>
         </h3>
         <textarea
           class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
@@ -364,7 +385,15 @@
           </div>
         </div>
 
-        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">Aortic Valve:</h3>
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
+          Aortic Valve:
+          <button
+            onclick="aorticaortiacopyText()"
+            class="bg-yellow-500 text-white text-xs px-4 py-1 rounded ml-2"
+          >
+            Copy
+          </button>
+        </h3>
         <textarea
           class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="aortic"
@@ -526,7 +555,15 @@
             </div>
           </div>
         </div>
-        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">Mitral Valve:</h3>
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
+          Mitral Valve:
+          <button
+            onclick="mitralcopyText()"
+            class="bg-yellow-500 text-white text-xs px-4 py-1 rounded ml-2"
+          >
+            Copy
+          </button>
+        </h3>
         <textarea
           class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="mitral"
@@ -597,6 +634,12 @@
 
         <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
           Tricuspid Valve:
+          <button
+            onclick="tricuspidcopyText()"
+            class="bg-yellow-500 text-white text-xs px-4 py-1 rounded ml-2"
+          >
+            Copy
+          </button>
         </h3>
         <textarea
           class="textarea w-full h-12 p-2 border rounded text-xs sm:text-base"
@@ -639,6 +682,12 @@
         </div>
         <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
           Pulmonary Valve:
+          <button
+            onclick="pulmonarycopyText()"
+            class="bg-yellow-500 text-white text-xs px-4 py-1 rounded ml-2"
+          >
+            Copy
+          </button>
         </h3>
         <textarea
           class="textarea w-full h-12 p-2 border rounded text-xs sm:text-base"
@@ -711,7 +760,15 @@
           </div>
         </div>
 
-        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">Conclusion:</h3>
+        <h3 class="font-bold ml-1 pt-5 text-sm sm:text-base">
+          Conclusion:
+          <button
+            onclick="conclusioncopyText()"
+            class="bg-yellow-500 text-white text-xs px-4 py-1 rounded ml-2"
+          >
+            Copy
+          </button>
+        </h3>
         <textarea
           class="textarea w-full h-32 p-2 border rounded text-xs sm:text-base"
           data-group="others"
@@ -738,29 +795,10 @@
               class="w-full p-1 border rounded mb-2 text-xs sm:text-sm"
               placeholder="Search others..."
             />
-            <ul id="others-list" class="space-y-1 max-h-40 overflow-y-auto">
-              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
-                Bubble study was positive during this study.
-              </li>
-              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
-                Patient tolerated procedure well
-              </li>
-              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
-                Follow-up recommended in 6 months
-              </li>
-              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
-                No complications observed
-              </li>
-              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
-                No complications observed
-              </li>
-              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
-                No complications observed
-              </li>
-              <li class="px-2 py-1 hover:bg-blue-100 cursor-pointer">
-                No complications observed
-              </li>
-            </ul>
+            <ul
+              id="others-list"
+              class="space-y-1 max-h-60 overflow-y-auto"
+            ></ul>
           </div>
         </div>
         <div class="p-3 text-xs sm:text-sm">
@@ -776,7 +814,12 @@
             onclick="generatePDF()"
             class="bg-blue-500 text-white px-4 py-2 rounded mt-4"
           >
-            Download PDF
+            Download PDF</button
+          ><button
+            onclick="copyText()"
+            class="bg-yellow-500 text-white px-4 py-2 rounded mt-4 ml-2"
+          >
+            Copy Report
           </button>
           <!-- <button
             id="download-pdf"
