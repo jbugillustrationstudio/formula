@@ -496,227 +496,85 @@ const suggestionsBox = document.querySelector(".suggestions");
 const textareasArray = Array.from(textareas);
 let currentTextareaIndex = 0;
 
-//function insertText(text, replaceLastWord = false) {
-//  if (!lastFocusedTextarea) return;
+function insertText(text, replaceLastWord = false) {
+  if (!lastFocusedTextarea) return;
+  text = text.trim();
 
-//  text = text.trim();
-
-//  if (replaceLastWord) {
-//    const lines = lastFocusedTextarea.value.split("\n");
-//    const lastLine = lines[lines.length - 1];
-//    const words = lastLine.split(/\s+/);
-//    words[words.length - 1] = text;
-//    lines[lines.length - 1] = words.join(" ");
-//    lastFocusedTextarea.value = lines.join("\n") + " ";
-//  } else {
-//    const value = lastFocusedTextarea.value;
-//    lastFocusedTextarea.value =
-//      value && !value.endsWith(" ") ? value + " " + text : value + text;
-//    lastFocusedTextarea.value += " ";
-//  }
-//
-//  lastFocusedTextarea.focus();
-//}
-//
-//function updateSuggestions() {
-//  if (!currentTextarea) return;
-//  const group = currentTextarea.dataset.group || "default";
-//  const config = autocompleteConfig[group] || autocompleteConfig.default;
-//  if (config.disableAutocomplete) {
-//    suggestionsBox.classList.add("hidden");
-//    return;
-//  }
-//
-//  const lastWord = currentTextarea.value
-//    .trim()
-//    .split(/\s+/)
-//    .pop()
-//    .toLowerCase();
-//  if (!lastWord) {
-//    suggestionsBox.classList.add("hidden");
-//    return;
-//  }
-//
-//  matchingSuggestions = [];
-//  if (config.abbreviations) {
-//    for (const abbr in config.abbreviations) {
-//      if (abbr.startsWith(lastWord) || lastWord.startsWith(abbr)) {
-//        matchingSuggestions = config.abbreviations[abbr];
-//        break;
-//      }
-//    }
-//  }
-//  if (matchingSuggestions.length === 0 && config.fallback) {
-//    // Sort fallback options alphabetically before filtering
-//    const sortedFallback = [...config.fallback].sort((a, b) =>
-//      a.localeCompare(b),
-//    );
-//    matchingSuggestions = sortedFallback.filter((opt) =>
-//      opt.toLowerCase().startsWith(lastWord),
-//    );
-//  }
-//  if (matchingSuggestions.length === 0) {
-//    suggestionsBox.classList.add("hidden");
-//    return;
-//  }
-//
-//  suggestionsBox.innerHTML = matchingSuggestions
-//    .map(
-//      (s, i) =>
-//        `<li class="px-2 py-1 cursor-pointer ${i === highlightedIndex ? "bg-blue-200" : "hover:bg-blue-100"}">${s}</li>`,
-//    )
-//    .join("");
-//  suggestionsBox.classList.remove("hidden");
-//
-//  const highlightedItem = suggestionsBox.querySelector(".bg-blue-200");
-//  if (highlightedItem) highlightedItem.scrollIntoView({ block: "nearest" });
-//}
-//function focusTextarea(index) {
-//  currentTextareaIndex = index;
-//  currentTextarea = textareasArray[currentTextareaIndex];
-//  lastFocusedTextarea = currentTextarea;
-//  currentTextarea.focus();
-//}
-//
-//textareasArray.forEach((t, idx) => {
-//  t.addEventListener("focus", () => {
-//    currentTextareaIndex = idx;
-//    currentTextarea = t;
-//    lastFocusedTextarea = t;
-//  });
-//  t.addEventListener("input", () => {
-//    highlightedIndex = -1;
-//    updateSuggestions();
-//  });
-//  t.addEventListener("keydown", (e) => {
-//    if (!suggestionsBox.classList.contains("hidden")) {
-//      if (e.key === "ArrowDown") {
-//        e.preventDefault();
-//        highlightedIndex = (highlightedIndex + 1) % matchingSuggestions.length;
-//        updateSuggestions();
-//      }
-//      if (e.key === "ArrowUp") {
-//        e.preventDefault();
-//        highlightedIndex =
-//          (highlightedIndex - 1 + matchingSuggestions.length) %
-//          matchingSuggestions.length;
-//        updateSuggestions();
-//      }
-//      if (e.key === "Enter" && highlightedIndex >= 0) {
-//        e.preventDefault();
-//        insertText(matchingSuggestions[highlightedIndex], true);
-//        suggestionsBox.classList.add("hidden");
-//      }
-//    }
-//
-//    if (e.altKey && e.key === "ArrowRight") {
-//      e.preventDefault();
-//      othersSearch.focus();
-//      othersHighlightedIndex = -1;
-//      updateOthersHighlight();
-//    }
-//
-//    if (e.ctrlKey && e.key === "ArrowDown") {
-//      e.preventDefault();
-//      focusTextarea((currentTextareaIndex + 1) % textareasArray.length);
-//    }
-//    if (e.ctrlKey && e.key === "ArrowUp") {
-//      e.preventDefault();
-//      focusTextarea(
-//        (currentTextareaIndex - 1 + textareasArray.length) %
-//          textareasArray.length,
-//      );
-//    }
-//  });
-//});
-function getWordAtCursorPosition(textarea) {
-  const cursorPosition = textarea.selectionStart;  // Get cursor position
-  const text = textarea.value;
-
-  // Find the start of the word before the cursor
-  let wordStart = cursorPosition;
-  while (wordStart > 0 && /\w/.test(text.charAt(wordStart - 1))) {
-    wordStart--;
+  if (replaceLastWord) {
+    const lines = lastFocusedTextarea.value.split("\n");
+    const lastLine = lines[lines.length - 1];
+    const words = lastLine.split(/\s+/);
+    words[words.length - 1] = text;
+    lines[lines.length - 1] = words.join(" ");
+    lastFocusedTextarea.value = lines.join("\n") + " ";
+  } else {
+    const value = lastFocusedTextarea.value;
+    lastFocusedTextarea.value =
+      value && !value.endsWith(" ") ? value + " " + text : value + text;
+    lastFocusedTextarea.value += " ";
   }
 
-  // Find the end of the word after the cursor
-  let wordEnd = cursorPosition;
-  while (wordEnd < text.length && /\w/.test(text.charAt(wordEnd))) {
-    wordEnd++;
-  }
-
-  // Get the word under the cursor
-  const word = text.substring(wordStart, wordEnd);
-  return { word, wordStart, wordEnd };
+  lastFocusedTextarea.focus();
 }
 
 function updateSuggestions() {
   if (!currentTextarea) return;
-
-  const { word, wordStart, wordEnd } = getWordAtCursorPosition(currentTextarea);
   const group = currentTextarea.dataset.group || "default";
   const config = autocompleteConfig[group] || autocompleteConfig.default;
-
   if (config.disableAutocomplete) {
     suggestionsBox.classList.add("hidden");
     return;
   }
 
-  if (!word.trim()) {
+  const lastWord = currentTextarea.value
+    .trim()
+    .split(/\s+/)
+    .pop()
+    .toLowerCase();
+  if (!lastWord) {
     suggestionsBox.classList.add("hidden");
     return;
   }
 
   matchingSuggestions = [];
-  
-  // Check if there are any matching abbreviations
   if (config.abbreviations) {
     for (const abbr in config.abbreviations) {
-      if (abbr.startsWith(word) || word.startsWith(abbr)) {
+      if (abbr.startsWith(lastWord) || lastWord.startsWith(abbr)) {
         matchingSuggestions = config.abbreviations[abbr];
         break;
       }
     }
   }
-
-  // Check for fallback options if no abbreviations match
   if (matchingSuggestions.length === 0 && config.fallback) {
-    const sortedFallback = [...config.fallback].sort((a, b) => a.localeCompare(b));
-    matchingSuggestions = sortedFallback.filter(opt => opt.toLowerCase().startsWith(word.toLowerCase()));
+    // Sort fallback options alphabetically before filtering
+    const sortedFallback = [...config.fallback].sort((a, b) =>
+      a.localeCompare(b),
+    );
+    matchingSuggestions = sortedFallback.filter((opt) =>
+      opt.toLowerCase().startsWith(lastWord),
+    );
   }
-
   if (matchingSuggestions.length === 0) {
     suggestionsBox.classList.add("hidden");
     return;
   }
 
-  // Display suggestions
   suggestionsBox.innerHTML = matchingSuggestions
-    .map((s, i) =>
-      `<li class="px-2 py-1 cursor-pointer ${i === highlightedIndex ? "bg-blue-200" : "hover:bg-blue-100"}">${s}</li>`
+    .map(
+      (s, i) =>
+        `<li class="px-2 py-1 cursor-pointer ${i === highlightedIndex ? "bg-blue-200" : "hover:bg-blue-100"}">${s}</li>`,
     )
     .join("");
   suggestionsBox.classList.remove("hidden");
 
-  // Scroll to the highlighted item if necessary
   const highlightedItem = suggestionsBox.querySelector(".bg-blue-200");
   if (highlightedItem) highlightedItem.scrollIntoView({ block: "nearest" });
 }
-
-function insertTextAtCursor(text) {
-  if (!lastFocusedTextarea) return;
-
-  const { wordStart, wordEnd } = getWordAtCursorPosition(lastFocusedTextarea);
-  const currentText = lastFocusedTextarea.value;
-
-  // Insert the text by replacing the word under the cursor
-  const newText = currentText.slice(0, wordStart) + text + currentText.slice(wordEnd);
-  lastFocusedTextarea.value = newText;
-
-  // Set the cursor position right after the inserted word
-  lastFocusedTextarea.selectionStart = lastFocusedTextarea.selectionEnd = wordStart + text.length;
-
-  lastFocusedTextarea.focus(); // Keep the focus on the textarea
+function focusTextarea(index) {
+  currentTextareaIndex = index;
+  currentTextarea = textareasArray[currentTextareaIndex];
+  lastFocusedTextarea = currentTextarea;
+  currentTextarea.focus();
 }
 
 textareasArray.forEach((t, idx) => {
@@ -725,12 +583,10 @@ textareasArray.forEach((t, idx) => {
     currentTextarea = t;
     lastFocusedTextarea = t;
   });
-
   t.addEventListener("input", () => {
-    highlightedIndex = -1; // Reset the highlighted suggestion index
-    updateSuggestions();   // Update suggestions based on the new input
+    highlightedIndex = -1;
+    updateSuggestions();
   });
-
   t.addEventListener("keydown", (e) => {
     if (!suggestionsBox.classList.contains("hidden")) {
       if (e.key === "ArrowDown") {
@@ -738,18 +594,38 @@ textareasArray.forEach((t, idx) => {
         highlightedIndex = (highlightedIndex + 1) % matchingSuggestions.length;
         updateSuggestions();
       }
-
-      if (e.key === "ArrowUp") {
+     if (e.key === "ArrowUp") {
         e.preventDefault();
-        highlightedIndex = (highlightedIndex - 1 + matchingSuggestions.length) % matchingSuggestions.length;
+        highlightedIndex =
+          (highlightedIndex - 1 + matchingSuggestions.length) %
+          matchingSuggestions.length;
         updateSuggestions();
       }
-
       if (e.key === "Enter" && highlightedIndex >= 0) {
         e.preventDefault();
-        insertTextAtCursor(matchingSuggestions[highlightedIndex]);
+        insertText(matchingSuggestions[highlightedIndex], true);
         suggestionsBox.classList.add("hidden");
-      }
+     }
+    }
+
+    if (e.ctrlKey && e.key === "1") {
+      e.preventDefault();
+      othersSearch.focus();
+      othersHighlightedIndex = -1;
+     updateOthersHighlight();
+    }
+
+    if (e.ctrlKey && e.key === "ArrowDown") {
+      e.preventDefault();
+      focusTextarea((currentTextareaIndex + 1) % textareasArray.length);
+    }
+    if (e.ctrlKey && e.key === "ArrowUp") {
+      e.preventDefault();
+      focusTextarea(
+        (currentTextareaIndex - 1 + textareasArray.length) %
+          textareasArray.length,
+      );
     }
   });
 });
+
