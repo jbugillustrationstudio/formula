@@ -708,4 +708,112 @@ textareasArray.forEach((t, idx) => {
       );
     }
   });
+  const othersSearch = document.getElementById("others-search");
+  const othersList = document.getElementById("others-list");
+  let currentTextarea = null;
+  let currentTextareaIndex = 0;
+  let isOtherFocused = false; // track toggle state
+  let highlightedIndex = -1; // for arrow navigation
+  const listItems = Array.from(othersList.querySelectorAll("li"));
+
+  // Toggle focus with Ctrl+`
+  document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key === "`") {
+      e.preventDefault();
+
+      if (!currentTextarea) return;
+
+      if (!isOtherFocused) {
+        othersSearch.focus();
+        isOtherFocused = true;
+      } else {
+        currentTextarea.focus();
+        isOtherFocused = false;
+        resetHighlight();
+      }
+    }
+  });
+
+  // Track which textarea is focused
+  const textareasArray = document.querySelectorAll("textarea");
+  textareasArray.forEach((t, idx) => {
+    t.addEventListener("focus", () => {
+      currentTextareaIndex = idx;
+      currentTextarea = t;
+      isOtherFocused = false;
+      resetHighlight();
+    });
+  });
+
+  // Track focus on the search box
+  othersSearch.addEventListener("focus", () => {
+    isOtherFocused = true;
+  });
+
+  // Handle arrow keys and Enter in search box
+  othersSearch.addEventListener("keydown", (e) => {
+    if (!listItems.length) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      moveHighlight(1);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      moveHighlight(-1);
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (highlightedIndex >= 0) {
+        selectItem(listItems[highlightedIndex]);
+      }
+    }
+  });
+
+  // Highlight functions
+  function moveHighlight(direction) {
+    if (highlightedIndex >= 0) {
+      listItems[highlightedIndex].classList.remove("bg-blue-200");
+    }
+
+    highlightedIndex += direction;
+    if (highlightedIndex < 0) highlightedIndex = listItems.length - 1;
+    if (highlightedIndex >= listItems.length) highlightedIndex = 0;
+
+    listItems[highlightedIndex].classList.add("bg-blue-200");
+    listItems[highlightedIndex].scrollIntoView({ block: "nearest" });
+  }
+
+  function resetHighlight() {
+    if (highlightedIndex >= 0) {
+      listItems[highlightedIndex].classList.remove("bg-blue-200");
+    }
+    highlightedIndex = -1;
+  }
+  function selectItem(item) {
+    if (!currentTextarea) return;
+
+    const insertText = item.textContent.trim() + " ";
+    const textarea = currentTextarea;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+
+    // Insert at cursor position
+    const before = textarea.value.substring(0, start);
+    const after = textarea.value.substring(end);
+    textarea.value = before + insertText + after;
+
+    // Move cursor to after the inserted text
+    const newCursorPos = start + insertText.length;
+    textarea.setSelectionRange(newCursorPos, newCursorPos);
+
+    textarea.focus();
+    isOtherFocused = false;
+    resetHighlight();
+  }
+
+  // Allow click to select as well
+  listItems.forEach((li, idx) => {
+    li.addEventListener("click", () => {
+      selectItem(li);
+    });
+  });
 });
