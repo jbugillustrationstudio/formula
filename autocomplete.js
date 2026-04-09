@@ -517,6 +517,28 @@ function insertText(text, replaceLastWord = false) {
 
   lastFocusedTextarea.focus();
 }
+//add new =========================
+function getWordAtCursorPosition(textarea) {
+  const cursorPosition = textarea.selectionStart;  // Get cursor position
+  const text = textarea.value;
+
+  // Find the start of the word before the cursor
+  let wordStart = cursorPosition;
+  while (wordStart > 0 && /\w/.test(text.charAt(wordStart - 1))) {
+    wordStart--;
+  }
+
+  // Find the end of the word after the cursor
+  let wordEnd = cursorPosition;
+  while (wordEnd < text.length && /\w/.test(text.charAt(wordEnd))) {
+    wordEnd++;
+  }
+
+  // Get the word under the cursor
+  const word = text.substring(wordStart, wordEnd);
+  return { word, wordStart, wordEnd };
+}
+//add new =========================
 
 function updateSuggestions() {
   if (!currentTextarea) return;
@@ -571,12 +593,29 @@ function updateSuggestions() {
   const highlightedItem = suggestionsBox.querySelector(".bg-blue-200");
   if (highlightedItem) highlightedItem.scrollIntoView({ block: "nearest" });
 }
-function focusTextarea(index) {
-  currentTextareaIndex = index;
-  currentTextarea = textareasArray[currentTextareaIndex];
-  lastFocusedTextarea = currentTextarea;
-  currentTextarea.focus();
+//function focusTextarea(index) {
+//  currentTextareaIndex = index;
+//  currentTextarea = textareasArray[currentTextareaIndex];
+//  lastFocusedTextarea = currentTextarea;
+//  currentTextarea.focus();
+//}
+//add =================================
+function insertTextAtCursor(text) {
+  if (!lastFocusedTextarea) return;
+
+  const { wordStart, wordEnd } = getWordAtCursorPosition(lastFocusedTextarea);
+  const currentText = lastFocusedTextarea.value;
+
+  // Insert the text by replacing the word under the cursor
+  const newText = currentText.slice(0, wordStart) + text + currentText.slice(wordEnd);
+  lastFocusedTextarea.value = newText;
+
+  // Set the cursor position right after the inserted word
+  lastFocusedTextarea.selectionStart = lastFocusedTextarea.selectionEnd = wordStart + text.length;
+
+  lastFocusedTextarea.focus(); // Keep the focus on the textarea
 }
+//add ================================
 
 textareasArray.forEach((t, idx) => {
   t.addEventListener("focus", () => {
