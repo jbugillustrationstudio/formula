@@ -719,10 +719,9 @@ textareasArray.forEach((t, idx) => {
   const othersList = document.getElementById("others-list");
   const textareasArray = document.querySelectorAll("textarea");
 
-  let currentTextarea = null;
   let currentTextareaIndex = 0;
   let isOtherFocused = false;
-  let highlightedIndex = -1;
+
   let listItems = [];
 
   // Dynamically generate <li> elements
