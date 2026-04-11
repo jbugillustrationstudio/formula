@@ -14,6 +14,11 @@
     </style>
   </head>
   <body class="bg-gray-200 p-3 max-w-4xl mx-auto">
+    <div
+      id="toast-default"
+      class="hidden items-center w-full max-w-xs p-4 text-body bg-neutral-primary-soft rounded-base shadow-xs border border-default"
+      role="alert"
+    ></div>
     <div class="grid grid-cols-3 gap-4">
       <!-- LEFT SIDE -->
       <div class="col-span-2 space-y-1">
@@ -196,14 +201,6 @@
           <!-- Left column -->
           <div class="border border-gray-300 p-1">
             <div class="grid grid-cols-[120px_1fr] items-center gap-y-1">
-              <div>LVEDV indexed</div>
-              <input
-                type="number"
-                disabled
-                data-section="leftventricle"
-                data-label="LVEDVindexed"
-                class="w-full border px-1"
-              />
               <div>LVEDV (4CH)</div>
               <input
                 type="number"
@@ -226,7 +223,28 @@
                 data-label="LVEDV"
                 class="w-full border px-1"
               />
-
+              <div>LVEDV indexed</div>
+              <input
+                type="number"
+                disabled
+                data-section="leftventricle"
+                data-label="LVEDVindexed"
+                class="w-full border px-1"
+              />
+              <div>LVESV (4CH)</div>
+              <input
+                type="number"
+                data-section="leftventricle"
+                data-label="LVESV4"
+                class="w-full border px-1"
+              />
+              <div>LVESV (2CH)</div>
+              <input
+                type="number"
+                data-section="leftventricle"
+                data-label="LVESV2"
+                class="w-full border px-1"
+              />
               <div>LVESV (BP)</div>
               <input
                 type="number"

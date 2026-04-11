@@ -22,6 +22,8 @@ function updateTextareas() {
   let LVEDV2 = 0;
   let LVEDV = null;
   let LVESV = 0;
+  let LVESV4 = 0;
+  let LVESV2 = 0;
   let lvefvisual = null;
   let sept = 0;
   let lat = 0;
@@ -67,6 +69,8 @@ function updateTextareas() {
       if (label === "LVEDV4") LVEDV4 = parseFloat(value);
       if (label === "LVEDV2") LVEDV2 = parseFloat(value);
       if (label === "LVEDV") LVEDV = parseFloat(value);
+      if (label === "LVESV4") LVESV4 = parseFloat(value);
+      if (label === "LVESV2") LVESV2 = parseFloat(value);
       if (label === "LVESV") LVESV = parseFloat(value);
       if (label === "lvefvisual") lvefvisual = value;
       if (label === "sept") sept = parseFloat(value);
@@ -187,6 +191,7 @@ function updateTextareas() {
   const lateeInput = document.querySelector('input[data-label="latee"]');
   const avgeeInput = document.querySelector('input[data-label="avgee"]');
   const LVEDVInput = document.querySelector('input[data-label="LVEDV"]');
+  const LVESVInput = document.querySelector('input[data-label="LVESV"]');
   const rwtInput = document.querySelector('input[data-label="rwt"]');
   const lvmassInput = document.querySelector('input[data-label="lvmass"]');
 
@@ -210,7 +215,6 @@ function updateTextareas() {
     if (lvmassInput) lvmassInput.value = "";
   }
 
-  if (LVESV) cardiacValues.push(`LVESV ${LVESV} ml`);
   if (LVEDV4 && LVEDV2) {
     const LVEDV = (LVEDV4 + LVEDV2) / 2;
     if (LVEDVInput) LVEDVInput.value = LVEDV;
@@ -225,10 +229,17 @@ function updateTextareas() {
   } else {
     if (LVEDVindexedInput) LVEDVindexedInput.value = "";
   }
-  if (LVEDV && LVESV) {
+  if (LVESV4 && LVESV2) {
+    const LVESV = (LVESV4 + LVESV2) / 2;
+    if (LVESVInput) LVESVInput.value = LVESV;
+    cardiacValues.push(`LVESV ${LVESV} ml`);
+  } else {
+    if (LVESVInput) LVESVInput.value = "";
+  }
+  if (LVEDV > 0 && LVESV >= 0 && LVESV < LVEDV) {
     const lvefsimpsonValue = (((LVEDV - LVESV) / LVEDV) * 100).toFixed(0);
     if (lvefsimpsonInput) lvefsimpsonInput.value = lvefsimpsonValue;
-    cardiacValues.push(`LVEF by Simpson's biplane ${lvefsimpsonValue}`);
+    cardiacValues.push(`LVEF by Simpson's biplane ${lvefsimpsonValue}%`);
   } else {
     if (lvefsimpsonInput) lvefsimpsonInput.value = "";
   }
